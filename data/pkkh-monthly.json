@@ -1,0 +1,5332 @@
+{
+  "labelDate": "30/09/2026",
+  "reportDate": "19/10/2026",
+  "values": {
+    "all": {
+      "Dormant": {
+        "count": 12343,
+        "retained": 12343,
+        "navPositive": 11435,
+        "matched": 204,
+        "navPrevious": 12982.470676527,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 12503.927389892,
+        "debtCurrent": 23.139606506,
+        "tradeMtd": 376.23546832,
+        "feeMtd": 315.966928
+      },
+      "Mass": {
+        "count": 4529,
+        "retained": 4529,
+        "navPositive": 4045,
+        "matched": 1133,
+        "navPrevious": 1689.548980959,
+        "debtPrevious": 576.294064255,
+        "tradePrevious": 279.0447972,
+        "feePrevious": 345.81468,
+        "navCurrent": 1579.4756375489999,
+        "debtCurrent": 538.70510725,
+        "tradeMtd": 288.33493951,
+        "feeMtd": 351.222554
+      },
+      "Active Trader": {
+        "count": 2115,
+        "retained": 2115,
+        "navPositive": 1993,
+        "matched": 1205,
+        "navPrevious": 1827.580742288,
+        "debtPrevious": 1127.156676703,
+        "tradePrevious": 3977.73193469,
+        "feePrevious": 4582.345434,
+        "navCurrent": 1560.099360259,
+        "debtCurrent": 1106.114338537,
+        "tradeMtd": 2073.57296189,
+        "feeMtd": 2478.0027410000002
+      },
+      "HVT": {
+        "count": 98,
+        "retained": 98,
+        "navPositive": 90,
+        "matched": 50,
+        "navPrevious": 3444.341899593,
+        "debtPrevious": 1655.079843281,
+        "tradePrevious": 4109.95536855,
+        "feePrevious": 3912.034576,
+        "navCurrent": 3045.374372599,
+        "debtCurrent": 1477.117229549,
+        "tradeMtd": 1382.54578685,
+        "feeMtd": 1290.104428
+      },
+      "HNW": {
+        "count": 123,
+        "retained": 123,
+        "navPositive": 120,
+        "matched": 42,
+        "navPrevious": 1706.46739706,
+        "debtPrevious": 980.304674269,
+        "tradePrevious": 311.94862156,
+        "feePrevious": 316.622813,
+        "navCurrent": 1654.405206308,
+        "debtCurrent": 908.7751502670001,
+        "tradeMtd": 316.338458,
+        "feeMtd": 368.64052100000004
+      },
+      "UHNW": {
+        "count": 115,
+        "retained": 115,
+        "navPositive": 112,
+        "matched": 44,
+        "navPrevious": 23277.528700814,
+        "debtPrevious": 3585.302398288,
+        "tradePrevious": 2616.4055238,
+        "feePrevious": 2671.218798,
+        "navCurrent": 19857.289935742,
+        "debtCurrent": 3476.426761135,
+        "tradeMtd": 648.12614208,
+        "feeMtd": 737.270397
+      },
+      "Block Deal (BD)": {
+        "count": 6,
+        "retained": 6,
+        "navPositive": 6,
+        "matched": 2,
+        "navPrevious": 735.609219755,
+        "debtPrevious": 691.481788934,
+        "tradePrevious": 371.264375,
+        "feePrevious": 232.889769,
+        "navCurrent": 641.495572261,
+        "debtCurrent": 558.39897019,
+        "tradeMtd": 190.29557,
+        "feeMtd": 134.84870899999999
+      },
+      "Zero": {
+        "count": 42405,
+        "retained": 42405,
+        "navPositive": 609,
+        "matched": 272,
+        "navPrevious": 3460.172067055,
+        "debtPrevious": 3339.234603025,
+        "tradePrevious": 3397.84409783,
+        "feePrevious": 3521.71893,
+        "navCurrent": 3118.772916306,
+        "debtCurrent": 3512.362658432,
+        "tradeMtd": 2126.0068408,
+        "feeMtd": 2126.306482
+      },
+      "Unclassified": {
+        "count": 27529,
+        "retained": 27529,
+        "navPositive": 26314,
+        "matched": 37,
+        "navPrevious": 26.425407441,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 27.954361686,
+        "debtCurrent": 0.174512909,
+        "tradeMtd": 1.45892675,
+        "feeMtd": 2.629864
+      },
+      "Other": {
+        "count": 680,
+        "retained": 680,
+        "navPositive": 324,
+        "matched": 22,
+        "navPrevious": 51640.159306061,
+        "debtPrevious": 1044.121388178,
+        "tradePrevious": 1322.19924685,
+        "feePrevious": 931.056894,
+        "navCurrent": 26273.775327248997,
+        "debtCurrent": 1275.322211575,
+        "tradeMtd": 1192.1125175,
+        "feeMtd": 1088.021884
+      }
+    },
+    "CN HA NOI": {
+      "Dormant": {
+        "count": 437,
+        "retained": 437,
+        "navPositive": 437,
+        "matched": 5,
+        "navPrevious": 76.454228192,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 67.819861799,
+        "debtCurrent": 0.08552891,
+        "tradeMtd": 0.5360917,
+        "feeMtd": 0.535083
+      },
+      "Mass": {
+        "count": 390,
+        "retained": 390,
+        "navPositive": 292,
+        "matched": 33,
+        "navPrevious": 25.854097079,
+        "debtPrevious": 9.737737239,
+        "tradePrevious": 14.3902459,
+        "feePrevious": 19.46708,
+        "navCurrent": 23.700024153,
+        "debtCurrent": 9.942922752,
+        "tradeMtd": 5.82439276,
+        "feeMtd": 7.349209
+      },
+      "Active Trader": {
+        "count": 106,
+        "retained": 106,
+        "navPositive": 94,
+        "matched": 38,
+        "navPrevious": 265.165162394,
+        "debtPrevious": 135.204971988,
+        "tradePrevious": 384.3468203,
+        "feePrevious": 336.999399,
+        "navCurrent": 94.410199832,
+        "debtCurrent": 108.991994748,
+        "tradeMtd": 49.125883,
+        "feeMtd": 46.725202
+      },
+      "HVT": {
+        "count": 12,
+        "retained": 12,
+        "navPositive": 10,
+        "matched": 4,
+        "navPrevious": 200.238255324,
+        "debtPrevious": 118.041333719,
+        "tradePrevious": 164.6003719,
+        "feePrevious": 151.541514,
+        "navCurrent": 189.485188484,
+        "debtCurrent": 148.002826736,
+        "tradeMtd": 133.155015,
+        "feeMtd": 98.46113
+      },
+      "HNW": {
+        "count": 12,
+        "retained": 12,
+        "navPositive": 12,
+        "matched": 4,
+        "navPrevious": 231.194319861,
+        "debtPrevious": 143.489274088,
+        "tradePrevious": 124.26689,
+        "feePrevious": 112.787081,
+        "navCurrent": 220.104471367,
+        "debtCurrent": 129.513268028,
+        "tradeMtd": 114.6372,
+        "feeMtd": 130.231756
+      },
+      "UHNW": {
+        "count": 13,
+        "retained": 13,
+        "navPositive": 13,
+        "matched": 6,
+        "navPrevious": 604.383790105,
+        "debtPrevious": 511.052923885,
+        "tradePrevious": 102.3382094,
+        "feePrevious": 130.28457,
+        "navCurrent": 544.358786693,
+        "debtCurrent": 513.654322937,
+        "tradeMtd": 77.6736854,
+        "feeMtd": 95.753527
+      },
+      "Block Deal (BD)": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 1082,
+        "retained": 1082,
+        "navPositive": 98,
+        "matched": 25,
+        "navPrevious": 801.587106353,
+        "debtPrevious": 683.130885739,
+        "tradePrevious": 379.6956131,
+        "feePrevious": 390.347124,
+        "navCurrent": 638.43847853,
+        "debtCurrent": 700.256747308,
+        "tradeMtd": 154.6528431,
+        "feeMtd": 178.747684
+      },
+      "Unclassified": {
+        "count": 1485,
+        "retained": 1485,
+        "navPositive": 1442,
+        "matched": 4,
+        "navPrevious": 1.964851568,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 1.860245982,
+        "debtCurrent": 0,
+        "tradeMtd": 0.0185666,
+        "feeMtd": 0.022839
+      },
+      "Other": {
+        "count": 9,
+        "retained": 9,
+        "navPositive": 8,
+        "matched": 1,
+        "navPrevious": 204.560945235,
+        "debtPrevious": 201.416700606,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 215.108463794,
+        "debtCurrent": 195.351047453,
+        "tradeMtd": 235.0033,
+        "feeMtd": 289.054059
+      }
+    },
+    "CN HCM": {
+      "Dormant": {
+        "count": 1375,
+        "retained": 1375,
+        "navPositive": 1367,
+        "matched": 25,
+        "navPrevious": 560.198819633,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 544.292808393,
+        "debtCurrent": 7.40725832,
+        "tradeMtd": 36.29567374,
+        "feeMtd": 25.204547
+      },
+      "Mass": {
+        "count": 671,
+        "retained": 671,
+        "navPositive": 613,
+        "matched": 169,
+        "navPrevious": 226.497692264,
+        "debtPrevious": 86.288874757,
+        "tradePrevious": 54.9280607,
+        "feePrevious": 70.579306,
+        "navCurrent": 220.318902821,
+        "debtCurrent": 75.096795601,
+        "tradeMtd": 38.37284809,
+        "feeMtd": 47.332906
+      },
+      "Active Trader": {
+        "count": 352,
+        "retained": 352,
+        "navPositive": 336,
+        "matched": 181,
+        "navPrevious": 270.386334406,
+        "debtPrevious": 196.4515845,
+        "tradePrevious": 647.59696703,
+        "feePrevious": 717.971183,
+        "navCurrent": 240.552308045,
+        "debtCurrent": 176.811179035,
+        "tradeMtd": 250.96454786,
+        "feeMtd": 291.561316
+      },
+      "HVT": {
+        "count": 10,
+        "retained": 10,
+        "navPositive": 10,
+        "matched": 5,
+        "navPrevious": 255.941891355,
+        "debtPrevious": 21.228736227,
+        "tradePrevious": 95.1373209,
+        "feePrevious": 117.365141,
+        "navCurrent": 248.436501111,
+        "debtCurrent": 11.777955935,
+        "tradeMtd": 39.08709265,
+        "feeMtd": 48.521053
+      },
+      "HNW": {
+        "count": 12,
+        "retained": 12,
+        "navPositive": 11,
+        "matched": 1,
+        "navPrevious": 145.308855528,
+        "debtPrevious": 41.494013541,
+        "tradePrevious": 8.687523,
+        "feePrevious": 10.685657,
+        "navCurrent": 151.789459783,
+        "debtCurrent": 33.087779289,
+        "tradeMtd": 5.507205,
+        "feeMtd": 6.773863
+      },
+      "UHNW": {
+        "count": 17,
+        "retained": 17,
+        "navPositive": 17,
+        "matched": 8,
+        "navPrevious": 12540.136275325,
+        "debtPrevious": 1690.084444221,
+        "tradePrevious": 1207.4352293,
+        "feePrevious": 1440.459571,
+        "navCurrent": 11111.292104417,
+        "debtCurrent": 1584.963775716,
+        "tradeMtd": 278.323079,
+        "feeMtd": 342.337419
+      },
+      "Block Deal (BD)": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 10969,
+        "retained": 10968,
+        "navPositive": 102,
+        "matched": 50,
+        "navPrevious": 457.984650239,
+        "debtPrevious": 496.145193791,
+        "tradePrevious": 929.2521724,
+        "feePrevious": 893.369026,
+        "navCurrent": 387.592747748,
+        "debtCurrent": 527.756907589,
+        "tradeMtd": 313.0441656,
+        "feeMtd": 347.395486
+      },
+      "Unclassified": {
+        "count": 3897,
+        "retained": 3897,
+        "navPositive": 3799,
+        "matched": 6,
+        "navPrevious": 4.157360822,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 4.317964492,
+        "debtCurrent": 0.157095928,
+        "tradeMtd": 0.3993454,
+        "feeMtd": 0.883732
+      },
+      "Other": {
+        "count": 107,
+        "retained": 107,
+        "navPositive": 45,
+        "matched": 1,
+        "navPrevious": 77.777173462,
+        "debtPrevious": 102.895874884,
+        "tradePrevious": 142.6799852,
+        "feePrevious": 104.818122,
+        "navCurrent": 83.856143026,
+        "debtCurrent": 112.330556362,
+        "tradeMtd": 1.26105,
+        "feeMtd": 0.290042
+      }
+    },
+    "CN ĐÀ NẴNG": {
+      "Dormant": {
+        "count": 1087,
+        "retained": 1087,
+        "navPositive": 1083,
+        "matched": 16,
+        "navPrevious": 441.586215676,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 426.452361557,
+        "debtCurrent": 0,
+        "tradeMtd": 104.62598475,
+        "feeMtd": 128.07904
+      },
+      "Mass": {
+        "count": 510,
+        "retained": 510,
+        "navPositive": 461,
+        "matched": 107,
+        "navPrevious": 133.634435344,
+        "debtPrevious": 32.77183443,
+        "tradePrevious": 25.60362526,
+        "feePrevious": 32.295618,
+        "navCurrent": 126.121373492,
+        "debtCurrent": 32.514266722,
+        "tradeMtd": 29.43272912,
+        "feeMtd": 35.833279
+      },
+      "Active Trader": {
+        "count": 244,
+        "retained": 244,
+        "navPositive": 228,
+        "matched": 135,
+        "navPrevious": 148.103798578,
+        "debtPrevious": 117.343861585,
+        "tradePrevious": 313.3959079,
+        "feePrevious": 380.213641,
+        "navCurrent": 133.350875621,
+        "debtCurrent": 93.031798704,
+        "tradeMtd": 90.6350259,
+        "feeMtd": 104.980657
+      },
+      "HVT": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "HNW": {
+        "count": 2,
+        "retained": 2,
+        "navPositive": 2,
+        "matched": 2,
+        "navPrevious": 11.281662603,
+        "debtPrevious": 5.974402692,
+        "tradePrevious": 2.74062826,
+        "feePrevious": 3.370972,
+        "navCurrent": 10.483962462,
+        "debtCurrent": 6.210803508,
+        "tradeMtd": 4.38055,
+        "feeMtd": 5.388077
+      },
+      "UHNW": {
+        "count": 1,
+        "retained": 1,
+        "navPositive": 1,
+        "matched": 1,
+        "navPrevious": 72.014613146,
+        "debtPrevious": 50.354472492,
+        "tradePrevious": 61.984955,
+        "feePrevious": 76.241496,
+        "navCurrent": 64.117687131,
+        "debtCurrent": 51.116870628,
+        "tradeMtd": 41.26301,
+        "feeMtd": 50.753503
+      },
+      "Block Deal (BD)": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 3986,
+        "retained": 3986,
+        "navPositive": 58,
+        "matched": 33,
+        "navPrevious": 69.478802763,
+        "debtPrevious": 134.045774926,
+        "tradePrevious": 322.1779862,
+        "feePrevious": 392.685471,
+        "navCurrent": 62.390086312,
+        "debtCurrent": 108.131370192,
+        "tradeMtd": 174.5373601,
+        "feeMtd": 213.544925
+      },
+      "Unclassified": {
+        "count": 3106,
+        "retained": 3106,
+        "navPositive": 3024,
+        "matched": 5,
+        "navPrevious": 2.220880146,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 2.340068598,
+        "debtCurrent": 0,
+        "tradeMtd": 0.0401964,
+        "feeMtd": 0.094702
+      },
+      "Other": {
+        "count": 27,
+        "retained": 27,
+        "navPositive": 20,
+        "matched": 2,
+        "navPrevious": 20.26483364,
+        "debtPrevious": 25.437303617,
+        "tradePrevious": 132.38212,
+        "feePrevious": 162.830008,
+        "navCurrent": 12.769886557,
+        "debtCurrent": 53.979178929,
+        "tradeMtd": 58.886595,
+        "feeMtd": 72.430512
+      }
+    },
+    "Công ty quản lý": {
+      "Dormant": {
+        "count": 6242,
+        "retained": 6242,
+        "navPositive": 5362,
+        "matched": 40,
+        "navPrevious": 4283.57661771,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 3884.387798767,
+        "debtCurrent": 0.054049975,
+        "tradeMtd": 3.78972773,
+        "feeMtd": 3.52641
+      },
+      "Mass": {
+        "count": 1108,
+        "retained": 1108,
+        "navPositive": 961,
+        "matched": 266,
+        "navPrevious": 289.464156977,
+        "debtPrevious": 24.283425441,
+        "tradePrevious": 48.06632601,
+        "feePrevious": 57.004071,
+        "navCurrent": 271.354496086,
+        "debtCurrent": 20.357635342,
+        "tradeMtd": 30.80782139,
+        "feeMtd": 35.409531
+      },
+      "Active Trader": {
+        "count": 280,
+        "retained": 280,
+        "navPositive": 265,
+        "matched": 151,
+        "navPrevious": 116.954068746,
+        "debtPrevious": 23.485282206,
+        "tradePrevious": 116.75106591,
+        "feePrevious": 104.165577,
+        "navCurrent": 107.550712196,
+        "debtCurrent": 19.78262939,
+        "tradeMtd": 45.70213495,
+        "feeMtd": 49.893694
+      },
+      "HVT": {
+        "count": 2,
+        "retained": 2,
+        "navPositive": 2,
+        "matched": 1,
+        "navPrevious": 11.264857981,
+        "debtPrevious": 0,
+        "tradePrevious": 0.87232,
+        "feePrevious": 1.081297,
+        "navCurrent": 11.279240652,
+        "debtCurrent": 0,
+        "tradeMtd": 0.075,
+        "feeMtd": 0.095805
+      },
+      "HNW": {
+        "count": 7,
+        "retained": 7,
+        "navPositive": 7,
+        "matched": 2,
+        "navPrevious": 84.451131013,
+        "debtPrevious": 0,
+        "tradePrevious": 0.95566,
+        "feePrevious": 0.551075,
+        "navCurrent": 77.134841004,
+        "debtCurrent": 0,
+        "tradeMtd": 6.445972,
+        "feeMtd": 1.706074
+      },
+      "UHNW": {
+        "count": 5,
+        "retained": 5,
+        "navPositive": 5,
+        "matched": 0,
+        "navPrevious": 166.386810736,
+        "debtPrevious": 0,
+        "tradePrevious": 0.00585,
+        "feePrevious": 0.007722,
+        "navCurrent": 146.511441017,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Block Deal (BD)": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 18634,
+        "retained": 18633,
+        "navPositive": 55,
+        "matched": 24,
+        "navPrevious": 7.086437915,
+        "debtPrevious": 11.672727375,
+        "tradePrevious": 16.1841542,
+        "feePrevious": 15.496726,
+        "navCurrent": 45.963364651,
+        "debtCurrent": 55.100527705,
+        "tradeMtd": 95.39148695,
+        "feeMtd": 71.439824
+      },
+      "Unclassified": {
+        "count": 8145,
+        "retained": 8145,
+        "navPositive": 7421,
+        "matched": 4,
+        "navPrevious": 3.761161432,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 3.817129685,
+        "debtCurrent": 0,
+        "tradeMtd": 0.1731355,
+        "feeMtd": 0.003797
+      },
+      "Other": {
+        "count": 243,
+        "retained": 243,
+        "navPositive": 108,
+        "matched": 0,
+        "navPrevious": 26829.391039169,
+        "debtPrevious": 0,
+        "tradePrevious": 514.6277261,
+        "feePrevious": 0.085557,
+        "navCurrent": 5196.691140472,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      }
+    },
+    "KHTC": {
+      "Dormant": {
+        "count": 1,
+        "retained": 1,
+        "navPositive": 1,
+        "matched": 0,
+        "navPrevious": 2.264605727,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 2.000498451,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Mass": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Active Trader": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "HVT": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "HNW": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "UHNW": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Block Deal (BD)": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 3,
+        "retained": 3,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": -2.64e-05,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": -2.64e-05,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Unclassified": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Other": {
+        "count": 30,
+        "retained": 30,
+        "navPositive": 0,
+        "matched": 11,
+        "navPrevious": -2.64e-05,
+        "debtPrevious": 0,
+        "tradePrevious": 532.25963055,
+        "feePrevious": 663.123368,
+        "navCurrent": -2.64e-05,
+        "debtCurrent": 0,
+        "tradeMtd": 195.895295,
+        "feeMtd": 201.396639
+      }
+    },
+    "PGD THĂNG LONG": {
+      "Dormant": {
+        "count": 270,
+        "retained": 270,
+        "navPositive": 268,
+        "matched": 9,
+        "navPrevious": 148.090365606,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 140.350932495,
+        "debtCurrent": 0.269560283,
+        "tradeMtd": 1.8759804,
+        "feeMtd": 1.537434
+      },
+      "Mass": {
+        "count": 163,
+        "retained": 163,
+        "navPositive": 155,
+        "matched": 37,
+        "navPrevious": 68.594452844,
+        "debtPrevious": 15.754268917,
+        "tradePrevious": 13.47401321,
+        "feePrevious": 16.473427,
+        "navCurrent": 63.706137649,
+        "debtCurrent": 14.018184532,
+        "tradeMtd": 7.07288875,
+        "feeMtd": 7.142835
+      },
+      "Active Trader": {
+        "count": 103,
+        "retained": 103,
+        "navPositive": 95,
+        "matched": 55,
+        "navPrevious": 114.415616598,
+        "debtPrevious": 71.38035216,
+        "tradePrevious": 332.772134,
+        "feePrevious": 268.936525,
+        "navCurrent": 111.474394614,
+        "debtCurrent": 77.491426316,
+        "tradeMtd": 175.16353915,
+        "feeMtd": 162.264762
+      },
+      "HVT": {
+        "count": 6,
+        "retained": 6,
+        "navPositive": 5,
+        "matched": 3,
+        "navPrevious": 252.187202628,
+        "debtPrevious": 13.37148145,
+        "tradePrevious": 101.405655,
+        "feePrevious": 96.173279,
+        "navCurrent": 248.64608406,
+        "debtCurrent": 12.109057614,
+        "tradeMtd": 39.68816,
+        "feeMtd": 48.816437
+      },
+      "HNW": {
+        "count": 7,
+        "retained": 7,
+        "navPositive": 7,
+        "matched": 2,
+        "navPrevious": 126.858746204,
+        "debtPrevious": 7.929873719,
+        "tradePrevious": 8.88086,
+        "feePrevious": 10.53839,
+        "navCurrent": 122.290849183,
+        "debtCurrent": 9.34630093,
+        "tradeMtd": 2.62825,
+        "feeMtd": 3.232748
+      },
+      "UHNW": {
+        "count": 4,
+        "retained": 4,
+        "navPositive": 4,
+        "matched": 1,
+        "navPrevious": 257.048422938,
+        "debtPrevious": 6.125950142,
+        "tradePrevious": 2.95,
+        "feePrevious": 3.6285,
+        "navCurrent": 236.383124407,
+        "debtCurrent": 6.125950142,
+        "tradeMtd": 4.365,
+        "feeMtd": 5.36895
+      },
+      "Block Deal (BD)": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 808,
+        "retained": 808,
+        "navPositive": 24,
+        "matched": 8,
+        "navPrevious": 382.057254746,
+        "debtPrevious": 474.993093349,
+        "tradePrevious": 174.12657435,
+        "feePrevious": 214.17572,
+        "navCurrent": 343.895848904,
+        "debtCurrent": 540.235124955,
+        "tradeMtd": 86.56108845,
+        "feeMtd": 63.564144
+      },
+      "Unclassified": {
+        "count": 1147,
+        "retained": 1147,
+        "navPositive": 1122,
+        "matched": 2,
+        "navPrevious": 1.75345843,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 1.657086436,
+        "debtCurrent": 0,
+        "tradeMtd": 0.0019032,
+        "feeMtd": 0.002342
+      },
+      "Other": {
+        "count": 16,
+        "retained": 16,
+        "navPositive": 9,
+        "matched": 0,
+        "navPrevious": 217.567347422,
+        "debtPrevious": 181.656210287,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 207.045725435,
+        "debtCurrent": 181.656210287,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      }
+    },
+    "TRUNG TÂM TVĐT CẦN THƠ": {
+      "Dormant": {
+        "count": 38,
+        "retained": 38,
+        "navPositive": 38,
+        "matched": 3,
+        "navPrevious": 4.64272633,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 4.65027516,
+        "debtCurrent": 0,
+        "tradeMtd": 0.20177,
+        "feeMtd": 0.174077
+      },
+      "Mass": {
+        "count": 48,
+        "retained": 48,
+        "navPositive": 43,
+        "matched": 9,
+        "navPrevious": 8.613323474,
+        "debtPrevious": 6.076693596,
+        "tradePrevious": 0.3780082,
+        "feePrevious": 0.466104,
+        "navCurrent": 7.235774819,
+        "debtCurrent": 5.723591674,
+        "tradeMtd": 0.5508002,
+        "feeMtd": 0.677486
+      },
+      "Active Trader": {
+        "count": 36,
+        "retained": 36,
+        "navPositive": 36,
+        "matched": 22,
+        "navPrevious": 9.834253757,
+        "debtPrevious": 8.213905318,
+        "tradePrevious": 9.1499054,
+        "feePrevious": 10.411076,
+        "navCurrent": 9.0758047,
+        "debtCurrent": 5.809667922,
+        "tradeMtd": 6.02962,
+        "feeMtd": 7.133105
+      },
+      "HVT": {
+        "count": 1,
+        "retained": 1,
+        "navPositive": 1,
+        "matched": 1,
+        "navPrevious": 14.319610061,
+        "debtPrevious": 0.057123887,
+        "tradePrevious": 43.7049,
+        "feePrevious": 32.133158,
+        "navCurrent": 14.367512767,
+        "debtCurrent": 0,
+        "tradeMtd": 17.529571,
+        "feeMtd": 12.796587
+      },
+      "HNW": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "UHNW": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Block Deal (BD)": {
+        "count": 1,
+        "retained": 1,
+        "navPositive": 1,
+        "matched": 1,
+        "navPrevious": 138.024558311,
+        "debtPrevious": 101.976883881,
+        "tradePrevious": 180.59825,
+        "feePrevious": 131.836723,
+        "navCurrent": 88.0428296,
+        "debtCurrent": 0,
+        "tradeMtd": 149.625,
+        "feeMtd": 109.22625
+      },
+      "Zero": {
+        "count": 132,
+        "retained": 132,
+        "navPositive": 14,
+        "matched": 3,
+        "navPrevious": 110.16296463,
+        "debtPrevious": 87.655042164,
+        "tradePrevious": 2.24304023,
+        "feePrevious": 2.941417,
+        "navCurrent": 128.962877204,
+        "debtCurrent": 87.4241264,
+        "tradeMtd": 0.41066355,
+        "feeMtd": 0.508829
+      },
+      "Unclassified": {
+        "count": 405,
+        "retained": 405,
+        "navPositive": 396,
+        "matched": 1,
+        "navPrevious": 0.28162406,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0.26122946,
+        "debtCurrent": 0,
+        "tradeMtd": 0.0087,
+        "feeMtd": 0.011484
+      },
+      "Other": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      }
+    },
+    "TRUNG TÂM TVĐT Hoàn Kiếm": {
+      "Dormant": {
+        "count": 901,
+        "retained": 901,
+        "navPositive": 895,
+        "matched": 23,
+        "navPrevious": 4154.689556826,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 4041.338311217,
+        "debtCurrent": 6.869316709,
+        "tradeMtd": 9.6188873,
+        "feeMtd": 12.068012
+      },
+      "Mass": {
+        "count": 474,
+        "retained": 474,
+        "navPositive": 441,
+        "matched": 120,
+        "navPrevious": 369.267551686,
+        "debtPrevious": 110.268032314,
+        "tradePrevious": 43.4736609,
+        "feePrevious": 52.953168,
+        "navCurrent": 337.404033286,
+        "debtCurrent": 104.440134601,
+        "tradeMtd": 40.23521669,
+        "feeMtd": 45.352603
+      },
+      "Active Trader": {
+        "count": 300,
+        "retained": 300,
+        "navPositive": 285,
+        "matched": 157,
+        "navPrevious": 291.700816434,
+        "debtPrevious": 208.979370056,
+        "tradePrevious": 634.01841265,
+        "feePrevious": 772.40013,
+        "navCurrent": 270.944999617,
+        "debtCurrent": 200.687284118,
+        "tradeMtd": 302.42761441,
+        "feeMtd": 369.461765
+      },
+      "HVT": {
+        "count": 32,
+        "retained": 32,
+        "navPositive": 29,
+        "matched": 13,
+        "navPrevious": 806.972898451,
+        "debtPrevious": 483.188696861,
+        "tradePrevious": 1907.99566795,
+        "feePrevious": 2165.170397,
+        "navCurrent": 565.804826912,
+        "debtCurrent": 390.063207489,
+        "tradeMtd": 485.501262,
+        "feeMtd": 523.59059
+      },
+      "HNW": {
+        "count": 38,
+        "retained": 38,
+        "navPositive": 38,
+        "matched": 12,
+        "navPrevious": 630.047706127,
+        "debtPrevious": 643.294933268,
+        "tradePrevious": 115.4102948,
+        "feePrevious": 117.056533,
+        "navCurrent": 630.650430126,
+        "debtCurrent": 613.282991476,
+        "tradeMtd": 38.938669,
+        "feeMtd": 42.513188
+      },
+      "UHNW": {
+        "count": 55,
+        "retained": 55,
+        "navPositive": 54,
+        "matched": 17,
+        "navPrevious": 7638.754418506,
+        "debtPrevious": 918.95174991,
+        "tradePrevious": 625.1884561,
+        "feePrevious": 683.307946,
+        "navCurrent": 6949.018426597,
+        "debtCurrent": 898.332813615,
+        "tradeMtd": 112.82437228,
+        "feeMtd": 110.147071
+      },
+      "Block Deal (BD)": {
+        "count": 4,
+        "retained": 4,
+        "navPositive": 4,
+        "matched": 0,
+        "navPrevious": 502.982562311,
+        "debtPrevious": 462.224486908,
+        "tradePrevious": 190.666125,
+        "feePrevious": 101.053046,
+        "navCurrent": 412.233728125,
+        "debtCurrent": 393.649680834,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 2286,
+        "retained": 2286,
+        "navPositive": 76,
+        "matched": 26,
+        "navPrevious": 874.656605886,
+        "debtPrevious": 746.522392999,
+        "tradePrevious": 597.733035,
+        "feePrevious": 735.89775,
+        "navCurrent": 747.792229646,
+        "debtCurrent": 742.180643706,
+        "tradeMtd": 229.4722213,
+        "feeMtd": 247.48171
+      },
+      "Unclassified": {
+        "count": 3026,
+        "retained": 3026,
+        "navPositive": 2941,
+        "matched": 1,
+        "navPrevious": 2.68034059,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 3.076689342,
+        "debtCurrent": 0,
+        "tradeMtd": 0.000333,
+        "feeMtd": 0.00041
+      },
+      "Other": {
+        "count": 109,
+        "retained": 109,
+        "navPositive": 58,
+        "matched": 2,
+        "navPrevious": 23591.168766347,
+        "debtPrevious": 252.24221756,
+        "tradePrevious": 0.034985,
+        "feePrevious": 0.043035,
+        "navCurrent": 19271.66926998,
+        "debtCurrent": 413.48513756,
+        "tradeMtd": 322.92421,
+        "feeMtd": 235.736778
+      }
+    },
+    "TRUNG TÂM TVĐT HỘI SỞ": {
+      "Dormant": {
+        "count": 1539,
+        "retained": 1539,
+        "navPositive": 1532,
+        "matched": 41,
+        "navPrevious": 3200.587653658,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 3024.016210162,
+        "debtCurrent": 0.522116754,
+        "tradeMtd": 3.5270625,
+        "feeMtd": 3.680315
+      },
+      "Mass": {
+        "count": 782,
+        "retained": 782,
+        "navPositive": 733,
+        "matched": 182,
+        "navPrevious": 455.32658434,
+        "debtPrevious": 267.658428467,
+        "tradePrevious": 58.98182507,
+        "feePrevious": 70.880133,
+        "navCurrent": 392.731867071,
+        "debtCurrent": 263.266331319,
+        "tradeMtd": 56.5649517,
+        "feeMtd": 68.965327
+      },
+      "Active Trader": {
+        "count": 479,
+        "retained": 479,
+        "navPositive": 457,
+        "matched": 265,
+        "navPrevious": 452.762364862,
+        "debtPrevious": 262.954707609,
+        "tradePrevious": 1266.48804665,
+        "feePrevious": 1656.010732,
+        "navCurrent": 422.246730641,
+        "debtCurrent": 276.747067975,
+        "tradeMtd": 577.21153025,
+        "feeMtd": 778.31776
+      },
+      "HVT": {
+        "count": 21,
+        "retained": 21,
+        "navPositive": 20,
+        "matched": 16,
+        "navPrevious": 904.690285219,
+        "debtPrevious": 205.254181512,
+        "tradePrevious": 1139.4346723,
+        "feePrevious": 906.07222,
+        "navCurrent": 848.757025083,
+        "debtCurrent": 173.767231414,
+        "tradeMtd": 368.6996192,
+        "feeMtd": 284.446937
+      },
+      "HNW": {
+        "count": 33,
+        "retained": 33,
+        "navPositive": 32,
+        "matched": 9,
+        "navPrevious": 347.288134606,
+        "debtPrevious": 80.422810364,
+        "tradePrevious": 26.965041,
+        "feePrevious": 32.022571,
+        "navCurrent": 352.714576245,
+        "debtCurrent": 81.598636231,
+        "tradeMtd": 51.965072,
+        "feeMtd": 60.838504
+      },
+      "UHNW": {
+        "count": 15,
+        "retained": 15,
+        "navPositive": 15,
+        "matched": 7,
+        "navPrevious": 928.126890836,
+        "debtPrevious": 51.868259873,
+        "tradePrevious": 13.994289,
+        "feePrevious": 14.553458,
+        "navCurrent": 902.745410995,
+        "debtCurrent": 62.032434508,
+        "tradeMtd": 13.070985,
+        "feeMtd": 14.336438
+      },
+      "Block Deal (BD)": {
+        "count": 0,
+        "retained": 0,
+        "navPositive": 0,
+        "matched": 0,
+        "navPrevious": 0,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 0,
+        "debtCurrent": 0,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 3698,
+        "retained": 3698,
+        "navPositive": 83,
+        "matched": 37,
+        "navPrevious": 73.714935281,
+        "debtPrevious": 109.128954024,
+        "tradePrevious": 316.12600395,
+        "feePrevious": 346.050295,
+        "navCurrent": 59.175898232,
+        "debtCurrent": 76.488174629,
+        "tradeMtd": 113.30967875,
+        "feeMtd": 119.547359
+      },
+      "Unclassified": {
+        "count": 4453,
+        "retained": 4453,
+        "navPositive": 4337,
+        "matched": 6,
+        "navPrevious": 3.179033231,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 3.415324495,
+        "debtCurrent": 0,
+        "tradeMtd": 0.15795995,
+        "feeMtd": 0.355157
+      },
+      "Other": {
+        "count": 128,
+        "retained": 128,
+        "navPositive": 70,
+        "matched": 1,
+        "navPrevious": 266.950517402,
+        "debtPrevious": 0.219377755,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 239.236539619,
+        "debtCurrent": 0.286077655,
+        "tradeMtd": 0.0666,
+        "feeMtd": 0.081918
+      }
+    },
+    "TRUNG TÂM TVĐT SÀI GÒN": {
+      "Dormant": {
+        "count": 453,
+        "retained": 453,
+        "navPositive": 452,
+        "matched": 9,
+        "navPrevious": 110.379887169,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 239.649646715,
+        "debtCurrent": 0.218122021,
+        "tradeMtd": 101.5963304,
+        "feeMtd": 55.247401
+      },
+      "Mass": {
+        "count": 383,
+        "retained": 383,
+        "navPositive": 344,
+        "matched": 95,
+        "navPrevious": 112.296686951,
+        "debtPrevious": 23.454769094,
+        "tradePrevious": 19.74903195,
+        "feePrevious": 25.695773,
+        "navCurrent": 101.69523828,
+        "debtCurrent": 22.433734294,
+        "tradeMtd": 24.71617126,
+        "feeMtd": 42.026206
+      },
+      "Active Trader": {
+        "count": 215,
+        "retained": 215,
+        "navPositive": 198,
+        "matched": 115,
+        "navPrevious": 158.258326513,
+        "debtPrevious": 103.142641281,
+        "tradePrevious": 273.21267485,
+        "feePrevious": 335.237171,
+        "navCurrent": 149.481774489,
+        "debtCurrent": 104.034306623,
+        "tradeMtd": 85.36430745,
+        "feeMtd": 96.327911
+      },
+      "HVT": {
+        "count": 14,
+        "retained": 14,
+        "navPositive": 13,
+        "matched": 4,
+        "navPrevious": 998.726898574,
+        "debtPrevious": 813.938289625,
+        "tradePrevious": 656.8044605,
+        "feePrevious": 442.49757,
+        "navCurrent": 972.063252879,
+        "debtCurrent": 782.215671001,
+        "tradeMtd": 33.7355662,
+        "feeMtd": 44.915565
+      },
+      "HNW": {
+        "count": 12,
+        "retained": 12,
+        "navPositive": 11,
+        "matched": 6,
+        "navPrevious": 130.036841118,
+        "debtPrevious": 57.699366597,
+        "tradePrevious": 24.0417245,
+        "feePrevious": 29.610534,
+        "navCurrent": 140.627402997,
+        "debtCurrent": 40.988745058,
+        "tradeMtd": 11.60326,
+        "feeMtd": 14.325288
+      },
+      "UHNW": {
+        "count": 5,
+        "retained": 5,
+        "navPositive": 4,
+        "matched": 1,
+        "navPrevious": 1070.677479222,
+        "debtPrevious": 356.864597765,
+        "tradePrevious": 602.508535,
+        "feePrevious": 322.735535,
+        "navCurrent": 778.535456924,
+        "debtCurrent": 331.23714908,
+        "tradeMtd": 0.19169,
+        "feeMtd": 0.101596
+      },
+      "Block Deal (BD)": {
+        "count": 1,
+        "retained": 1,
+        "navPositive": 1,
+        "matched": 0,
+        "navPrevious": 94.602099133,
+        "debtPrevious": 127.280418145,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 115.180007441,
+        "debtCurrent": 127.082427916,
+        "tradeMtd": 0,
+        "feeMtd": 0
+      },
+      "Zero": {
+        "count": 807,
+        "retained": 807,
+        "navPositive": 101,
+        "matched": 44,
+        "navPrevious": 683.443335642,
+        "debtPrevious": 595.940538658,
+        "tradePrevious": 660.3055184,
+        "feePrevious": 530.755401,
+        "navCurrent": 653.692998847,
+        "debtCurrent": 613.317113281,
+        "tradeMtd": 379.4554712,
+        "feeMtd": 319.687378
+      },
+      "Unclassified": {
+        "count": 1865,
+        "retained": 1865,
+        "navPositive": 1828,
+        "matched": 3,
+        "navPrevious": 6.426697162,
+        "debtPrevious": 0,
+        "tradePrevious": 0,
+        "feePrevious": 0,
+        "navCurrent": 6.41826269,
+        "debtCurrent": 0,
+        "tradeMtd": 0.0823398,
+        "feeMtd": 0.102531
+      },
+      "Other": {
+        "count": 11,
+        "retained": 11,
+        "navPositive": 6,
+        "matched": 2,
+        "navPrevious": 432.478709784,
+        "debtPrevious": 280.253703469,
+        "tradePrevious": 0.2148,
+        "feePrevious": 0.156804,
+        "navCurrent": 550.117132809,
+        "debtCurrent": 359.505661365,
+        "tradeMtd": 260.2809125,
+        "feeMtd": 190.005067
+      }
+    }
+  },
+  "centerReportDate": "14/10/2026",
+  "source15": "05 hiệu suất PPKH 15-10-2026.xlsx",
+  "scopeNote": "Hiệu quả cấp công ty chốt 19/10/2026; nhãn và đơn vị gốc 30/09 giữ nguyên. Trung tâm giữ 14/10/2026 do file mới phân bổ lại KH đầu kỳ.",
+  "source18": "BÁO CÁO PHÂN KHÚC KH THEO NHÃN CỐ ĐỊNH_02 16-10-2026.xlsx",
+  "catalog": {
+    "source": "PKKH_2026_8_10_v2.csv",
+    "snapshotDates": {
+      "202608": "2026-08-31",
+      "202609": "2026-09-30",
+      "202610": "2026-10-12"
+    },
+    "months": [
+      "202608",
+      "202609",
+      "202610"
+    ],
+    "labels": [
+      "Dormant",
+      "Mass",
+      "Active Trader",
+      "HVT",
+      "HNW",
+      "UHNW",
+      "Block Deal (BD)",
+      "Zero",
+      "Unclassified",
+      "Other"
+    ],
+    "units": [
+      {
+        "key": "Công ty quản lý",
+        "label": "Công ty quản lý"
+      },
+      {
+        "key": "TRUNG TÂM TVĐT CẦN THƠ",
+        "label": "Cần Thơ"
+      },
+      {
+        "key": "CN HCM",
+        "label": "HCM"
+      },
+      {
+        "key": "TRUNG TÂM TVĐT Hoàn Kiếm",
+        "label": "Hoàn Kiếm"
+      },
+      {
+        "key": "CN HA NOI",
+        "label": "Hà Nội"
+      },
+      {
+        "key": "TRUNG TÂM TVĐT HỘI SỞ",
+        "label": "Hội sở"
+      },
+      {
+        "key": "KHTC",
+        "label": "KHTC"
+      },
+      {
+        "key": "TRUNG TÂM TVĐT SÀI GÒN",
+        "label": "Sài Gòn"
+      },
+      {
+        "key": "PGD THĂNG LONG",
+        "label": "Thăng Long"
+      },
+      {
+        "key": "CN ĐÀ NẴNG",
+        "label": "Đà Nẵng"
+      }
+    ],
+    "values": {
+      "202608": {
+        "all": {
+          "Mass": {
+            "count": 5090,
+            "nav": 1836.6286844520005,
+            "navAvg6m": 1791.0849799515645,
+            "gtgd6m": 4984.187386710006,
+            "debtAvg6m": 776.6179034340197,
+            "negativeNav": 509,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 41393,
+            "nav": -1.9108762110004067,
+            "navAvg6m": -1.0144387615397645,
+            "gtgd6m": 0.8047993700000001,
+            "debtAvg6m": 0.00440649135,
+            "negativeNav": 34853,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 27610,
+            "nav": 30.503540796000184,
+            "navAvg6m": 23.46125266150001,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 890,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 12042,
+            "nav": 13271.92877071307,
+            "navAvg6m": 14505.732256756804,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 696,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 169,
+            "nav": 28401.89227510599,
+            "navAvg6m": 28308.669319454693,
+            "gtgd6m": 24018.928302809996,
+            "debtAvg6m": 7563.79701781607,
+            "negativeNav": 4,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 2156,
+            "nav": 1385.2653508400006,
+            "navAvg6m": 1292.6169102977483,
+            "gtgd6m": 29485.664791670006,
+            "debtAvg6m": 753.1763051001304,
+            "negativeNav": 151,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 968,
+            "nav": 63425.03324037783,
+            "navAvg6m": 57327.32686523049,
+            "gtgd6m": 13970.329515500001,
+            "debtAvg6m": 1490.0932806466,
+            "negativeNav": 220,
+            "excluded": 615
+          },
+          "HNW": {
+            "count": 156,
+            "nav": 1355.821921751,
+            "navAvg6m": 1321.49740079574,
+            "gtgd6m": 3956.4745365999993,
+            "debtAvg6m": 701.3235075275398,
+            "negativeNav": 3,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 161,
+            "nav": 3296.0558437949985,
+            "navAvg6m": 3324.8310802309416,
+            "gtgd6m": 40761.712222999995,
+            "debtAvg6m": 1700.6517839647297,
+            "negativeNav": 10,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 7,
+            "nav": 668.402597368,
+            "navAvg6m": 708.3368746416099,
+            "gtgd6m": 1288.784215,
+            "debtAvg6m": 435.50363249416,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT Hoàn Kiếm": {
+          "Mass": {
+            "count": 541,
+            "nav": 336.0681867610004,
+            "navAvg6m": 337.51789329656975,
+            "gtgd6m": 935.0721522200002,
+            "debtAvg6m": 154.15223472907994,
+            "negativeNav": 34,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 3117,
+            "nav": 3.752747223999994,
+            "navAvg6m": 2.7055795052799994,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 91,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 823,
+            "nav": 4260.414133995998,
+            "navAvg6m": 4457.155635946571,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 5,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 2148,
+            "nav": -0.14048718600000193,
+            "navAvg6m": -0.0724888948800004,
+            "gtgd6m": 0.5141697500000001,
+            "debtAvg6m": 0.004403807419999999,
+            "negativeNav": 1933,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 108,
+            "nav": 25369.264951427987,
+            "navAvg6m": 23144.148770829674,
+            "gtgd6m": 637.3513766499999,
+            "debtAvg6m": 622.7993357872399,
+            "negativeNav": 40,
+            "excluded": 90
+          },
+          "HVT": {
+            "count": 39,
+            "nav": 692.9416987610002,
+            "navAvg6m": 601.88963113948,
+            "gtgd6m": 11999.366895999996,
+            "debtAvg6m": 336.30324676633,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 63,
+            "nav": 9453.961048364998,
+            "navAvg6m": 9387.312819282011,
+            "gtgd6m": 7300.175094199998,
+            "debtAvg6m": 2989.1300966324193,
+            "negativeNav": 3,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 287,
+            "nav": 269.8664425909999,
+            "navAvg6m": 258.75034092054995,
+            "gtgd6m": 4937.422976130001,
+            "debtAvg6m": 132.31528831562008,
+            "negativeNav": 20,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 46,
+            "nav": 387.691750566,
+            "navAvg6m": 407.88661042523006,
+            "gtgd6m": 1130.53008265,
+            "debtAvg6m": 217.29865939245005,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 2,
+            "nav": 95.07989748899999,
+            "navAvg6m": 214.76193898842,
+            "gtgd6m": 335.356405,
+            "debtAvg6m": 135.10196575668,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "Công ty quản lý": {
+          "Zero": {
+            "count": 18507,
+            "nav": -0.7699277399999981,
+            "navAvg6m": -0.4123109757400446,
+            "gtgd6m": 0.08158065,
+            "debtAvg6m": 2.5378e-06,
+            "negativeNav": 14839,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 6388,
+            "nav": 4421.13819728699,
+            "navAvg6m": 5510.634896785937,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 662,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 1239,
+            "nav": 323.699098868,
+            "navAvg6m": 300.01767227903,
+            "gtgd6m": 515.2294757100002,
+            "debtAvg6m": 44.79656375364002,
+            "negativeNav": 169,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 3,
+            "nav": 203.29533692700002,
+            "navAvg6m": 251.76659619642,
+            "gtgd6m": 50.279175699999996,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 7804,
+            "nav": 5.661356427999977,
+            "navAvg6m": 5.4477352119100155,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 362,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 534,
+            "nav": 36883.17225971597,
+            "navAvg6m": 32718.029943103837,
+            "gtgd6m": 5854.0599208,
+            "debtAvg6m": 161.08338257997002,
+            "negativeNav": 77,
+            "excluded": 244
+          },
+          "HNW": {
+            "count": 10,
+            "nav": 54.593582956999995,
+            "navAvg6m": 85.73563304974,
+            "gtgd6m": 82.23993155000001,
+            "debtAvg6m": 2.00629413209,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 268,
+            "nav": 110.83609133799993,
+            "navAvg6m": 103.75681355562,
+            "gtgd6m": 1030.0190435800002,
+            "debtAvg6m": 23.131545580150007,
+            "negativeNav": 18,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 4,
+            "nav": 21.468035706000002,
+            "navAvg6m": 29.44829667212,
+            "gtgd6m": 321.5029405,
+            "debtAvg6m": 4.546572460789999,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT HỘI SỞ": {
+          "Unclassified": {
+            "count": 4521,
+            "nav": 4.076540349000003,
+            "navAvg6m": 2.716902198110003,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 123,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1442,
+            "nav": 3320.8305590960013,
+            "navAvg6m": 3461.00395883735,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 12,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 495,
+            "nav": 368.16242034099986,
+            "navAvg6m": 346.51565403027,
+            "gtgd6m": 8256.29130575,
+            "debtAvg6m": 199.50128014917001,
+            "negativeNav": 26,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 3560,
+            "nav": -0.17347672800000397,
+            "navAvg6m": -0.08978982223000194,
+            "gtgd6m": 2.8e-06,
+            "debtAvg6m": 0,
+            "negativeNav": 3372,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 893,
+            "nav": 462.53041586800015,
+            "navAvg6m": 455.3507837198898,
+            "gtgd6m": 1316.9992978499997,
+            "debtAvg6m": 243.79305368058002,
+            "negativeNav": 58,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 128,
+            "nav": 283.327208886,
+            "navAvg6m": 328.78032762879997,
+            "gtgd6m": 145.5740459,
+            "debtAvg6m": 56.624303584459994,
+            "negativeNav": 35,
+            "excluded": 112
+          },
+          "HNW": {
+            "count": 40,
+            "nav": 325.30289533700005,
+            "navAvg6m": 323.88276069718,
+            "gtgd6m": 754.4714901000002,
+            "debtAvg6m": 179.58195771140998,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 32,
+            "nav": 631.6212440200001,
+            "navAvg6m": 686.1638184192801,
+            "gtgd6m": 10630.18667365,
+            "debtAvg6m": 261.94699280290007,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 25,
+            "nav": 1527.2474905880003,
+            "navAvg6m": 1391.37403289426,
+            "gtgd6m": 858.2678861999999,
+            "debtAvg6m": 115.27890112371999,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "CN ĐÀ NẴNG": {
+          "Unclassified": {
+            "count": 3164,
+            "nav": 2.8972568609999967,
+            "navAvg6m": 2.453077525490003,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 89,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 3889,
+            "nav": -0.16932320900000364,
+            "navAvg6m": -0.08954833936000164,
+            "gtgd6m": 0.00276485,
+            "debtAvg6m": 0,
+            "negativeNav": 3039,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 586,
+            "nav": 159.49132455899993,
+            "navAvg6m": 151.99755938170009,
+            "gtgd6m": 374.8414345499997,
+            "debtAvg6m": 55.730677227259974,
+            "negativeNav": 51,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 263,
+            "nav": 102.68110551100003,
+            "navAvg6m": 109.61886928858006,
+            "gtgd6m": 3093.061852760002,
+            "debtAvg6m": 75.54080858451,
+            "negativeNav": 24,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 996,
+            "nav": 413.4632562720001,
+            "navAvg6m": 403.2761936728606,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 7,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 5,
+            "nav": 52.13557997699999,
+            "navAvg6m": 46.27842485329,
+            "gtgd6m": 1620.235908,
+            "debtAvg6m": 69.76700603303999,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 27,
+            "nav": 0.428027203,
+            "navAvg6m": 0.47855782134,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 6,
+            "excluded": 22
+          },
+          "HNW": {
+            "count": 7,
+            "nav": 47.622034416000005,
+            "navAvg6m": 49.61737989629,
+            "gtgd6m": 222.50874750000003,
+            "debtAvg6m": 43.12448331635,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 3,
+            "nav": 110.51879911600001,
+            "navAvg6m": 117.71771802312,
+            "gtgd6m": 968.5001340499999,
+            "debtAvg6m": 181.65500651404002,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT SÀI GÒN": {
+          "Unclassified": {
+            "count": 1868,
+            "nav": 3.2005359280000016,
+            "navAvg6m": 2.6254805285200047,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 36,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 684,
+            "nav": -0.013341185999999935,
+            "navAvg6m": -0.006502152349999967,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 679,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 429,
+            "nav": 133.15677156700005,
+            "navAvg6m": 127.49549463333993,
+            "gtgd6m": 460.2866013999999,
+            "debtAvg6m": 68.98266869412002,
+            "negativeNav": 44,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 466,
+            "nav": 111.13957744500006,
+            "navAvg6m": 81.01398729501994,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 238,
+            "nav": 112.08313387999995,
+            "navAvg6m": 105.47778949633005,
+            "gtgd6m": 1887.2288845000005,
+            "debtAvg6m": 63.198376611650026,
+            "negativeNav": 19,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 14,
+            "nav": 2202.573293893,
+            "navAvg6m": 2648.3119620456,
+            "gtgd6m": 3545.8632595999998,
+            "debtAvg6m": 1101.2340790736298,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 10,
+            "nav": 425.22376462700004,
+            "navAvg6m": 639.62915577681,
+            "gtgd6m": 732.64171,
+            "debtAvg6m": 259.8939759638,
+            "negativeNav": 5,
+            "excluded": 9
+          },
+          "Block Deal (BD)": {
+            "count": 2,
+            "nav": 437.79336688700005,
+            "navAvg6m": 326.72669402224,
+            "gtgd6m": 650.09191,
+            "debtAvg6m": 220.70735409907002,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 21,
+            "nav": 539.2592596510001,
+            "navAvg6m": 545.7863885827901,
+            "gtgd6m": 7169.648132799999,
+            "debtAvg6m": 431.22761078705,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 13,
+            "nav": 97.614528377,
+            "navAvg6m": 109.75931624053001,
+            "gtgd6m": 250.92775049999997,
+            "debtAvg6m": 34.3499951794,
+            "negativeNav": 1,
+            "excluded": 0
+          }
+        },
+        "CN HA NOI": {
+          "Unclassified": {
+            "count": 1592,
+            "nav": 3.408327458999995,
+            "navAvg6m": 2.11890233565,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 30,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 361,
+            "nav": 77.31723238399998,
+            "navAvg6m": 16.859154976350002,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 929,
+            "nav": -0.013354035999999904,
+            "navAvg6m": -0.006460102729999963,
+            "gtgd6m": 0.0005226699999999997,
+            "debtAvg6m": 1.4613e-07,
+            "negativeNav": 897,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 369,
+            "nav": 44.92621228099998,
+            "navAvg6m": 38.51266872049,
+            "gtgd6m": 195.63676622000006,
+            "debtAvg6m": 31.749866060699997,
+            "negativeNav": 53,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 17,
+            "nav": 280.75633541400003,
+            "navAvg6m": 159.20978372281002,
+            "gtgd6m": 829.0072666,
+            "debtAvg6m": 122.63463819979,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 16,
+            "nav": 320.92415667200004,
+            "navAvg6m": 327.69072341548997,
+            "gtgd6m": 1303.8643594000002,
+            "debtAvg6m": 108.04197779108,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 101,
+            "nav": 118.14117147000003,
+            "navAvg6m": 63.47126264337,
+            "gtgd6m": 1688.6397440599999,
+            "debtAvg6m": 46.81456113939,
+            "negativeNav": 15,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 27,
+            "nav": 1330.0890172989998,
+            "navAvg6m": 1299.7804002529003,
+            "gtgd6m": 6097.9068360599995,
+            "debtAvg6m": 1174.48536099924,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 3,
+            "nav": 135.529332992,
+            "navAvg6m": 166.84824163094999,
+            "gtgd6m": 303.3359,
+            "debtAvg6m": 79.69431263841001,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 9,
+            "nav": 205.165591574,
+            "navAvg6m": 186.21076304871,
+            "gtgd6m": 442.786064,
+            "debtAvg6m": 188.18944967297,
+            "negativeNav": 1,
+            "excluded": 5
+          }
+        },
+        "PGD THĂNG LONG": {
+          "Unclassified": {
+            "count": 1212,
+            "nav": 2.634905633,
+            "navAvg6m": 2.0220569524100034,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 31,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 106,
+            "nav": 67.78024700100002,
+            "navAvg6m": 76.19940346775,
+            "gtgd6m": 2338.9414442299994,
+            "debtAvg6m": 51.72600345328,
+            "negativeNav": 8,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 200,
+            "nav": 143.856449265,
+            "navAvg6m": 108.69839148210004,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 16,
+            "nav": 232.98280149900006,
+            "navAvg6m": 223.1460859341599,
+            "gtgd6m": 363.73389999999995,
+            "debtAvg6m": 151.56469679086,
+            "negativeNav": 7,
+            "excluded": 15
+          },
+          "Zero": {
+            "count": 767,
+            "nav": -0.06212622600000047,
+            "navAvg6m": -0.03197804527999991,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 729,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 180,
+            "nav": 72.956259602,
+            "navAvg6m": 78.66261031156,
+            "gtgd6m": 320.41520891999977,
+            "debtAvg6m": 39.45808693179,
+            "negativeNav": 16,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 10,
+            "nav": 783.667956431,
+            "navAvg6m": 792.2342006778599,
+            "gtgd6m": 1181.4645466000002,
+            "debtAvg6m": 393.09872442912,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 6,
+            "nav": 51.058873233,
+            "navAvg6m": 51.60450192988,
+            "gtgd6m": 184.3976554,
+            "debtAvg6m": 23.975545740930002,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 15,
+            "nav": 318.856248666,
+            "navAvg6m": 398.93467145844005,
+            "gtgd6m": 3516.5855770000003,
+            "debtAvg6m": 95.39786161452001,
+            "negativeNav": 2,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT CẦN THƠ": {
+          "Unclassified": {
+            "count": 422,
+            "nav": 0.5206552579999997,
+            "navAvg6m": 0.33659905387999983,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 8,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 113,
+            "nav": -0.0021885870000000023,
+            "navAvg6m": -0.0012451198400000006,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 102,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 63,
+            "nav": 16.379288440999996,
+            "navAvg6m": 16.240840228000003,
+            "gtgd6m": 53.406634399999994,
+            "debtAvg6m": 10.42782310122,
+            "negativeNav": 9,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 33,
+            "nav": 7.5973858,
+            "navAvg6m": 11.391300332470001,
+            "gtgd6m": 232.54019699999998,
+            "debtAvg6m": 7.025078973620003,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 21,
+            "nav": 2.6624848030000003,
+            "navAvg6m": 1.4284821031400001,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 1,
+            "nav": 147.665928052,
+            "navAvg6m": 131.60990380829,
+            "gtgd6m": 31.03648,
+            "debtAvg6m": 92.37489903085,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 2,
+            "nav": 126.613654252,
+            "navAvg6m": 110.77003769906,
+            "gtgd6m": 566.5167786,
+            "debtAvg6m": 77.21769294719999,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "KHTC": {
+          "Other": {
+            "count": 30,
+            "nav": -2.64e-05,
+            "navAvg6m": -2.156140318080002,
+            "gtgd6m": 5793.78079815,
+            "debtAvg6m": 0,
+            "negativeNav": 2,
+            "excluded": 30
+          },
+          "Zero": {
+            "count": 3,
+            "nav": -2.64e-05,
+            "navAvg6m": -1.44375e-05,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 3,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1,
+            "nav": 2.369479565,
+            "navAvg6m": 2.48492587157,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "CN HCM": {
+          "Active Trader": {
+            "count": 365,
+            "nav": 228.1173529079999,
+            "navAvg6m": 217.43547656280992,
+            "gtgd6m": 6021.51934366,
+            "debtAvg6m": 153.9233622927401,
+            "negativeNav": 21,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1344,
+            "nav": 518.7374006000003,
+            "navAvg6m": 463.1766297859194,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 8,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 27,
+            "nav": 592.2359660899999,
+            "navAvg6m": 577.8690879909901,
+            "gtgd6m": 3633.8049570499998,
+            "debtAvg6m": 316.20282276182,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 10793,
+            "nav": -0.5666249129999688,
+            "navAvg6m": -0.30410087163001276,
+            "gtgd6m": 0.20575865,
+            "debtAvg6m": 0,
+            "negativeNav": 9260,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 790,
+            "nav": 287.4211265050002,
+            "navAvg6m": 285.28945738098014,
+            "gtgd6m": 812.2998154399997,
+            "debtAvg6m": 127.52692925563,
+            "negativeNav": 75,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 3910,
+            "nav": 4.351215656000002,
+            "navAvg6m": 3.034919350249997,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 120,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 106,
+            "nav": 25.46866184499995,
+            "navAvg6m": 89.0594014052501,
+            "gtgd6m": 0.4017,
+            "debtAvg6m": 49.938136267299996,
+            "negativeNav": 47,
+            "excluded": 88
+          },
+          "HNW": {
+            "count": 17,
+            "nav": 111.181921451,
+            "navAvg6m": 133.80141483408002,
+            "gtgd6m": 502.3916123,
+            "debtAvg6m": 78.35193385512001,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 23,
+            "nav": 12642.873404434997,
+            "navAvg6m": 12288.56168627422,
+            "gtgd6m": 3985.4348904,
+            "debtAvg6m": 1516.5399500130497,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        }
+      },
+      "202609": {
+        "all": {
+          "Unclassified": {
+            "count": 27564,
+            "nav": 19.708028078000062,
+            "navAvg6m": 22.998243445139835,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 987,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 4838,
+            "nav": 1753.2967048430007,
+            "navAvg6m": 1843.3019198946383,
+            "gtgd6m": 4879.489303410011,
+            "debtAvg6m": 918.7391913307912,
+            "negativeNav": 449,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 42076,
+            "nav": -1.95547096000041,
+            "navAvg6m": -1.3504064303605297,
+            "gtgd6m": 0.010137039999999998,
+            "debtAvg6m": 3.6592199999999998e-06,
+            "negativeNav": 35518,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 12331,
+            "nav": 13027.01098695495,
+            "navAvg6m": 14354.963715038893,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 904,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 1976,
+            "nav": 1078.3674256549994,
+            "navAvg6m": 1204.5344748175703,
+            "gtgd6m": 24797.253580749984,
+            "debtAvg6m": 705.2170190204794,
+            "negativeNav": 125,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 151,
+            "nav": 1171.3447510199994,
+            "navAvg6m": 1275.2092702571001,
+            "gtgd6m": 3567.5643629099986,
+            "debtAvg6m": 683.3442566550898,
+            "negativeNav": 4,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 982,
+            "nav": 49239.444770911,
+            "navAvg6m": 58375.23881731804,
+            "gtgd6m": 12386.078359149997,
+            "debtAvg6m": 1344.33805162197,
+            "negativeNav": 220,
+            "excluded": 619
+          },
+          "HVT": {
+            "count": 143,
+            "nav": 2918.835270305001,
+            "navAvg6m": 3190.27004281268,
+            "gtgd6m": 37486.603601279996,
+            "debtAvg6m": 1405.03032336182,
+            "negativeNav": 9,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 176,
+            "nav": 26731.88582736599,
+            "navAvg6m": 28733.667379827573,
+            "gtgd6m": 24992.578605460003,
+            "debtAvg6m": 7492.527906626348,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 10,
+            "nav": 923.5440138700001,
+            "navAvg6m": 1117.12665596991,
+            "gtgd6m": 2355.43261,
+            "debtAvg6m": 958.30066035976,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT HỘI SỞ": {
+          "Unclassified": {
+            "count": 4492,
+            "nav": 2.6837694670000074,
+            "navAvg6m": 2.706613403510005,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 101,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 439,
+            "nav": 272.4590803780003,
+            "navAvg6m": 313.0357871930096,
+            "gtgd6m": 7055.712598569993,
+            "debtAvg6m": 182.13459215010994,
+            "negativeNav": 23,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 857,
+            "nav": 455.6376298120003,
+            "navAvg6m": 483.65202125579975,
+            "gtgd6m": 1345.3858393499997,
+            "debtAvg6m": 314.6278173749403,
+            "negativeNav": 48,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 3627,
+            "nav": -0.179843422000004,
+            "navAvg6m": -0.12212775494999827,
+            "gtgd6m": 2.8e-06,
+            "debtAvg6m": 0,
+            "negativeNav": 3440,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1516,
+            "nav": 3223.6868978459984,
+            "navAvg6m": 3454.2784547236015,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 6,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 33,
+            "nav": 269.992964594,
+            "navAvg6m": 279.57107329563996,
+            "gtgd6m": 584.9842796999999,
+            "debtAvg6m": 153.57254828476,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 128,
+            "nav": 259.01586048200005,
+            "navAvg6m": 312.84948794042003,
+            "gtgd6m": 145.2722939,
+            "debtAvg6m": 35.400584537330005,
+            "negativeNav": 35,
+            "excluded": 112
+          },
+          "UHNW": {
+            "count": 27,
+            "nav": 1298.6377753559998,
+            "navAvg6m": 1278.0957994666596,
+            "gtgd6m": 1725.1881395,
+            "debtAvg6m": 202.10729579978,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 29,
+            "nav": 777.183822228,
+            "navAvg6m": 875.9022284423801,
+            "gtgd6m": 9149.32208875,
+            "debtAvg6m": 187.01558409190997,
+            "negativeNav": 1,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT CẦN THƠ": {
+          "Unclassified": {
+            "count": 415,
+            "nav": 0.2829664490000002,
+            "navAvg6m": 0.3025500977799998,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 5,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 122,
+            "nav": -0.0026855080000000035,
+            "navAvg6m": -0.001651363919999999,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 113,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 58,
+            "nav": 13.41098836,
+            "navAvg6m": 15.75396614466999,
+            "gtgd6m": 64.0525272,
+            "debtAvg6m": 13.956429660030004,
+            "negativeNav": 5,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 33,
+            "nav": 4.830217104000001,
+            "navAvg6m": 3.87549859171,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 30,
+            "nav": 5.5500259949999995,
+            "navAvg6m": 9.213718917320001,
+            "gtgd6m": 155.12120918000005,
+            "debtAvg6m": 4.31486286865,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 1,
+            "nav": 14.624944501,
+            "navAvg6m": 14.255890430340001,
+            "gtgd6m": 338.6780386,
+            "debtAvg6m": 0.74821847449,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 1,
+            "nav": 120.686582984,
+            "navAvg6m": 135.01698004013,
+            "gtgd6m": 210.19125,
+            "debtAvg6m": 90.68179792916,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 1,
+            "nav": 109.245458056,
+            "navAvg6m": 105.12135596486,
+            "gtgd6m": 186.075,
+            "debtAvg6m": 83.05615258621,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "Công ty quản lý": {
+          "Mass": {
+            "count": 1137,
+            "nav": 276.72939966900014,
+            "navAvg6m": 282.4963742234296,
+            "gtgd6m": 414.81072616999984,
+            "debtAvg6m": 43.94712636760999,
+            "negativeNav": 155,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 18743,
+            "nav": -0.7851583689999964,
+            "navAvg6m": -0.5449160912300045,
+            "gtgd6m": 0.00219762,
+            "debtAvg6m": 2.03024e-06,
+            "negativeNav": 15070,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 6331,
+            "nav": 4170.773503085996,
+            "navAvg6m": 5262.720043387345,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 880,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 7927,
+            "nav": 2.065992156999989,
+            "navAvg6m": 5.507269690419984,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 556,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 545,
+            "nav": 23563.91849580099,
+            "navAvg6m": 33690.78088336228,
+            "gtgd6m": 5021.6948219,
+            "debtAvg6m": 100.48086242807,
+            "negativeNav": 77,
+            "excluded": 245
+          },
+          "HNW": {
+            "count": 12,
+            "nav": 79.044947346,
+            "navAvg6m": 89.30095593894998,
+            "gtgd6m": 65.01357080000001,
+            "debtAvg6m": 1.69262557917,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 266,
+            "nav": 99.00048528699992,
+            "navAvg6m": 98.03329304961007,
+            "gtgd6m": 802.4149244299999,
+            "debtAvg6m": 18.394344618650003,
+            "negativeNav": 12,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 2,
+            "nav": 170.473543119,
+            "navAvg6m": 219.88420447423,
+            "gtgd6m": 19.868296700000002,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 3,
+            "nav": 25.360002083999998,
+            "navAvg6m": 21.33452235791,
+            "gtgd6m": 148.2165055,
+            "debtAvg6m": 3.6997589650500005,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT Hoàn Kiếm": {
+          "Mass": {
+            "count": 529,
+            "nav": 345.095609813,
+            "navAvg6m": 358.61759902363013,
+            "gtgd6m": 840.1242349400001,
+            "debtAvg6m": 158.94259699740996,
+            "negativeNav": 33,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 3088,
+            "nav": 2.915503158999999,
+            "navAvg6m": 2.646502128140004,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 71,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 863,
+            "nav": 4108.2825717629985,
+            "navAvg6m": 4405.525107788965,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 4,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 48,
+            "nav": 341.377720968,
+            "navAvg6m": 413.34059416621,
+            "gtgd6m": 1219.0534189500002,
+            "debtAvg6m": 219.56958236973998,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 2224,
+            "nav": -0.14452586400000247,
+            "navAvg6m": -0.09858294321999886,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 2004,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 261,
+            "nav": 195.88401514699984,
+            "navAvg6m": 241.07197912494996,
+            "gtgd6m": 4417.872936059999,
+            "debtAvg6m": 130.63997675060003,
+            "negativeNav": 18,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 38,
+            "nav": 691.2535938710004,
+            "navAvg6m": 820.2786537918398,
+            "gtgd6m": 12778.74024995,
+            "debtAvg6m": 499.26539425851,
+            "negativeNav": 3,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 109,
+            "nav": 24426.801258954998,
+            "navAvg6m": 23223.999557052997,
+            "gtgd6m": 537.7979216499999,
+            "debtAvg6m": 484.05170578798004,
+            "negativeNav": 41,
+            "excluded": 91
+          },
+          "UHNW": {
+            "count": 61,
+            "nav": 8882.808849148996,
+            "navAvg6m": 9261.504791587286,
+            "gtgd6m": 5825.624007799999,
+            "debtAvg6m": 2532.4847021317482,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 4,
+            "nav": 217.509809491,
+            "navAvg6m": 376.39644512619,
+            "gtgd6m": 995.3510699999999,
+            "debtAvg6m": 400.98573721622006,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "CN HA NOI": {
+          "Unclassified": {
+            "count": 1584,
+            "nav": 2.066601479000002,
+            "navAvg6m": 2.079975863489997,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 46,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 387,
+            "nav": 75.08846988000002,
+            "navAvg6m": 29.178623649500015,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 371,
+            "nav": 42.273973396,
+            "navAvg6m": 46.56137125298,
+            "gtgd6m": 256.44409976000003,
+            "debtAvg6m": 42.08117983780002,
+            "negativeNav": 59,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 1026,
+            "nav": -0.016053941999999856,
+            "navAvg6m": -0.009393142049999961,
+            "gtgd6m": 0.0012948200000000003,
+            "debtAvg6m": 8.768e-08,
+            "negativeNav": 994,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 14,
+            "nav": 185.861131393,
+            "navAvg6m": 295.08246915974996,
+            "gtgd6m": 1673.9540204799998,
+            "debtAvg6m": 114.06245201742,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 107,
+            "nav": 64.14774999800001,
+            "navAvg6m": 53.05159164329,
+            "gtgd6m": 1399.0390425800003,
+            "debtAvg6m": 33.25945888126998,
+            "negativeNav": 12,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 17,
+            "nav": 205.49606848400003,
+            "navAvg6m": 162.65087039713003,
+            "gtgd6m": 699.4295602,
+            "debtAvg6m": 127.59211878033001,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 31,
+            "nav": 1413.7661618410002,
+            "navAvg6m": 1441.53250754099,
+            "gtgd6m": 5603.628733459999,
+            "debtAvg6m": 1189.2214011478097,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 9,
+            "nav": 213.54630363,
+            "navAvg6m": 205.09220839448,
+            "gtgd6m": 442.786064,
+            "debtAvg6m": 205.09246669774,
+            "negativeNav": 1,
+            "excluded": 5
+          },
+          "Block Deal (BD)": {
+            "count": 2,
+            "nav": 56.618352472,
+            "navAvg6m": 114.54086823332,
+            "gtgd6m": 273.13955,
+            "debtAvg6m": 86.40347398021001,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT SÀI GÒN": {
+          "Unclassified": {
+            "count": 1854,
+            "nav": 2.698919977999993,
+            "navAvg6m": 2.5693177520800003,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 36,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 510,
+            "nav": 202.47336211800018,
+            "navAvg6m": 107.83936373336992,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 710,
+            "nav": -0.0144019599999999,
+            "navAvg6m": -0.009144541869999983,
+            "gtgd6m": 0.0010416,
+            "debtAvg6m": 0,
+            "negativeNav": 697,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 433,
+            "nav": 141.19320284000003,
+            "navAvg6m": 143.63027049097997,
+            "gtgd6m": 495.6809053000001,
+            "debtAvg6m": 81.6905631886,
+            "negativeNav": 39,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 202,
+            "nav": 105.140297335,
+            "navAvg6m": 103.09626322953,
+            "gtgd6m": 1700.6482907000002,
+            "debtAvg6m": 66.08396745509005,
+            "negativeNav": 16,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 17,
+            "nav": 391.96928345699996,
+            "navAvg6m": 410.55770960251,
+            "gtgd6m": 6371.631901000001,
+            "debtAvg6m": 290.39088230562,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 11,
+            "nav": 443.24262180500006,
+            "navAvg6m": 602.55823327662,
+            "gtgd6m": 732.85651,
+            "debtAvg6m": 248.36807124892,
+            "negativeNav": 5,
+            "excluded": 10
+          },
+          "UHNW": {
+            "count": 16,
+            "nav": 1872.8436604610001,
+            "navAvg6m": 2615.4357360336,
+            "gtgd6m": 4068.7332210499994,
+            "debtAvg6m": 1198.18888840732,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 11,
+            "nav": 71.97174251000001,
+            "navAvg6m": 88.29249169249,
+            "gtgd6m": 243.126659,
+            "debtAvg6m": 34.06637622893,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 3,
+            "nav": 528.7292689230001,
+            "navAvg6m": 491.17236257027,
+            "gtgd6m": 876.7507400000001,
+            "debtAvg6m": 380.22965123417,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "CN ĐÀ NẴNG": {
+          "Unclassified": {
+            "count": 3157,
+            "nav": 2.2830467999999984,
+            "navAvg6m": 2.3484448416900023,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 73,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 3940,
+            "nav": -0.1736349040000038,
+            "navAvg6m": -0.11976310533999841,
+            "gtgd6m": 0.00480485,
+            "debtAvg6m": 1.5413e-06,
+            "negativeNav": 3089,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 535,
+            "nav": 146.14170615199987,
+            "navAvg6m": 147.96215824030992,
+            "gtgd6m": 317.82781177999993,
+            "debtAvg6m": 58.586504676630014,
+            "negativeNav": 47,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1048,
+            "nav": 529.8046912050005,
+            "navAvg6m": 420.22870926016003,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 4,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 242,
+            "nav": 89.29712915599998,
+            "navAvg6m": 105.03656066057003,
+            "gtgd6m": 2704.113812620001,
+            "debtAvg6m": 74.29509020392007,
+            "negativeNav": 20,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 27,
+            "nav": 32.220770206999994,
+            "navAvg6m": 3.6153996975300005,
+            "gtgd6m": 132.38212,
+            "debtAvg6m": 4.03766724082,
+            "negativeNav": 5,
+            "excluded": 22
+          },
+          "HNW": {
+            "count": 7,
+            "nav": 40.965098880999996,
+            "navAvg6m": 48.6498655638,
+            "gtgd6m": 170.31195775999998,
+            "debtAvg6m": 39.80784308306,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 3,
+            "nav": 30.065009639,
+            "navAvg6m": 22.615279364310002,
+            "gtgd6m": 773.386434,
+            "debtAvg6m": 41.42148649849,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 4,
+            "nav": 111.626758094,
+            "navAvg6m": 132.45602061149,
+            "gtgd6m": 1003.10124265,
+            "debtAvg6m": 181.97202763989,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "PGD THĂNG LONG": {
+          "Unclassified": {
+            "count": 1195,
+            "nav": 1.9187779380000016,
+            "navAvg6m": 2.0111499563800024,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 19,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 223,
+            "nav": 146.1427620390001,
+            "navAvg6m": 122.53857807735001,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 792,
+            "nav": -0.06414894900000047,
+            "navAvg6m": -0.04350711657999988,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 751,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 176,
+            "nav": 67.52868105499998,
+            "navAvg6m": 74.14138447552003,
+            "gtgd6m": 248.44420087999995,
+            "debtAvg6m": 38.56040189604999,
+            "negativeNav": 8,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 11,
+            "nav": 689.3590122380001,
+            "navAvg6m": 824.7856350222198,
+            "gtgd6m": 1344.7386046,
+            "debtAvg6m": 425.51793307893,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 91,
+            "nav": 67.777308467,
+            "navAvg6m": 73.73231115069001,
+            "gtgd6m": 1711.3350634300004,
+            "debtAvg6m": 49.30518321163,
+            "negativeNav": 7,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 16,
+            "nav": 217.533445681,
+            "navAvg6m": 220.63475139274004,
+            "gtgd6m": 363.73389999999995,
+            "debtAvg6m": 163.84694719745,
+            "negativeNav": 7,
+            "excluded": 15
+          },
+          "HVT": {
+            "count": 15,
+            "nav": 316.91866032199994,
+            "navAvg6m": 323.33370375608996,
+            "gtgd6m": 2356.9552118,
+            "debtAvg6m": 47.82631685458,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 5,
+            "nav": 46.262376455,
+            "navAvg6m": 46.407010262069996,
+            "gtgd6m": 86.3627454,
+            "debtAvg6m": 18.278934746860003,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "KHTC": {
+          "Zero": {
+            "count": 3,
+            "nav": -2.64e-05,
+            "navAvg6m": -1.8857129999999998e-05,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 3,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 30,
+            "nav": -2.64e-05,
+            "navAvg6m": -13.52934675217,
+            "gtgd6m": 4866.675842500001,
+            "debtAvg6m": 0,
+            "negativeNav": 2,
+            "excluded": 30
+          },
+          "Dormant": {
+            "count": 1,
+            "nav": 2.22380919,
+            "navAvg6m": 2.46320668167,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "CN HCM": {
+          "Active Trader": {
+            "count": 338,
+            "nav": 179.11133389199995,
+            "navAvg6m": 208.26296984860016,
+            "gtgd6m": 4850.9957031799995,
+            "debtAvg6m": 146.7895428805601,
+            "negativeNav": 17,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 742,
+            "nav": 265.28551374599965,
+            "navAvg6m": 290.4867747873201,
+            "gtgd6m": 896.7189580299997,
+            "debtAvg6m": 166.34657133172004,
+            "negativeNav": 55,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 10889,
+            "nav": -0.5749916419999768,
+            "navAvg6m": -0.4013015140699899,
+            "gtgd6m": 0.00079535,
+            "debtAvg6m": 0,
+            "negativeNav": 9357,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 23,
+            "nav": 485.59882281,
+            "navAvg6m": 406.90958590755,
+            "gtgd6m": 3895.7191512000004,
+            "debtAvg6m": 220.60022989575,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1419,
+            "nav": 563.704702724,
+            "navAvg6m": 546.3161291452301,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 7,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 3852,
+            "nav": 2.7924506510000033,
+            "navAvg6m": 2.826419711650006,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 80,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 107,
+            "nav": 83.16604074999992,
+            "navAvg6m": 129.2376429531001,
+            "gtgd6m": 142.8788852,
+            "debtAvg6m": 103.05974648365999,
+            "negativeNav": 47,
+            "excluded": 89
+          },
+          "HNW": {
+            "count": 18,
+            "nav": 116.233831782,
+            "navAvg6m": 146.99640894081,
+            "gtgd6m": 499.2821711,
+            "debtAvg6m": 88.76422758224,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 23,
+            "nav": 12183.124609052,
+            "navAvg6m": 12854.851329126239,
+            "gtgd6m": 5215.6213597,
+            "debtAvg6m": 1679.97950583466,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        }
+      },
+      "202610": {
+        "all": {
+          "Dormant": {
+            "count": 11852,
+            "nav": 12611.81395162491,
+            "navAvg6m": 14224.512353944663,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 692,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 4594,
+            "nav": 1689.8063534739983,
+            "navAvg6m": 1834.2546219201809,
+            "gtgd6m": 3995.0241700300016,
+            "debtAvg6m": 993.2574508342507,
+            "negativeNav": 332,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 42597,
+            "nav": -1.9879834670004344,
+            "navAvg6m": -1.6733285055396594,
+            "gtgd6m": 0.34013603999999986,
+            "debtAvg6m": 2.5064939999999997e-05,
+            "negativeNav": 35809,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 28145,
+            "nav": 18.393091141000102,
+            "navAvg6m": 25.362639641019843,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 1037,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 983,
+            "nav": 37231.84219496093,
+            "navAvg6m": 57040.70142852334,
+            "gtgd6m": 11907.298043249999,
+            "debtAvg6m": 1294.33444262106,
+            "negativeNav": 221,
+            "excluded": 619
+          },
+          "Active Trader": {
+            "count": 1904,
+            "nav": 1016.6589075599993,
+            "navAvg6m": 1135.320653058311,
+            "gtgd6m": 20535.55694955002,
+            "debtAvg6m": 652.9454892684608,
+            "negativeNav": 102,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 126,
+            "nav": 3063.4070025150004,
+            "navAvg6m": 3865.409629018569,
+            "gtgd6m": 32184.07677983001,
+            "debtAvg6m": 1194.9801671367097,
+            "negativeNav": 5,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 176,
+            "nav": 16192.413298488007,
+            "navAvg6m": 18582.952748577693,
+            "gtgd6m": 20544.837836740015,
+            "debtAvg6m": 7062.324725910942,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 147,
+            "nav": 1104.6634324609997,
+            "navAvg6m": 1274.4370495357903,
+            "gtgd6m": 3221.2663493099994,
+            "debtAvg6m": 771.1546588678399,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 11,
+            "nav": 9493.414281148001,
+            "navAvg6m": 10148.410658110452,
+            "gtgd6m": 3196.0270045000007,
+            "debtAvg6m": 1511.08942710989,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "Công ty quản lý": {
+          "Dormant": {
+            "count": 5718,
+            "nav": 3925.3669564000043,
+            "navAvg6m": 4969.750825427428,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 669,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 18911,
+            "nav": -0.791714499999996,
+            "navAvg6m": -0.6665547873300123,
+            "gtgd6m": 0.08180715,
+            "debtAvg6m": 1.8798499999999999e-06,
+            "negativeNav": 15149,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 546,
+            "nav": 16610.14670637097,
+            "navAvg6m": 32403.540735849485,
+            "gtgd6m": 4717.3640421,
+            "debtAvg6m": 48.017403284199986,
+            "negativeNav": 77,
+            "excluded": 245
+          },
+          "Mass": {
+            "count": 1067,
+            "nav": 264.59314741199995,
+            "navAvg6m": 282.38732034481956,
+            "gtgd6m": 367.4101842500006,
+            "debtAvg6m": 44.99918449047003,
+            "negativeNav": 104,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 8558,
+            "nav": 1.8174521610000076,
+            "navAvg6m": 8.052979413359955,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 737,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 249,
+            "nav": 89.01014581400003,
+            "navAvg6m": 92.67647864624995,
+            "gtgd6m": 652.7412793000002,
+            "debtAvg6m": 15.262863122999992,
+            "negativeNav": 8,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 10,
+            "nav": 76.71009418700001,
+            "navAvg6m": 80.14538827647,
+            "gtgd6m": 63.39777799999999,
+            "debtAvg6m": 1.4866614343900002,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 2,
+            "nav": 13.774751197,
+            "navAvg6m": 12.626729404959999,
+            "gtgd6m": 126.3785316,
+            "debtAvg6m": 3.58507504165,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 2,
+            "nav": 163.601685963,
+            "navAvg6m": 214.60881307608,
+            "gtgd6m": 19.845286700000003,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT HỘI SỞ": {
+          "Mass": {
+            "count": 828,
+            "nav": 432.5333237450005,
+            "navAvg6m": 486.99238636048005,
+            "gtgd6m": 989.8634862000005,
+            "debtAvg6m": 365.50123520753,
+            "negativeNav": 38,
+            "excluded": 0
+          },
+          "Unclassified": {
+            "count": 4475,
+            "nav": 2.5809917590000055,
+            "navAvg6m": 2.723591867560003,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 67,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 3683,
+            "nav": -0.18284530400000384,
+            "navAvg6m": -0.1522968862399974,
+            "gtgd6m": 0.0094708,
+            "debtAvg6m": 0,
+            "negativeNav": 3491,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1541,
+            "nav": 3131.2495822320016,
+            "navAvg6m": 3457.6559592628664,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 5,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 128,
+            "nav": 238.2138325100002,
+            "navAvg6m": 294.17960988487005,
+            "gtgd6m": 17.115751,
+            "debtAvg6m": 17.03238638185,
+            "negativeNav": 35,
+            "excluded": 112
+          },
+          "Active Trader": {
+            "count": 414,
+            "nav": 228.31670054299988,
+            "navAvg6m": 278.82929339537986,
+            "gtgd6m": 5967.338679169995,
+            "debtAvg6m": 163.87815276089,
+            "negativeNav": 18,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 28,
+            "nav": 682.985766306,
+            "navAvg6m": 763.4899465179099,
+            "gtgd6m": 7625.59437835,
+            "debtAvg6m": 183.35791319231998,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 26,
+            "nav": 1349.1008157180004,
+            "navAvg6m": 1352.7594025001401,
+            "gtgd6m": 1406.6995625,
+            "debtAvg6m": 192.13119236331,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 29,
+            "nav": 246.533030496,
+            "navAvg6m": 263.79661789844,
+            "gtgd6m": 482.8911967,
+            "debtAvg6m": 144.05626558594003,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "CN ĐÀ NẴNG": {
+          "Unclassified": {
+            "count": 3162,
+            "nav": 2.2897719339999942,
+            "navAvg6m": 2.326075217979994,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 58,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 501,
+            "nav": 147.87078188899986,
+            "navAvg6m": 153.16713153905997,
+            "gtgd6m": 299.83301073999985,
+            "debtAvg6m": 64.98094368356004,
+            "negativeNav": 38,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 3979,
+            "nav": -0.1860084080000037,
+            "navAvg6m": -0.1574800292899977,
+            "gtgd6m": 6.48e-05,
+            "debtAvg6m": 9.8729e-07,
+            "negativeNav": 3113,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1060,
+            "nav": 426.4991615090003,
+            "navAvg6m": 416.8463005282705,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 237,
+            "nav": 79.313508761,
+            "navAvg6m": 94.74462228957002,
+            "gtgd6m": 2131.234188160002,
+            "debtAvg6m": 65.14562922653997,
+            "negativeNav": 18,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 27,
+            "nav": 28.621248592,
+            "navAvg6m": 6.04520525249,
+            "gtgd6m": 157.237475,
+            "debtAvg6m": 7.859437725149999,
+            "negativeNav": 5,
+            "excluded": 22
+          },
+          "UHNW": {
+            "count": 3,
+            "nav": 93.781360502,
+            "navAvg6m": 114.31853452392,
+            "gtgd6m": 834.0137046,
+            "debtAvg6m": 141.26912084520998,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 9,
+            "nav": 53.253044812000006,
+            "navAvg6m": 67.69227196641,
+            "gtgd6m": 262.91895781,
+            "debtAvg6m": 84.00537484743,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 3,
+            "nav": 20.140502211,
+            "navAvg6m": 23.1717643495,
+            "gtgd6m": 773.8941739999999,
+            "debtAvg6m": 31.478850834409997,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT SÀI GÒN": {
+          "Unclassified": {
+            "count": 1842,
+            "nav": 2.4835985459999996,
+            "navAvg6m": 2.507701974589996,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 35,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 742,
+            "nav": -0.015474970999999919,
+            "navAvg6m": -0.011220301589999983,
+            "gtgd6m": 0.001269,
+            "debtAvg6m": 2.212221e-05,
+            "negativeNav": 715,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 536,
+            "nav": 111.56705621700007,
+            "navAvg6m": 101.63564745002,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 410,
+            "nav": 137.46327608399992,
+            "navAvg6m": 144.04877987382014,
+            "gtgd6m": 447.8723015999997,
+            "debtAvg6m": 90.73883775230001,
+            "negativeNav": 29,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 205,
+            "nav": 93.21770628399997,
+            "navAvg6m": 98.06800260424997,
+            "gtgd6m": 1366.3252306000009,
+            "debtAvg6m": 61.274382466460025,
+            "negativeNav": 14,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 16,
+            "nav": 469.20935028300005,
+            "navAvg6m": 439.35060465570996,
+            "gtgd6m": 5419.8022352,
+            "debtAvg6m": 268.34860079271,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 19,
+            "nav": 2157.074428226,
+            "navAvg6m": 2968.3026684968704,
+            "gtgd6m": 4477.07773605,
+            "debtAvg6m": 1500.5975884643103,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 11,
+            "nav": 540.8789581060001,
+            "navAvg6m": 605.58322932376,
+            "gtgd6m": 993.1374225000001,
+            "debtAvg6m": 280.12064345854,
+            "negativeNav": 5,
+            "excluded": 10
+          },
+          "HNW": {
+            "count": 12,
+            "nav": 77.00997685499999,
+            "navAvg6m": 94.46243128215,
+            "gtgd6m": 249.04445219999997,
+            "debtAvg6m": 41.468707475049996,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 1,
+            "nav": 112.745873038,
+            "navAvg6m": 103.85052940903999,
+            "gtgd6m": 162.47931,
+            "debtAvg6m": 120.76630586459,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "PGD THĂNG LONG": {
+          "Unclassified": {
+            "count": 1188,
+            "nav": 1.8629772679999999,
+            "navAvg6m": 2.0091530620999993,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 10,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 226,
+            "nav": 142.16178824899998,
+            "navAvg6m": 127.12357240538992,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 176,
+            "nav": 71.93847274900001,
+            "navAvg6m": 78.69354596614004,
+            "gtgd6m": 226.9653506300001,
+            "debtAvg6m": 43.088659768419994,
+            "negativeNav": 7,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 804,
+            "nav": -0.06478649200000043,
+            "navAvg6m": -0.05440510569000027,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 760,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 91,
+            "nav": 101.67104164000001,
+            "navAvg6m": 72.72078863960996,
+            "gtgd6m": 1506.8822467799996,
+            "debtAvg6m": 45.65595651511998,
+            "negativeNav": 6,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 12,
+            "nav": 684.938070203,
+            "navAvg6m": 869.3710774012801,
+            "gtgd6m": 1200.5321746000002,
+            "debtAvg6m": 445.02706996247,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 16,
+            "nav": 211.33929907800004,
+            "navAvg6m": 219.2222692185,
+            "gtgd6m": 363.73389999999995,
+            "debtAvg6m": 166.34649289423,
+            "negativeNav": 7,
+            "excluded": 15
+          },
+          "HVT": {
+            "count": 12,
+            "nav": 273.56675765399996,
+            "navAvg6m": 274.54109898578,
+            "gtgd6m": 1916.7908856,
+            "debtAvg6m": 52.75442180839999,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 5,
+            "nav": 44.323356444,
+            "navAvg6m": 45.82406420091,
+            "gtgd6m": 77.8697554,
+            "debtAvg6m": 16.75814607899,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT Hoàn Kiếm": {
+          "Unclassified": {
+            "count": 3065,
+            "nav": 2.4973598629999976,
+            "navAvg6m": 2.5843828629699996,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 47,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 898,
+            "nav": 4162.667759046998,
+            "navAvg6m": 4477.758583766546,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 6,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 2335,
+            "nav": -0.14739920600000225,
+            "navAvg6m": -0.12367271051999906,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 2041,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 61,
+            "nav": 3562.8113896259997,
+            "navAvg6m": 4042.0570164352207,
+            "gtgd6m": 4765.38545958,
+            "debtAvg6m": 2340.0651217303302,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 501,
+            "nav": 319.96323193099994,
+            "navAvg6m": 352.1231318367199,
+            "gtgd6m": 751.7094814699996,
+            "debtAvg6m": 162.56555608562,
+            "negativeNav": 23,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 47,
+            "nav": 333.269275467,
+            "navAvg6m": 408.95699474798,
+            "gtgd6m": 965.2157836499999,
+            "debtAvg6m": 235.20297744763002,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 259,
+            "nav": 188.79768640000006,
+            "navAvg6m": 230.83096322496004,
+            "gtgd6m": 3659.5020616200004,
+            "debtAvg6m": 122.13219277142,
+            "negativeNav": 18,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 32,
+            "nav": 388.6042232700001,
+            "navAvg6m": 654.81050347565,
+            "gtgd6m": 10402.810489649997,
+            "debtAvg6m": 379.9987593095299,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 109,
+            "nav": 19306.08208716799,
+            "navAvg6m": 23213.16964450891,
+            "gtgd6m": 849.20257165,
+            "debtAvg6m": 458.66613370888,
+            "negativeNav": 41,
+            "excluded": 91
+          },
+          "Block Deal (BD)": {
+            "count": 4,
+            "nav": 5171.587971887,
+            "navAvg6m": 5533.54415512579,
+            "gtgd6m": 1270.1332445,
+            "debtAvg6m": 594.1662982965399,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "CN HA NOI": {
+          "Unclassified": {
+            "count": 1600,
+            "nav": 1.937724750999997,
+            "navAvg6m": 2.0264637458400006,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 32,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 392,
+            "nav": 66.78862890399996,
+            "navAvg6m": 34.20874076543001,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 1051,
+            "nav": -0.016927969999999855,
+            "navAvg6m": -0.011590276729999932,
+            "gtgd6m": 0.0005397399999999996,
+            "debtAvg6m": 7.559e-08,
+            "negativeNav": 1013,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 362,
+            "nav": 46.18351540000001,
+            "navAvg6m": 45.96457477169,
+            "gtgd6m": 196.65344631000008,
+            "debtAvg6m": 43.29556358117999,
+            "negativeNav": 48,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 97,
+            "nav": 64.04955800499997,
+            "navAvg6m": 57.85598947889001,
+            "gtgd6m": 1220.4764568800001,
+            "debtAvg6m": 34.75544915866001,
+            "negativeNav": 10,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 17,
+            "nav": 146.907746914,
+            "navAvg6m": 158.54897295292,
+            "gtgd6m": 606.0178672,
+            "debtAvg6m": 137.4925900714,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 36,
+            "nav": 1409.926708566,
+            "navAvg6m": 1596.41161505516,
+            "gtgd6m": 5389.965683410001,
+            "debtAvg6m": 1327.9373053832403,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 9,
+            "nav": 217.44142150300002,
+            "navAvg6m": 204.36211295106,
+            "gtgd6m": 430.694114,
+            "debtAvg6m": 210.43465496406998,
+            "negativeNav": 1,
+            "excluded": 5
+          },
+          "HVT": {
+            "count": 10,
+            "nav": 124.617471233,
+            "navAvg6m": 160.19130679509,
+            "gtgd6m": 1125.32817203,
+            "debtAvg6m": 38.26542647086,
+            "negativeNav": 2,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 1,
+            "nav": 4.325903812,
+            "navAvg6m": 74.40999973263,
+            "gtgd6m": 70.3192,
+            "debtAvg6m": 23.873943967349998,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "TRUNG TÂM TVĐT CẦN THƠ": {
+          "Unclassified": {
+            "count": 416,
+            "nav": 0.2791581800000001,
+            "navAvg6m": 0.30075175106999985,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 5,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 33,
+            "nav": 5.446416912000001,
+            "navAvg6m": 5.00932756934,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 131,
+            "nav": -0.003194775000000008,
+            "navAvg6m": -0.0020068286999999994,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 117,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 1,
+            "nav": 122.374727996,
+            "navAvg6m": 107.35670816646001,
+            "gtgd6m": 186.075,
+            "debtAvg6m": 83.74910878378,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 54,
+            "nav": 11.589778184,
+            "navAvg6m": 14.186419060209996,
+            "gtgd6m": 39.946970150000006,
+            "debtAvg6m": 14.352246967399998,
+            "negativeNav": 1,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 29,
+            "nav": 5.262173054000001,
+            "navAvg6m": 7.9837266940400005,
+            "gtgd6m": 104.29022313,
+            "debtAvg6m": 4.1236232571,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Block Deal (BD)": {
+            "count": 1,
+            "nav": 134.466356593,
+            "navAvg6m": 136.04098767139,
+            "gtgd6m": 333.03925,
+            "debtAvg6m": 91.71234637511999,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 1,
+            "nav": 14.835206757,
+            "navAvg6m": 14.70484722517,
+            "gtgd6m": 316.9419146,
+            "debtAvg6m": 0.7813264458200001,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "CN HCM": {
+          "Unclassified": {
+            "count": 3839,
+            "nav": 2.6440566790000015,
+            "navAvg6m": 2.8315397455500113,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 46,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1447,
+            "nav": 638.0466840130001,
+            "navAvg6m": 632.1065322560205,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 8,
+            "excluded": 0
+          },
+          "Zero": {
+            "count": 10958,
+            "nav": -0.5796054409999758,
+            "navAvg6m": -0.4940786838700425,
+            "gtgd6m": 0.24698455000000002,
+            "debtAvg6m": 0,
+            "negativeNav": 9407,
+            "excluded": 0
+          },
+          "Mass": {
+            "count": 695,
+            "nav": 257.67082608,
+            "navAvg6m": 276.6913321672502,
+            "gtgd6m": 674.7699386799995,
+            "debtAvg6m": 163.73522329777003,
+            "negativeNav": 44,
+            "excluded": 0
+          },
+          "HVT": {
+            "count": 22,
+            "nav": 1075.672973604,
+            "navAvg6m": 1522.5228276088,
+            "gtgd6m": 4476.5359988,
+            "debtAvg6m": 236.40979324101002,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "Active Trader": {
+            "count": 323,
+            "nav": 167.02038705900003,
+            "navAvg6m": 201.61078808536018,
+            "gtgd6m": 3926.7665839100005,
+            "debtAvg6m": 140.71723998926996,
+            "negativeNav": 10,
+            "excluded": 0
+          },
+          "Other": {
+            "count": 107,
+            "nav": 85.42543401299999,
+            "navAvg6m": 114.41596759481995,
+            "gtgd6m": 144.1399352,
+            "debtAvg6m": 105.85729020414,
+            "negativeNav": 47,
+            "excluded": 89
+          },
+          "Block Deal (BD)": {
+            "count": 4,
+            "nav": 4070.288175818,
+            "navAvg6m": 4300.5649861716,
+            "gtgd6m": 1360.056,
+            "debtAvg6m": 680.57053260629,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "UHNW": {
+            "count": 16,
+            "nav": 6648.804111688,
+            "navAvg6m": 7317.766912922568,
+            "gtgd6m": 2265.2432292999997,
+            "debtAvg6m": 1031.54821837829,
+            "negativeNav": 0,
+            "excluded": 0
+          },
+          "HNW": {
+            "count": 18,
+            "nav": 126.65690728599998,
+            "navAvg6m": 155.01030821050998,
+            "gtgd6m": 513.91055835,
+            "debtAvg6m": 110.68393592701001,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        },
+        "KHTC": {
+          "Other": {
+            "count": 30,
+            "nav": -6.306792379999999,
+            "navAvg6m": -19.817346060519995,
+            "gtgd6m": 4234.672831799999,
+            "debtAvg6m": 0,
+            "negativeNav": 3,
+            "excluded": 30
+          },
+          "Zero": {
+            "count": 3,
+            "nav": -2.64e-05,
+            "navAvg6m": -2.2895579999999997e-05,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 3,
+            "excluded": 0
+          },
+          "Dormant": {
+            "count": 1,
+            "nav": 2.019918142,
+            "navAvg6m": 2.4168645133699997,
+            "gtgd6m": 0,
+            "debtAvg6m": 0,
+            "negativeNav": 0,
+            "excluded": 0
+          }
+        }
+      }
+    },
+    "counts": {
+      "202608": 89752,
+      "202609": 90247,
+      "202610": 90535
+    },
+    "scope": "Phân khúc theo hành vi và tài sản trong riêng tệp PKKH v2; chưa nối với phân nhóm A–D."
+  },
+  "sourceLatest": "BÁO CÁO PHÂN KHÚC KH THEO NHÃN CỐ ĐỊNH_02 19-10-2026.xlsx",
+  "dailySnapshot": {
+    "asOf": "19/10/2026",
+    "labelDate": "30/09/2026",
+    "labelSource": "PNKH_NHAN_CHOT_THANG.csv",
+    "source": "PNKH_HIEU_SUAT_TUAN.csv",
+    "values": {
+      "CN HA NOI": {
+        "Dormant": {
+          "currentCustomers": 438,
+          "navPositive": 437,
+          "matchedDay": 1,
+          "nav": 69.76017472,
+          "debt": 0.209163735,
+          "tradeDay": 0.091,
+          "feeDay": 0.04823
+        },
+        "Mass": {
+          "currentCustomers": 434,
+          "navPositive": 334,
+          "matchedDay": 6,
+          "nav": 23.935308816,
+          "debt": 10.158172563,
+          "tradeDay": 0.58102344,
+          "feeDay": 0.813412
+        },
+        "Active Trader": {
+          "currentCustomers": 106,
+          "navPositive": 92,
+          "matchedDay": 9,
+          "nav": 89.137396517,
+          "debt": 122.445983701,
+          "tradeDay": 27.11093215,
+          "feeDay": 33.289435
+        },
+        "HVT": {
+          "currentCustomers": 12,
+          "navPositive": 10,
+          "matchedDay": 1,
+          "nav": 187.798149778,
+          "debt": 101.610700172,
+          "tradeDay": 3.075,
+          "feeDay": 1.62975
+        },
+        "HNW": {
+          "currentCustomers": 12,
+          "navPositive": 12,
+          "matchedDay": 2,
+          "nav": 160.206440847,
+          "debt": 132.249452025,
+          "tradeDay": 7.53017,
+          "feeDay": 9.269167
+        },
+        "UHNW": {
+          "currentCustomers": 13,
+          "navPositive": 12,
+          "matchedDay": 2,
+          "nav": 538.549624086,
+          "debt": 510.858425166,
+          "tradeDay": 24.36409,
+          "feeDay": 32.160599
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 1093,
+          "navPositive": 101,
+          "matchedDay": 10,
+          "nav": 689.7113469,
+          "debt": 662.092241285,
+          "tradeDay": 46.99717565,
+          "feeDay": 59.700048
+        },
+        "Unclassified": {
+          "currentCustomers": 1488,
+          "navPositive": 1447,
+          "matchedDay": 0,
+          "nav": 1.850212914,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Other": {
+          "currentCustomers": 9,
+          "navPositive": 8,
+          "matchedDay": 0,
+          "nav": 216.483949348,
+          "debt": 195.351047453,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "TRUNG TÂM TVĐT HỘI SỞ": {
+        "Dormant": {
+          "currentCustomers": 1539,
+          "navPositive": 1530,
+          "matchedDay": 6,
+          "nav": 3117.772320703,
+          "debt": 0.503842167,
+          "tradeDay": 0.76771525,
+          "feeDay": 0.8228
+        },
+        "Mass": {
+          "currentCustomers": 782,
+          "navPositive": 733,
+          "matchedDay": 38,
+          "nav": 406.068665994,
+          "debt": 260.899330912,
+          "tradeDay": 12.4953215,
+          "feeDay": 12.022479
+        },
+        "Active Trader": {
+          "currentCustomers": 479,
+          "navPositive": 457,
+          "matchedDay": 102,
+          "nav": 419.881518567,
+          "debt": 281.360410217,
+          "tradeDay": 56.07124045,
+          "feeDay": 74.341857
+        },
+        "HVT": {
+          "currentCustomers": 21,
+          "navPositive": 20,
+          "matchedDay": 6,
+          "nav": 853.246847877,
+          "debt": 199.239204155,
+          "tradeDay": 26.94968,
+          "feeDay": 19.580433
+        },
+        "HNW": {
+          "currentCustomers": 33,
+          "navPositive": 32,
+          "matchedDay": 2,
+          "nav": 354.54520069,
+          "debt": 76.602284425,
+          "tradeDay": 0.23683,
+          "feeDay": 0.129731
+        },
+        "UHNW": {
+          "currentCustomers": 15,
+          "navPositive": 15,
+          "matchedDay": 0,
+          "nav": 916.633134168,
+          "debt": 62.567408329,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 3703,
+          "navPositive": 83,
+          "matchedDay": 9,
+          "nav": 58.303213175,
+          "debt": 72.346630375,
+          "tradeDay": 12.85814,
+          "feeDay": 16.022048
+        },
+        "Unclassified": {
+          "currentCustomers": 4453,
+          "navPositive": 4336,
+          "matchedDay": 1,
+          "nav": 3.420576424,
+          "debt": 0.008521126,
+          "tradeDay": 0.00855,
+          "feeDay": 0.011286
+        },
+        "Other": {
+          "currentCustomers": 128,
+          "navPositive": 70,
+          "matchedDay": 0,
+          "nav": 167.630290779,
+          "debt": 0.286077655,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "Công ty quản lý": {
+        "Dormant": {
+          "currentCustomers": 6242,
+          "navPositive": 5183,
+          "matchedDay": 6,
+          "nav": 3598.552420109,
+          "debt": 0.0615,
+          "tradeDay": 5.5107838,
+          "feeDay": 4.567345
+        },
+        "Mass": {
+          "currentCustomers": 1124,
+          "navPositive": 978,
+          "matchedDay": 54,
+          "nav": 271.460525209,
+          "debt": 21.091444452,
+          "tradeDay": 4.49357489,
+          "feeDay": 4.863822
+        },
+        "Active Trader": {
+          "currentCustomers": 286,
+          "navPositive": 271,
+          "matchedDay": 46,
+          "nav": 108.9282882,
+          "debt": 19.633919878,
+          "tradeDay": 3.65784575,
+          "feeDay": 3.379799
+        },
+        "HVT": {
+          "currentCustomers": 2,
+          "navPositive": 2,
+          "matchedDay": 0,
+          "nav": 11.37498076,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "HNW": {
+          "currentCustomers": 7,
+          "navPositive": 7,
+          "matchedDay": 1,
+          "nav": 77.109532444,
+          "debt": 0.0,
+          "tradeDay": 0.0116,
+          "feeDay": 0.014268
+        },
+        "UHNW": {
+          "currentCustomers": 5,
+          "navPositive": 5,
+          "matchedDay": 0,
+          "nav": 152.466792827,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 18759,
+          "navPositive": 43,
+          "matchedDay": 9,
+          "nav": 46.772841777,
+          "debt": 60.285512631,
+          "tradeDay": 1.876008,
+          "feeDay": 1.646696
+        },
+        "Unclassified": {
+          "currentCustomers": 8156,
+          "navPositive": 7420,
+          "matchedDay": 1,
+          "nav": 3.97234915,
+          "debt": 0.0,
+          "tradeDay": 0.0019754,
+          "feeDay": 0.0
+        },
+        "Other": {
+          "currentCustomers": 242,
+          "navPositive": 105,
+          "matchedDay": 0,
+          "nav": -63.595034224,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "CN HCM": {
+        "Dormant": {
+          "currentCustomers": 1375,
+          "navPositive": 1360,
+          "matchedDay": 6,
+          "nav": 441.090674002,
+          "debt": 6.234537728,
+          "tradeDay": 2.7152604,
+          "feeDay": 1.557482
+        },
+        "Mass": {
+          "currentCustomers": 671,
+          "navPositive": 614,
+          "matchedDay": 39,
+          "nav": 222.74029813,
+          "debt": 71.931946506,
+          "tradeDay": 4.005206,
+          "feeDay": 4.504191
+        },
+        "Active Trader": {
+          "currentCustomers": 355,
+          "navPositive": 339,
+          "matchedDay": 60,
+          "nav": 248.378645031,
+          "debt": 178.985821295,
+          "tradeDay": 25.60663125,
+          "feeDay": 29.224058
+        },
+        "HVT": {
+          "currentCustomers": 11,
+          "navPositive": 11,
+          "matchedDay": 6,
+          "nav": 258.245522811,
+          "debt": 16.608102064,
+          "tradeDay": 10.532955,
+          "feeDay": 12.955536
+        },
+        "HNW": {
+          "currentCustomers": 12,
+          "navPositive": 11,
+          "matchedDay": 1,
+          "nav": 149.578778508,
+          "debt": 33.087779289,
+          "tradeDay": 0.02025,
+          "feeDay": 0.024908
+        },
+        "UHNW": {
+          "currentCustomers": 17,
+          "navPositive": 17,
+          "matchedDay": 3,
+          "nav": 10556.198907499,
+          "debt": 1608.826818271,
+          "tradeDay": 26.707058,
+          "feeDay": 32.8497
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 10987,
+          "navPositive": 103,
+          "matchedDay": 20,
+          "nav": 387.833040782,
+          "debt": 501.944542984,
+          "tradeDay": 24.8561382,
+          "feeDay": 26.818182
+        },
+        "Unclassified": {
+          "currentCustomers": 3897,
+          "navPositive": 3798,
+          "matchedDay": 1,
+          "nav": 4.326933042,
+          "debt": 0.099956783,
+          "tradeDay": 0.06125,
+          "feeDay": 0.197838
+        },
+        "Other": {
+          "currentCustomers": 107,
+          "navPositive": 45,
+          "matchedDay": 0,
+          "nav": 83.735797643,
+          "debt": 112.330556362,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "TRUNG TÂM TVĐT SÀI GÒN": {
+        "Dormant": {
+          "currentCustomers": 456,
+          "navPositive": 454,
+          "matchedDay": 3,
+          "nav": 284.592705945,
+          "debt": 0.246740139,
+          "tradeDay": 0.14343,
+          "feeDay": 0.222633
+        },
+        "Mass": {
+          "currentCustomers": 386,
+          "navPositive": 347,
+          "matchedDay": 18,
+          "nav": 102.687777081,
+          "debt": 18.577523656,
+          "tradeDay": 2.0818105,
+          "feeDay": 2.617401
+        },
+        "Active Trader": {
+          "currentCustomers": 220,
+          "navPositive": 203,
+          "matchedDay": 35,
+          "nav": 180.742449886,
+          "debt": 144.403867402,
+          "tradeDay": 7.27752495,
+          "feeDay": 9.613792
+        },
+        "HVT": {
+          "currentCustomers": 14,
+          "navPositive": 13,
+          "matchedDay": 2,
+          "nav": 965.232509832,
+          "debt": 782.667955478,
+          "tradeDay": 0.43622,
+          "feeDay": 0.545235
+        },
+        "HNW": {
+          "currentCustomers": 12,
+          "navPositive": 11,
+          "matchedDay": 1,
+          "nav": 143.6371488,
+          "debt": 40.913589837,
+          "tradeDay": 0.4116,
+          "feeDay": 0.506268
+        },
+        "UHNW": {
+          "currentCustomers": 5,
+          "navPositive": 4,
+          "matchedDay": 0,
+          "nav": 765.448204291,
+          "debt": 331.23714908,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 1,
+          "navPositive": 1,
+          "matchedDay": 0,
+          "nav": 117.252942498,
+          "debt": 167.789601429,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 830,
+          "navPositive": 105,
+          "matchedDay": 18,
+          "nav": 625.051205412,
+          "debt": 687.504668434,
+          "tradeDay": 103.330188,
+          "feeDay": 62.492862
+        },
+        "Unclassified": {
+          "currentCustomers": 1865,
+          "navPositive": 1829,
+          "matchedDay": 1,
+          "nav": 6.477889333,
+          "debt": 0.066035,
+          "tradeDay": 0.088199,
+          "feeDay": 0.108485
+        },
+        "Other": {
+          "currentCustomers": 11,
+          "navPositive": 6,
+          "matchedDay": 0,
+          "nav": 538.185968391,
+          "debt": 359.505661365,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "CN ĐÀ NẴNG": {
+        "Dormant": {
+          "currentCustomers": 1089,
+          "navPositive": 1083,
+          "matchedDay": 1,
+          "nav": 421.066897113,
+          "debt": 0.0,
+          "tradeDay": 0.01819,
+          "feeDay": 0.009641
+        },
+        "Mass": {
+          "currentCustomers": 511,
+          "navPositive": 464,
+          "matchedDay": 28,
+          "nav": 127.529297131,
+          "debt": 31.537631862,
+          "tradeDay": 1.6919145,
+          "feeDay": 1.738946
+        },
+        "Active Trader": {
+          "currentCustomers": 247,
+          "navPositive": 231,
+          "matchedDay": 53,
+          "nav": 133.799781558,
+          "debt": 95.070062872,
+          "tradeDay": 5.25188786,
+          "feeDay": 6.429398
+        },
+        "HVT": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "HNW": {
+          "currentCustomers": 2,
+          "navPositive": 2,
+          "matchedDay": 0,
+          "nav": 10.887443519,
+          "debt": 6.870691858,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "UHNW": {
+          "currentCustomers": 1,
+          "navPositive": 1,
+          "matchedDay": 1,
+          "nav": 64.666970831,
+          "debt": 50.715061686,
+          "tradeDay": 1.1225,
+          "feeDay": 1.380675
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 4008,
+          "navPositive": 59,
+          "matchedDay": 12,
+          "nav": 62.933818668,
+          "debt": 109.119795726,
+          "tradeDay": 2.56832,
+          "feeDay": 3.079562
+        },
+        "Unclassified": {
+          "currentCustomers": 3106,
+          "navPositive": 3023,
+          "matchedDay": 1,
+          "nav": 2.382733551,
+          "debt": 0.0,
+          "tradeDay": 0.0435,
+          "feeDay": 0.053505
+        },
+        "Other": {
+          "currentCustomers": 27,
+          "navPositive": 20,
+          "matchedDay": 0,
+          "nav": 10.080674201,
+          "debt": 12.707520893,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "PGD THĂNG LONG": {
+        "Dormant": {
+          "currentCustomers": 270,
+          "navPositive": 268,
+          "matchedDay": 0,
+          "nav": 141.211091577,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Mass": {
+          "currentCustomers": 163,
+          "navPositive": 155,
+          "matchedDay": 6,
+          "nav": 64.640253149,
+          "debt": 13.855700858,
+          "tradeDay": 0.459388,
+          "feeDay": 0.450548
+        },
+        "Active Trader": {
+          "currentCustomers": 103,
+          "navPositive": 95,
+          "matchedDay": 23,
+          "nav": 110.483868056,
+          "debt": 86.804774108,
+          "tradeDay": 17.512764,
+          "feeDay": 16.4777
+        },
+        "HVT": {
+          "currentCustomers": 6,
+          "navPositive": 5,
+          "matchedDay": 1,
+          "nav": 247.356494091,
+          "debt": 13.036594237,
+          "tradeDay": 0.926,
+          "feeDay": 1.13898
+        },
+        "HNW": {
+          "currentCustomers": 7,
+          "navPositive": 7,
+          "matchedDay": 0,
+          "nav": 124.087859546,
+          "debt": 8.582172067,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "UHNW": {
+          "currentCustomers": 4,
+          "navPositive": 4,
+          "matchedDay": 0,
+          "nav": 235.002387412,
+          "debt": 6.125950142,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 812,
+          "navPositive": 27,
+          "matchedDay": 5,
+          "nav": 342.709758048,
+          "debt": 566.874211192,
+          "tradeDay": 4.10720495,
+          "feeDay": 5.053268
+        },
+        "Unclassified": {
+          "currentCustomers": 1147,
+          "navPositive": 1123,
+          "matchedDay": 1,
+          "nav": 1.975227449,
+          "debt": 0.0,
+          "tradeDay": 0.0007165,
+          "feeDay": 0.000882
+        },
+        "Other": {
+          "currentCustomers": 16,
+          "navPositive": 9,
+          "matchedDay": 0,
+          "nav": 194.060528934,
+          "debt": 181.656210287,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "KHTC": {
+        "Dormant": {
+          "currentCustomers": 1,
+          "navPositive": 1,
+          "matchedDay": 0,
+          "nav": 2.049030222,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Mass": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Active Trader": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "HVT": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "HNW": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "UHNW": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 3,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": -2.64e-05,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Unclassified": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Other": {
+          "currentCustomers": 40,
+          "navPositive": 0,
+          "matchedDay": 3,
+          "nav": -1.539164,
+          "debt": 0.0,
+          "tradeDay": 12.11545,
+          "feeDay": 14.114738
+        }
+      },
+      "TRUNG TÂM TVĐT CẦN THƠ": {
+        "Dormant": {
+          "currentCustomers": 38,
+          "navPositive": 38,
+          "matchedDay": 1,
+          "nav": 4.553334481,
+          "debt": 0.0,
+          "tradeDay": 0.0159,
+          "feeDay": 0.020988
+        },
+        "Mass": {
+          "currentCustomers": 48,
+          "navPositive": 43,
+          "matchedDay": 1,
+          "nav": 7.482497908,
+          "debt": 5.728379386,
+          "tradeDay": 0.00208,
+          "feeDay": 0.002558
+        },
+        "Active Trader": {
+          "currentCustomers": 36,
+          "navPositive": 36,
+          "matchedDay": 3,
+          "nav": 9.313412897,
+          "debt": 5.922750529,
+          "tradeDay": 0.06373,
+          "feeDay": 0.078388
+        },
+        "HVT": {
+          "currentCustomers": 2,
+          "navPositive": 2,
+          "matchedDay": 1,
+          "nav": 95.560447977,
+          "debt": 34.485897246,
+          "tradeDay": 0.695,
+          "feeDay": 0.50735
+        },
+        "HNW": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "UHNW": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 1,
+          "navPositive": 1,
+          "matchedDay": 0,
+          "nav": 86.33539427,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 137,
+          "navPositive": 15,
+          "matchedDay": 0,
+          "nav": 124.674383532,
+          "debt": 87.388385547,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Unclassified": {
+          "currentCustomers": 405,
+          "navPositive": 396,
+          "matchedDay": 0,
+          "nav": 0.260884667,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Other": {
+          "currentCustomers": 0,
+          "navPositive": 0,
+          "matchedDay": 0,
+          "nav": 0.0,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "TRUNG TÂM TVĐT Hoàn Kiếm": {
+        "Dormant": {
+          "currentCustomers": 901,
+          "navPositive": 892,
+          "matchedDay": 6,
+          "nav": 3945.032701347,
+          "debt": 15.883822737,
+          "tradeDay": 15.0448531,
+          "feeDay": 19.791754
+        },
+        "Mass": {
+          "currentCustomers": 474,
+          "navPositive": 441,
+          "matchedDay": 23,
+          "nav": 343.421173752,
+          "debt": 104.938813026,
+          "tradeDay": 2.156988,
+          "feeDay": 2.58144
+        },
+        "Active Trader": {
+          "currentCustomers": 302,
+          "navPositive": 287,
+          "matchedDay": 59,
+          "nav": 286.038107279,
+          "debt": 215.930633708,
+          "tradeDay": 43.11011782,
+          "feeDay": 30.316634
+        },
+        "HVT": {
+          "currentCustomers": 32,
+          "navPositive": 29,
+          "matchedDay": 5,
+          "nav": 511.274547989,
+          "debt": 369.210545443,
+          "tradeDay": 27.29633,
+          "feeDay": 22.395022
+        },
+        "HNW": {
+          "currentCustomers": 38,
+          "navPositive": 38,
+          "matchedDay": 1,
+          "nav": 626.814124554,
+          "debt": 610.469180766,
+          "tradeDay": 0.011177,
+          "feeDay": 0.013748
+        },
+        "UHNW": {
+          "currentCustomers": 55,
+          "navPositive": 54,
+          "matchedDay": 6,
+          "nav": 6614.627961584,
+          "debt": 906.095948461,
+          "tradeDay": 31.684219,
+          "feeDay": 12.500248
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 4,
+          "navPositive": 4,
+          "matchedDay": 0,
+          "nav": 435.187235493,
+          "debt": 390.609368761,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Zero": {
+          "currentCustomers": 2364,
+          "navPositive": 77,
+          "matchedDay": 11,
+          "nav": 780.738337727,
+          "debt": 766.295576318,
+          "tradeDay": 37.427672,
+          "feeDay": 34.789826
+        },
+        "Unclassified": {
+          "currentCustomers": 3026,
+          "navPositive": 2940,
+          "matchedDay": 0,
+          "nav": 3.101957106,
+          "debt": 0.0,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Other": {
+          "currentCustomers": 109,
+          "navPositive": 58,
+          "matchedDay": 0,
+          "nav": 9237.772801733,
+          "debt": 413.48513756,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        }
+      },
+      "all": {
+        "HNW": {
+          "currentCustomers": 123,
+          "navPositive": 120,
+          "matchedDay": 8,
+          "nav": 1646.866528908,
+          "debt": 908.7751502670001,
+          "tradeDay": 8.221627,
+          "feeDay": 9.95809
+        },
+        "Zero": {
+          "currentCustomers": 42696,
+          "navPositive": 613,
+          "matchedDay": 94,
+          "nav": 3118.727919621,
+          "debt": 3513.851564492,
+          "tradeDay": 234.02084680000002,
+          "feeDay": 209.602492
+        },
+        "Unclassified": {
+          "currentCustomers": 27543,
+          "navPositive": 26312,
+          "matchedDay": 6,
+          "nav": 27.768763636,
+          "debt": 0.174512909,
+          "tradeDay": 0.2041909,
+          "feeDay": 0.371996
+        },
+        "Dormant": {
+          "currentCustomers": 12349,
+          "navPositive": 11246,
+          "matchedDay": 30,
+          "nav": 12025.681350219,
+          "debt": 23.139606506,
+          "tradeDay": 24.30713255,
+          "feeDay": 27.040873
+        },
+        "HVT": {
+          "currentCustomers": 100,
+          "navPositive": 92,
+          "matchedDay": 22,
+          "nav": 3130.089501115,
+          "debt": 1516.858998795,
+          "tradeDay": 69.911185,
+          "feeDay": 58.752306
+        },
+        "Active Trader": {
+          "currentCustomers": 2134,
+          "navPositive": 2011,
+          "matchedDay": 390,
+          "nav": 1586.703467991,
+          "debt": 1150.55822371,
+          "tradeDay": 185.66267423,
+          "feeDay": 203.151061
+        },
+        "Block Deal (BD)": {
+          "currentCustomers": 6,
+          "navPositive": 6,
+          "matchedDay": 0,
+          "nav": 638.775572261,
+          "debt": 558.39897019,
+          "tradeDay": 0.0,
+          "feeDay": 0.0
+        },
+        "Other": {
+          "currentCustomers": 689,
+          "navPositive": 321,
+          "matchedDay": 3,
+          "nav": 10382.815812805,
+          "debt": 1275.322211575,
+          "tradeDay": 12.11545,
+          "feeDay": 14.114738
+        },
+        "Mass": {
+          "currentCustomers": 4593,
+          "navPositive": 4109,
+          "matchedDay": 213,
+          "nav": 1569.96579717,
+          "debt": 538.718943221,
+          "tradeDay": 27.96730683,
+          "feeDay": 29.594797
+        },
+        "UHNW": {
+          "currentCustomers": 115,
+          "navPositive": 112,
+          "matchedDay": 12,
+          "nav": 19843.593982698,
+          "debt": 3476.426761135,
+          "tradeDay": 83.877867,
+          "feeDay": 78.891222
+        }
+      }
+    }
+  }
+}
