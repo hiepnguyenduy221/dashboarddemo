@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nhập dữ liệu dashboard</title>
+<style>
+:root{--navy:#102c50;--ink:#172c43;--muted:#64758b;--orange:#f26a21;--green:#167255;--red:#b34836;--amber:#9a6400;--line:#dee5ed;--paper:#f4f6fa;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 "Segoe UI",Arial,sans-serif}
+main{max-width:980px;margin:0 auto;padding:28px 16px 60px}
+h1{margin:0;font-size:22px;color:var(--navy)}
+.lead{margin:4px 0 22px;color:var(--muted)}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px}
+.drop{display:block;margin-bottom:16px;border:2px dashed #b9c7d6;border-radius:14px;background:var(--white);padding:34px 20px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.drop:hover,.drop.over{border-color:var(--orange);background:#fff8f2}
+.drop strong{display:block;font-size:16px;color:var(--navy);margin-bottom:4px}
+.drop span{color:var(--muted)}
+.drop input{display:none}
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px;padding:0;list-style:none;color:var(--muted);font-size:13px}
+.steps li{background:var(--white);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.steps li.done{border-color:#9fd1bd;color:var(--green)}
+.status{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+.status .dot{width:10px;height:10px;border-radius:50%;background:var(--muted)}
+.status.ok .dot{background:var(--green)}.status.ok{color:var(--green)}
+.status.fail .dot{background:var(--red)}.status.fail{color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.stat span{display:block;color:var(--muted);font-size:12px}
+.stat strong{font-size:18px;color:var(--navy)}
+.list{margin:10px 0 0;padding:0;list-style:none;max-height:340px;overflow:auto;border-top:1px solid var(--line)}
+.list li{padding:6px 2px;border-bottom:1px solid var(--line);font-size:13px}
+.list li b{display:inline-block;min-width:92px;color:var(--navy)}
+.errors li{color:var(--red)}.warnings li{color:var(--amber)}
+h2{font-size:15px;margin:0;color:var(--navy)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+button,.btn{font:inherit;border-radius:10px;padding:9px 16px;border:1px solid var(--navy);background:var(--white);color:var(--navy);cursor:pointer;text-decoration:none}
+button.primary{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:600}
+button:disabled{opacity:.45;cursor:not-allowed}
+.note{color:var(--muted);font-size:13px;margin:10px 0 0}
+.hidden{display:none}
+code{background:#eef2f7;border-radius:4px;padding:1px 5px}
+</style>
+</head>
+<body>
+<main>
+ <h1>Nhập dữ liệu dashboard</h1>
+ <p class="lead">Chọn file Excel theo template → kiểm tra → xem trước → lưu <code>data.json</code> vào thư mục gốc repo, rồi commit và push.</p>
+ <ol class="steps" id="steps"><li data-step="1">1. Chọn file</li><li data-step="2">2. Kiểm tra</li><li data-step="3">3. Xem trước</li><li data-step="4">4. Lưu data.json</li></ol>
+
+ <label class="drop" id="drop">
+  <input type="file" id="file" accept=".xlsx,.xlsm,.xls">
+  <strong>Kéo thả file Excel vào đây hoặc bấm để chọn</strong>
+  <span>Tải <a href="../data/template_dashboard.xlsx">template trống</a> để nhập dữ liệu.</span>
+ </label>
+
+ <section class="card hidden" id="result">
+  <div class="status" id="status"><i class="dot"></i><span></span></div>
+  <div class="grid" id="stats"></div>
+  <div class="actions">
+   <button type="button" id="preview" disabled>Xem trước dashboard</button>
+   <button type="button" class="primary" id="save" disabled>Lưu data.json</button>
+  </div>
+  <p class="note" id="save-note">Khi lưu, chọn file <code>data.json</code> ở thư mục gốc repo để ghi đè (Chrome/Edge). Trình duyệt khác sẽ tải file về; chép file đó vào thư mục gốc repo.</p>
+ </section>
+
+ <section class="card hidden" id="errors-card"><h2 id="errors-title">Lỗi</h2><ul class="list errors" id="errors"></ul></section>
+ <section class="card hidden" id="warnings-card"><h2 id="warnings-title">Cảnh báo</h2><ul class="list warnings" id="warnings"></ul></section>
+ <p class="note">Có lỗi thì không lưu được — sửa Excel rồi chọn lại file. Cảnh báo là chỗ số không khớp nhau; nên xem lại nhưng vẫn lưu được. Cùng quy tắc với <code>python tools/excel_to_json.py</code>.</p>
+</main>
+
+<script id="schema" type="application/json">{"company": "Toàn công ty", "meta_keys": [["ngay_bao_cao", "date", true, "Ngày dữ liệu kinh doanh (phiên cuối trong sheet NGAY)."], ["ngay_chot_kh", "date", true, "Ngày chốt tổng KH và luồng KH mới (sheet KH)."], ["ngay_gan_nhan", "date", true, "Ngày gán nhãn A–D và PKKH (thường là cuối tháng trước)."], ["ngay_hieu_qua_abcd", "date", true, "Ngày đo quy mô/hiệu quả A–D (sheet ABCD)."], ["abcd_tuan_tu_ngay", "date", true, "Ngày bắt đầu giai đoạn 'riêng tuần' của A–D; kết thúc tại ngay_hieu_qua_abcd."], ["ngay_hieu_qua_pkkh", "date", true, "Ngày đo hiệu quả PKKH (sheet PKKH)."], ["ngay_chot_nhan_su", "date", true, "Ngày chốt cây nhân sự và DTPN MG/CTV (sheet PHONG)."], ["ngay_nhan_su_ky_truoc", "date", true, "Mốc so sánh số MG/CTV (thường là cuối tháng trước)."], ["nguon_kinh_doanh", "text", false, "Tên nguồn số kinh doanh (sheet NGAY, KY)."], ["nguon_kh", "text", false, "Tên nguồn KH / luồng KH mới (sheet KH)."], ["nguon_abcd", "text", false, "Tên nguồn nhãn A–D (sheet ABCD)."], ["nguon_pkkh", "text", false, "Tên nguồn phân khúc PKKH (sheet PKKH)."], ["nguon_nhan_su", "text", false, "Tên nguồn cây nhân sự / DTPN MG-CTV (sheet PHONG)."]], "sheets": [{"name": "THONG_TIN", "key": ["khoa"], "columns": [["khoa", "text", "", true, "Mã khóa — không sửa."], ["gia_tri", "any", "", true, "Ngày ghi dd/mm/yyyy; nguồn ghi tên file/báo cáo."], ["mo_ta", "text", "", false, "Diễn giải — không cần sửa."]]}, {"name": "DON_VI", "key": ["ten_don_vi"], "columns": [["ten_don_vi", "text", "", true, "Tên hiển thị, ví dụ 'HCM', 'Hoàn Kiếm'. Không dùng 'Toàn công ty'."], ["kenh", "enum:MG|Digital|Khác", "", true, "Kênh mở KH: MG, Digital hoặc Khác."], ["thu_tu", "int", "", false, "Thứ tự trong bộ lọc; để trống thì theo thứ tự dòng."]]}, {"name": "NGAY", "key": ["ngay", "don_vi"], "columns": [["ngay", "date", "", true, "Ngày phiên giao dịch."], ["don_vi", "unit+company", "", true, "Tên đơn vị trong DON_VI hoặc 'Toàn công ty'."], ["kh_mo_moi", "int", "KH", false, "Số KH mở mới trong ngày."], ["gtgd", "num", "tỷ đồng", false, "Giá trị giao dịch trong ngày."], ["phi_net", "num", "triệu đồng", false, "Doanh thu phí net trong ngày."], ["thi_phan_ngay", "num", "%", false, "Thị phần trong ngày (ví dụ 2,41 = 2,41%)."], ["thi_phan_bq_luy_ke", "num", "%", false, "Thị phần bình quân lũy kế từ đầu tháng đến ngày này."], ["du_no", "num", "tỷ đồng", false, "Dư nợ cuối ngày (không gồm KH nợ xấu)."], ["nav", "num", "tỷ đồng", false, "NAV cuối ngày."], ["nap_rut_rong", "num", "tỷ đồng", false, "Nạp − rút trong ngày (âm = rút ròng)."], ["gtgd_thi_truong", "num", "tỷ đồng", false, "GTGD toàn thị trường; chỉ điền ở dòng 'Toàn công ty'."]]}, {"name": "KY", "key": ["don_vi"], "columns": [["don_vi", "unit+company", "", true, "Tên đơn vị hoặc 'Toàn công ty'."], ["thi_phan_ke_hoach", "num", "%", false, "Thị phần kế hoạch tháng."], ["gtgd_cung_ky", "num", "tỷ đồng", false, "GTGD lũy kế cùng kỳ tháng trước (cùng số phiên)."], ["phi_cung_ky", "num", "triệu đồng", false, "Phí net lũy kế cùng kỳ tháng trước."], ["thi_phan_cung_ky", "num", "%", false, "Thị phần BQ cùng kỳ tháng trước."], ["thi_phan_hose", "num", "%", false, "Thị phần BQ tháng trên HOSE."], ["thi_phan_hnx", "num", "%", false, "Thị phần BQ tháng trên HNX."], ["thi_phan_upcom", "num", "%", false, "Thị phần BQ tháng trên UPCOM."], ["thi_phan_hose_cung_ky", "num", "%", false, "Thị phần HOSE cùng kỳ tháng trước."], ["thi_phan_hnx_cung_ky", "num", "%", false, "Thị phần HNX cùng kỳ tháng trước."], ["thi_phan_upcom_cung_ky", "num", "%", false, "Thị phần UPCOM cùng kỳ tháng trước."], ["du_no_margin", "num", "tỷ đồng", false, "Dư nợ margin thuần cuối ngày báo cáo."], ["du_no_ung_truoc", "num", "tỷ đồng", false, "Dư nợ ứng trước cuối ngày báo cáo."], ["du_no_3_ben", "num", "tỷ đồng", false, "Dư nợ 3 bên cuối ngày báo cáo."], ["tien_nap", "num", "tỷ đồng", false, "Tiền nạp trong ngày báo cáo."], ["tien_rut", "num", "tỷ đồng", false, "Tiền rút trong ngày báo cáo."], ["so_kh_nap", "int", "KH", false, "Số KH nạp tiền trong ngày báo cáo."], ["so_kh_rut", "int", "KH", false, "Số KH rút tiền trong ngày báo cáo."], ["dieu_chuyen_noi_bo", "num", "tỷ đồng", false, "Điều chuyển nội bộ lũy kế tháng (tách khỏi dòng tiền ngoài)."]]}, {"name": "KH", "key": ["don_vi"], "columns": [["don_vi", "unit", "", true, "Tên đơn vị trong DON_VI."], ["tong_kh", "int", "KH", true, "Tổng KH hiện tại của đơn vị."], ["kh_moi_nop_tien", "int", "KH", false, "Trong KH mở mới tháng: số KH đã nộp tiền."], ["kh_moi_khop_lenh", "int", "KH", false, "Trong KH mở mới tháng: số KH đã khớp lệnh."], ["nav_kh_moi", "num", "tỷ đồng", false, "NAV của tệp KH mở mới tháng."], ["du_no_kh_moi", "num", "tỷ đồng", false, "Dư nợ của tệp KH mở mới tháng."], ["gtgd_kh_moi", "num", "tỷ đồng", false, "GTGD lũy kế tháng của tệp KH mở mới."], ["phi_kh_moi", "num", "triệu đồng", false, "Phí net lũy kế tháng của tệp KH mở mới."]]}, {"name": "PHONG", "key": ["don_vi", "ma_phong"], "columns": [["don_vi", "unit+blank", "", false, "Tên đơn vị; để trống nếu nhân sự chưa gắn trung tâm."], ["ma_phong", "text", "", true, "Mã phòng, duy nhất trong đơn vị."], ["ten_phong", "text", "", true, "Tên phòng."], ["truong_phong", "text", "", false, "Họ tên trưởng phòng."], ["chua_phan_phong", "flag", "", false, "Ghi x nếu dòng gom nhân sự chưa phân phòng."], ["so_mg", "int", "người", false, "Số MG tại ngày chốt."], ["so_ctv", "int", "người", false, "Số CTV tại ngày chốt."], ["so_khac", "int", "người", false, "Số nhân sự loại khác (OTHER), không gộp vào MG/CTV."], ["so_mg_ky_truoc", "int", "người", false, "Số MG tại ngay_nhan_su_ky_truoc."], ["so_ctv_ky_truoc", "int", "người", false, "Số CTV tại ngay_nhan_su_ky_truoc."], ["dtpn_mg", "num", "triệu đồng", false, "DTPN lũy kế tháng do MG mang về."], ["dtpn_ctv", "num", "triệu đồng", false, "DTPN lũy kế tháng do CTV mang về."], ["dtpn_chua_phan_loai", "num", "triệu đồng", false, "DTPN lũy kế tháng chưa xác định MG/CTV."], ["dtpn_cung_ky", "num", "triệu đồng", false, "DTPN lũy kế cùng kỳ tháng trước của phòng."], ["du_no_bq", "num", "tỷ đồng", false, "Dư nợ bình quân tháng."], ["gtgd_thang", "num", "tỷ đồng", false, "GTGD lũy kế tháng."], ["nav", "num", "tỷ đồng", false, "NAV cuối ngày."], ["kh_mo_moi", "int", "KH", false, "KH mở mới lũy kế tháng."], ["kh_moi_nop_tien", "int", "KH", false, "KH mới đã nộp tiền."], ["kh_moi_khop_lenh", "int", "KH", false, "KH mới đã khớp lệnh lần đầu."], ["kh_cu", "int", "KH", false, "Tổng KH cũ."], ["kh_cu_khop_lenh", "int", "KH", false, "KH cũ có khớp lệnh trong tháng."], ["suc_mua", "num", "tỷ đồng", false, "Sức mua khả dụng."]]}, {"name": "ABCD", "key": ["don_vi", "nhom"], "columns": [["don_vi", "unit", "", true, "Tên đơn vị trong DON_VI (đơn vị quản lý tại ngay_gan_nhan)."], ["nhom", "enum:A|B|C|D|NAV_AM", "", true, "A/B/C/D; NAV_AM = KH NAV âm (nhãn chồng, chỉ điền so_kh_hien_tai)."], ["so_kh_chot", "int", "KH", false, "Số KH của nhóm tại ngay_gan_nhan."], ["so_kh_hien_tai", "int", "KH", true, "Số KH của nhóm tại ngay_hieu_qua_abcd."], ["kh_khop_thang", "int", "KH", false, "Số KH có khớp lệnh lũy kế tháng."], ["nav_hien_tai", "num", "tỷ đồng", false, "NAV hiện tại của nhóm."], ["nav_bq_thang_truoc", "num", "tỷ đồng", false, "NAV bình quân tháng trước."], ["tien_mat_hien_tai", "num", "tỷ đồng", false, "Tiền mặt hiện tại (chỉ cộng số dư dương)."], ["tien_mat_bq_thang_truoc", "num", "tỷ đồng", false, "Tiền mặt bình quân tháng trước."], ["gtgd_luy_ke", "num", "tỷ đồng", false, "GTGD lũy kế tháng."], ["gtgd_thang_truoc", "num", "tỷ đồng", false, "GTGD cả tháng trước."], ["phi_luy_ke", "num", "triệu đồng", false, "Phí net lũy kế tháng."], ["phi_thang_truoc", "num", "triệu đồng", false, "Phí net cả tháng trước."], ["kh_khop_tuan", "int", "KH", false, "Số KH khớp lệnh trong giai đoạn tuần."], ["gtgd_tuan", "num", "tỷ đồng", false, "GTGD trong giai đoạn tuần."], ["phi_tuan", "num", "triệu đồng", false, "Phí net trong giai đoạn tuần."]]}, {"name": "PKKH", "key": ["don_vi", "phan_khuc"], "columns": [["don_vi", "unit", "", true, "Tên đơn vị trong DON_VI."], ["phan_khuc", "enum:Dormant|Mass|Active Trader|HVT|HNW|UHNW|Block Deal (BD)|Zero|Unclassified|Other", "", true, "Tên phân khúc."], ["so_kh", "int", "KH", true, "Số KH gắn nhãn đầu tháng."], ["kh_khop_thang", "int", "KH", false, "Số KH có khớp lệnh lũy kế tháng."], ["nav_hien_tai", "num", "tỷ đồng", false, "NAV tại ngay_hieu_qua_pkkh."], ["nav_bq_thang_truoc", "num", "tỷ đồng", false, "NAV bình quân tháng trước."], ["du_no_hien_tai", "num", "tỷ đồng", false, "Dư nợ tại ngay_hieu_qua_pkkh."], ["du_no_bq_thang_truoc", "num", "tỷ đồng", false, "Dư nợ bình quân tháng trước."], ["gtgd_luy_ke", "num", "tỷ đồng", false, "GTGD lũy kế tháng."], ["gtgd_thang_truoc", "num", "tỷ đồng", false, "GTGD cả tháng trước."], ["phi_luy_ke", "num", "triệu đồng", false, "Phí net lũy kế tháng."], ["phi_thang_truoc", "num", "triệu đồng", false, "Phí net cả tháng trước."]]}]}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+"use strict";
+// Bản JavaScript của tools/excel_to_json.py — giữ hai bên cùng quy tắc kiểm tra.
+// Schema được chép vào thẻ #schema bởi: python tools/make_template.py
+const SCHEMA=JSON.parse(document.getElementById('schema').textContent);
+const COMPANY=SCHEMA.company;
+const FORMAT_VERSION=1;
+const PREVIEW_KEY='shs-dashboard-preview';
+const sheetByName=Object.fromEntries(SCHEMA.sheets.map(s=>[s.name,s]));
+
+class Report{constructor(){this.errors=[];this.warnings=[]}error(w,m){this.errors.push([w,m])}warn(w,m){this.warnings.push([w,m])}}
+const isBlank=v=>v===null||v===undefined||(typeof v==='string'&&!v.trim());
+const pad=n=>String(n).padStart(2,'0');
+const isoOf=(y,m,d)=>`${y}-${pad(m)}-${pad(d)}`;
+function validDate(y,m,d){const t=new Date(Date.UTC(y,m-1,d));return t.getUTCFullYear()===y&&t.getUTCMonth()===m-1&&t.getUTCDate()===d}
+function parseDate(value){
+ // Ô ngày đọc ở dạng số serial của Excel; đổi trực tiếp để không lệch múi giờ.
+ if(typeof value==='number'){const p=XLSX.SSF.parse_date_code(value);if(p&&validDate(p.y,p.m,p.d))return isoOf(p.y,p.m,p.d);throw new Error(`ngày không hợp lệ '${value}'`)}
+ const text=String(value).trim();let m;
+ if((m=text.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/))){const [d,mo,y]=[+m[1],+m[2],+m[3]];if(validDate(y,mo,d))return isoOf(y,mo,d)}
+ else if((m=text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/))){const [y,mo,d]=[+m[1],+m[2],+m[3]];if(validDate(y,mo,d))return isoOf(y,mo,d)}
+ throw new Error(`ngày không hợp lệ '${text}' (dùng dd/mm/yyyy)`);
+}
+function parseNumber(value,integer){
+ if(typeof value==='boolean')throw new Error('không phải số');
+ let number;
+ if(typeof value==='number')number=value;
+ else{
+  let text=String(value).trim().replace(/[\s ]/g,'');
+  if(text.endsWith('%'))text=text.slice(0,-1);
+  if(text.includes(','))text=text.replace(/\./g,'').replace(',','.');
+  if(!/^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(text))throw new Error(`'${value}' không phải số`);
+  number=Number(text);
+ }
+ if(integer){if(Math.abs(number-Math.round(number))>1e-9)throw new Error(`cần số nguyên, nhận ${value}`);return Math.round(number)}
+ return Math.round(number*1e6)/1e6;
+}
+function parseCell(value,kind,units){
+ if(isBlank(value))return null;
+ if(kind==='any')return typeof value==='string'?value.trim():value;
+ if(kind==='date')return parseDate(value);
+ if(kind==='int'||kind==='num')return parseNumber(value,kind==='int');
+ if(kind==='flag'){
+  const text=String(value).trim().toLowerCase();
+  if(['x','1','true','có','co','yes'].includes(text))return true;
+  if(['0','false','không','khong','no'].includes(text))return null;
+  throw new Error(`cờ chỉ nhận 'x', nhận '${value}'`);
+ }
+ const text=String(value).trim();
+ if(kind.startsWith('enum:')){const allowed=kind.slice(5).split('|');if(!allowed.includes(text))throw new Error(`'${text}' không thuộc ${allowed.join(', ')}`)}
+ else if(kind.startsWith('unit')){const allowed=new Set(units);if(kind==='unit+company')allowed.add(COMPANY);if(!allowed.has(text))throw new Error(`đơn vị '${text}' chưa có trong DON_VI`)}
+ return text;
+}
+function sheetRows(ws){
+ if(!ws||!ws['!ref'])return {rows:[],firstRow:1};
+ const range=XLSX.utils.decode_range(ws['!ref']);
+ return {rows:XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:null,blankrows:true}),firstRow:range.s.r+1};
+}
+function readSheet(wb,sheet,units,report){
+ const name=sheet.name;
+ if(!wb.SheetNames.includes(name)){report.error(name,'thiếu sheet');return []}
+ const {rows,firstRow}=sheetRows(wb.Sheets[name]);
+ if(!rows.length){report.error(name,'sheet trống');return []}
+ const header=rows[0].map(h=>h===null||h===undefined?'':String(h).trim());
+ const specs=Object.fromEntries(sheet.columns.map(c=>[c[0],c]));
+ const index={};
+ header.forEach((code,i)=>{
+  if(!code)return;
+  if(code in index)report.error(name,`cột '${code}' bị lặp`);
+  else if(!(code in specs))report.warn(name,`bỏ qua cột lạ '${code}'`);
+  else index[code]=i;
+ });
+ let missing=false;
+ for(const [code,,,required] of sheet.columns)if(required&&!(code in index)){report.error(name,`thiếu cột bắt buộc '${code}'`);missing=true}
+ if(missing)return [];
+ let body=rows.slice(1),firstLine=firstRow+1;
+ const firstDesc=sheet.columns[0][4];
+ if(body.length&&body[0]&&String(body[0][0]??'').trim()===firstDesc){body=body.slice(1);firstLine++}
+ const out=[],seen=new Map();
+ body.forEach((raw,offset)=>{
+  const line=firstLine+offset;
+  if(!raw||raw.every(isBlank))return;
+  const record={};let bad=false;
+  for(const [code,i] of Object.entries(index)){
+   const [,kind,,required]=specs[code];
+   let parsed;
+   try{parsed=parseCell(raw[i],kind,units)}catch(err){report.error(name,`dòng ${line}, cột ${code}: ${err.message}`);bad=true;continue}
+   if(parsed===null){if(required){report.error(name,`dòng ${line}: thiếu '${code}'`);bad=true}continue}
+   record[code]=parsed;
+  }
+  if(bad)return;
+  const keyValues=sheet.key.map(k=>record[k]??'');const key=JSON.stringify(keyValues);
+  if(seen.has(key)){report.error(name,`dòng ${line} trùng khóa ${sheet.key.map((k,i)=>`${k}=${keyValues[i]}`).join(', ')} với dòng ${seen.get(key)}`);return}
+  seen.set(key,line);out.push(record);
+ });
+ return out;
+}
+function readMeta(rows,report){
+ const meta={},known=Object.fromEntries(SCHEMA.meta_keys.map(k=>[k[0],k]));
+ for(const row of rows){
+  const key=row.khoa;
+  if(!(key in known)){report.warn('THONG_TIN',`bỏ qua khóa lạ '${key}'`);continue}
+  try{const v=parseCell(row.gia_tri,known[key][1],[]);if(v!==null)meta[key]=v}catch(err){report.error('THONG_TIN',`${key}: ${err.message}`)}
+ }
+ for(const [key,,required] of SCHEMA.meta_keys)if(required&&meta[key]==null)report.error('THONG_TIN',`thiếu giá trị '${key}'`);
+ return meta;
+}
+const close=(a,b,t)=>a==null||b==null||Math.abs(a-b)<=t;
+const nf=(n,d=2)=>n==null?'None':new Intl.NumberFormat('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
+function crossCheck(data,report){
+ const meta=data.thong_tin,reportDate=meta.ngay_bao_cao,unitNames=data.don_vi.map(u=>u.ten_don_vi),days=data.ngay;
+ if(reportDate){
+  const month=reportDate.slice(0,7);
+  for(const row of days)if(row.ngay>reportDate||row.ngay.slice(0,7)!==month)report.error('NGAY',`phiên ${row.ngay} nằm ngoài tháng báo cáo ${month}`);
+  if(!days.some(r=>r.ngay===reportDate&&r.don_vi===COMPANY))report.error('NGAY',`thiếu dòng 'Toàn công ty' ngày ${reportDate}`);
+ }
+ const dates=[...new Set(days.map(r=>r.ngay))].sort();
+ for(const unit of [COMPANY,...unitNames]){
+  const have=new Set(days.filter(r=>r.don_vi===unit).map(r=>r.ngay));
+  const missing=dates.filter(d=>!have.has(d));
+  if(missing.length&&missing.length<dates.length)report.warn('NGAY',`${unit}: thiếu ${missing.length} phiên (${missing.slice(0,3).join(', ')}…)`);
+  if(!have.size)report.warn('NGAY',`${unit}: chưa có dòng nào`);
+ }
+ const ky=Object.fromEntries(data.ky.map(r=>[r.don_vi,r]));
+ if(!(COMPANY in ky))report.error('KY',"thiếu dòng 'Toàn công ty'");
+ const today=Object.fromEntries(days.filter(r=>r.ngay===reportDate).map(r=>[r.don_vi,r]));
+ for(const [unit,row] of Object.entries(ky)){
+  const day=today[unit]||{};
+  const parts=['du_no_margin','du_no_ung_truoc','du_no_3_ben'].map(k=>row[k]);
+  if(parts.every(p=>p!=null)){const s=parts.reduce((a,b)=>a+b,0);if(!close(s,day.du_no,1.5))report.warn('KY',`${unit}: margin + ứng trước + 3 bên = ${nf(s)} ≠ dư nợ ngày ${day.du_no??'None'}`)}
+  if(row.tien_nap!=null&&row.tien_rut!=null){const net=row.tien_nap-row.tien_rut;if(!close(net,day.nap_rut_rong,1))report.warn('KY',`${unit}: nạp − rút = ${nf(net)} ≠ nạp/rút ròng ngày ${day.nap_rut_rong??'None'}`)}
+ }
+ const khUnits=new Set(data.kh.map(r=>r.don_vi));
+ for(const unit of unitNames)if(!khUnits.has(unit))report.warn('KH',`${unit}: chưa có dòng`);
+ for(const [name,key] of [['ABCD','abcd'],['PKKH','pkkh']])if(!data[key].length)report.warn(name,"sheet chưa có dữ liệu — phần này sẽ hiển thị '—'");
+ const staff={};
+ for(const row of data.phong){const unit=row.don_vi||'';staff[unit]=(staff[unit]||0)+['dtpn_mg','dtpn_ctv','dtpn_chua_phan_loai'].reduce((a,k)=>a+(row[k]||0),0)}
+ if(Object.keys(staff).length&&meta.ngay_chot_nhan_su===reportDate){
+  for(const [unit,fee] of Object.entries(staff)){
+   if(!unit)continue;
+   const business=days.filter(r=>r.don_vi===unit).reduce((a,r)=>a+(r.phi_net||0),0);
+   if(business&&Math.abs(fee-business)>Math.max(5,business*.02))report.warn('PHONG',`${unit}: tổng DTPN phòng ${nf(fee,1)} triệu lệch phí lũy kế ${nf(business,1)} triệu`);
+  }
+ }
+}
+function localIso(){const d=new Date();return `${isoOf(d.getFullYear(),d.getMonth()+1,d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`}
+function convert(wb,fileName,report){
+ const rows={};
+ rows.THONG_TIN=readSheet(wb,sheetByName.THONG_TIN,[],report);
+ rows.DON_VI=readSheet(wb,sheetByName.DON_VI,[],report);
+ const units=rows.DON_VI.map(r=>r.ten_don_vi);
+ if(units.includes(COMPANY))report.error('DON_VI',`không khai báo '${COMPANY}' như một đơn vị`);
+ for(const sheet of SCHEMA.sheets)if(!(sheet.name in rows))rows[sheet.name]=readSheet(wb,sheet,units,report);
+ const ordered=rows.DON_VI.map((r,i)=>[i,r]).sort((a,b)=>((a[1].thu_tu??1e6)-(b[1].thu_tu??1e6))||a[0]-b[0]);
+ const data={phien_ban:FORMAT_VERSION,tao_luc:localIso(),tu_file:fileName,thong_tin:readMeta(rows.THONG_TIN,report),
+  don_vi:ordered.map(([,r])=>{const {thu_tu,...rest}=r;return rest})};
+ for(const sheet of SCHEMA.sheets.slice(2))data[sheet.name.toLowerCase()]=rows[sheet.name];
+ crossCheck(data,report);
+ return data;
+}
+
+// ---------- giao diện ----------
+const $=id=>document.getElementById(id);
+let current=null;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=(n,d=0)=>n==null||!Number.isFinite(n)?'—':new Intl.NumberFormat('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
+const dmy=iso=>iso?iso.split('-').reverse().join('/'):'—';
+function markSteps(n){document.querySelectorAll('#steps li').forEach(li=>li.classList.toggle('done',Number(li.dataset.step)<=n))}
+function renderList(id,items){
+ $(id+'-card').classList.toggle('hidden',!items.length);
+ $(id+'-title').textContent=(id==='errors'?'Lỗi':'Cảnh báo')+` (${items.length})`;
+ $(id).innerHTML=items.map(([w,m])=>`<li><b>${esc(w)}</b>${esc(m)}</li>`).join('');
+}
+function summary(data){
+ const company=data.ngay.filter(r=>r.don_vi===COMPANY);
+ const sum=f=>company.reduce((a,r)=>a+(r[f]||0),0);
+ const stats=[
+  ['Ngày báo cáo',dmy(data.thong_tin.ngay_bao_cao)],
+  ['Số phiên',fmt(new Set(data.ngay.map(r=>r.ngay)).size)],
+  ['Đơn vị',fmt(data.don_vi.length)],
+  ['GTGD tháng · tỷ',fmt(sum('gtgd'))],
+  ['Phí net tháng · triệu',fmt(sum('phi_net'))],
+  ['KH mở mới tháng',fmt(sum('kh_mo_moi'))],
+  ...SCHEMA.sheets.slice(2).map(s=>[`Sheet ${s.name}`,fmt(data[s.name.toLowerCase()].length)+' dòng'])
+ ];
+ $('stats').innerHTML=stats.map(([k,v])=>`<div class="stat"><span>${k}</span><strong>${v}</strong></div>`).join('');
+}
+async function handle(file){
+ if(!file)return;
+ if(typeof XLSX==='undefined'){alert('Chưa tải được thư viện đọc Excel (cần mạng để tải SheetJS từ cdnjs).');return}
+ const report=new Report();let data=null;
+ try{
+  const wb=XLSX.read(await file.arrayBuffer(),{type:'array'});
+  data=convert(wb,file.name,report);
+ }catch(err){report.error('FILE',`không đọc được file: ${err.message}`);console.error(err)}
+ const ok=!report.errors.length&&data;
+ current=ok?data:null;
+ $('result').classList.remove('hidden');
+ $('status').className='status '+(ok?'ok':'fail');
+ $('status').querySelector('span').textContent=ok?`${file.name}: hợp lệ${report.warnings.length?` · ${report.warnings.length} cảnh báo`:''}`:`${file.name}: ${report.errors.length} lỗi — chưa lưu được`;
+ if(data)summary(data);else $('stats').innerHTML='';
+ renderList('errors',report.errors);renderList('warnings',report.warnings);
+ $('preview').disabled=!ok;$('save').disabled=!ok;
+ markSteps(ok?2:1);
+}
+$('file').addEventListener('change',e=>{handle(e.target.files[0]);e.target.value=''});
+const drop=$('drop');
+['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>handle(e.dataTransfer.files[0]));
+$('preview').addEventListener('click',()=>{
+ if(!current)return;
+ try{localStorage.setItem(PREVIEW_KEY,JSON.stringify(current))}catch(err){alert('Không lưu được bản xem trước vào trình duyệt: '+err.message);return}
+ window.open('../index.html?preview=1#daily','_blank');markSteps(3);
+});
+$('save').addEventListener('click',async()=>{
+ if(!current)return;
+ const text=JSON.stringify(current);
+ if(window.showSaveFilePicker){
+  try{
+   const handle=await window.showSaveFilePicker({suggestedName:'data.json',types:[{description:'JSON',accept:{'application/json':['.json']}}]});
+   const writable=await handle.createWritable();await writable.write(text);await writable.close();
+   $('save-note').textContent=`Đã lưu ${handle.name}. Tiếp theo: git add data.json → commit → push.`;markSteps(4);return;
+  }catch(err){if(err.name==='AbortError')return;console.warn(err)}
+ }
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'application/json'}));a.download='data.json';a.click();URL.revokeObjectURL(a.href);
+ $('save-note').textContent='Đã tải data.json về máy — chép đè vào thư mục gốc repo, rồi commit và push.';markSteps(4);
+});
+</script>
+</body>
+</html>

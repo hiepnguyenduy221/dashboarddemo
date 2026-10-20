@@ -1,3 +1,7 @@
 .DS_Store
 Thumbs.db
 .vercel/
+__pycache__/
+.claude/
+data/mau_du_lieu_16-10-2026.xlsx
+docs/du-lieu.md

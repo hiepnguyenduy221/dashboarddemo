@@ -1,10 +1,16 @@
 # SHS CEO Dashboard Demo
 
-Bản demo báo cáo kinh doanh dành cho CEO, dùng dữ liệu tĩnh từ báo cáo ngày **09/10/2026**.
+Bản demo báo cáo kinh doanh dành cho CEO. Giao diện ở `index.html` + `app.js`, số liệu ở `data.json` (sinh từ Excel).
 
 ## Xem demo
 
-Mở `index.html` bằng trình duyệt, hoặc chạy một máy chủ tĩnh từ thư mục này.
+Trang đọc `data.json` bằng `fetch`, nên phải chạy qua máy chủ tĩnh (mở trực tiếp file `index.html` sẽ báo lỗi tải dữ liệu):
+
+```bash
+python -m http.server 8000
+```
+
+Rồi mở http://localhost:8000.
 
 - Tổng quan daily: kết quả lũy kế tháng và nhịp kinh doanh trong ngày.
 - Cơ cấu KH & chính sách: KH mở mới trong tháng tách khỏi KH cũ; phân nhóm theo NAV và khớp lệnh 30 ngày.
@@ -15,11 +21,24 @@ Mở `index.html` bằng trình duyệt, hoặc chạy một máy chủ tĩnh t�
 
 Giao diện mặc định thiết kế cho màn hình ngang 16:9 (1920×1080), tự co theo kích thước cửa sổ. Chọn **Toàn màn hình** hoặc dùng F11. **Chế độ đọc** chuyển sang bố cục cuộn thông thường.
 
-## Dữ liệu
+## Cập nhật dữ liệu
 
-Demo không tự cập nhật. Giá trị “—” là chưa có dữ liệu trong báo cáo nguồn, không phải bằng 0. Các chỉ tiêu tính lại và số làm tròn được ghi chú trong dashboard. Tăng doanh thu không được dùng riêng để kết luận nỗ lực của đơn vị.
+1. Team data điền `data/template_dashboard.xlsx`. File dữ liệu mẫu chỉ dùng nội bộ, không đưa lên repo public.
+2. Chạy máy chủ tĩnh như ở trên, mở http://localhost:8000/tools/import.html (Chrome hoặc Edge, cần mạng để tải thư viện đọc Excel).
+3. Kéo thả file Excel vào trang. Trang kiểm tra file; có lỗi (sai cột, trùng dòng, đơn vị lạ, ngày sai…) thì liệt kê theo sheet và dòng, không cho lưu.
+4. Bấm **Xem trước dashboard** để xem số mới trước khi ghi.
+5. Bấm **Lưu data.json**, chọn file `data.json` ở thư mục gốc repo để ghi đè. Trình duyệt không hỗ trợ ghi trực tiếp thì file được tải về; chép đè vào thư mục gốc repo.
+6. Commit và push `data.json`; Vercel tự deploy.
 
-Nguồn: BÁO CÁO KINH DOANH TOÀN HÀNG 09-10-2026.pdf. Không cần tải thêm thư viện để chạy dashboard.
+Cách thay cho bước 2–5, chạy bằng dòng lệnh (cần `pip install openpyxl`), cùng quy tắc kiểm tra:
+
+```bash
+python tools/excel_to_json.py duong_dan_file.xlsx
+```
+
+Template chỉ chứa số gốc; lũy kế, AUM, Δ, bình quân, tổng toàn công ty, tỷ lệ… do `app.js` tính. Sửa cột ở `tools/dashboard_schema.py`, rồi chạy `python tools/make_template.py` để sinh lại template và cập nhật quy tắc trong `tools/import.html`. Tài liệu nghiệp vụ chi tiết được giữ nội bộ, không đăng trong repo public.
+
+Giá trị “—” là chưa có dữ liệu, không phải bằng 0. Tăng doanh thu không được dùng riêng để kết luận nỗ lực của đơn vị. Dashboard không cần thư viện ngoài.
 
 ## Deploy lên Vercel
 
