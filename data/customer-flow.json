@@ -1,0 +1,127 @@
+{
+  "asOf": "19/10/2026",
+  "source": "BÁO CÁO TỔNG KH VÀ LUỒNG KH MỚI 19-10-2026.xlsx",
+  "all": {
+    "total": 90348,
+    "opened": 409,
+    "day": 20,
+    "funded": 109,
+    "matched": 89,
+    "nav": 174.024042847,
+    "debt": 85.68839645,
+    "gtgd": 120.70603112,
+    "fee": 89.062811
+  },
+  "units": {
+    "Hà Nội": {
+      "total": 3611,
+      "opened": 58,
+      "day": 1,
+      "funded": 47,
+      "matched": 43,
+      "nav": 0.506422392,
+      "debt": 0.0,
+      "gtgd": 0.00443767,
+      "fee": 0.005728
+    },
+    "HCM": {
+      "total": 17430,
+      "opened": 25,
+      "day": 1,
+      "funded": 5,
+      "matched": 4,
+      "nav": 8.078797287,
+      "debt": 7.7302612,
+      "gtgd": 7.77774475,
+      "fee": 10.350977
+    },
+    "Đà Nẵng": {
+      "total": 8993,
+      "opened": 29,
+      "day": 3,
+      "funded": 7,
+      "matched": 5,
+      "nav": 0.978638469,
+      "debt": 0.484171686,
+      "gtgd": 1.327965,
+      "fee": 1.633445
+    },
+    "Thăng Long": {
+      "total": 2530,
+      "opened": 4,
+      "day": 0,
+      "funded": 1,
+      "matched": 1,
+      "nav": 0.654851874,
+      "debt": 1.058810096,
+      "gtgd": 2.568411,
+      "fee": 3.165113
+    },
+    "Hoàn Kiếm": {
+      "total": 6510,
+      "opened": 80,
+      "day": 0,
+      "funded": 2,
+      "matched": 2,
+      "nav": 0.548133927,
+      "debt": 0.0,
+      "gtgd": 0.538,
+      "fee": 1.49799
+    },
+    "Sài Gòn": {
+      "total": 3804,
+      "opened": 33,
+      "day": 1,
+      "funded": 13,
+      "matched": 10,
+      "nav": 80.934009126,
+      "debt": 41.79200679,
+      "gtgd": 72.84318,
+      "fee": 47.126386
+    },
+    "Hội sở": {
+      "total": 11154,
+      "opened": 5,
+      "day": 0,
+      "funded": 0,
+      "matched": 0,
+      "nav": 0.0,
+      "debt": 0.0,
+      "gtgd": 0.0,
+      "fee": 0.0
+    },
+    "Cần Thơ": {
+      "total": 667,
+      "opened": 6,
+      "day": 0,
+      "funded": 0,
+      "matched": 1,
+      "nav": 81.430493333,
+      "debt": 34.485897246,
+      "gtgd": 34.4514458,
+      "fee": 25.149556
+    },
+    "Công ty quản lý": {
+      "total": 35605,
+      "opened": 159,
+      "day": 14,
+      "funded": 34,
+      "matched": 23,
+      "nav": 0.892696439,
+      "debt": 0.137249432,
+      "gtgd": 1.1948469,
+      "fee": 0.133617
+    },
+    "KHTC": {
+      "total": 44,
+      "opened": 10,
+      "day": 0,
+      "funded": 0,
+      "matched": 0,
+      "nav": 0.0,
+      "debt": 0.0,
+      "gtgd": 0.0,
+      "fee": 0.0
+    }
+  }
+}
