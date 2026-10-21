@@ -247,9 +247,13 @@ def cross_check(data, report):
         unit = row.get("don_vi", "")
         fee = sum(row.get(k) or 0 for k in ("dtpn_mg", "dtpn_ctv", "dtpn_chua_phan_loai"))
         staff_total[unit] = staff_total.get(unit, 0) + fee
-    if staff_total and meta.get("ngay_chot_nhan_su") == report_date:
+    if staff_total:
+        unit_cutoffs = meta.get("ngay_chot_nhan_su_theo_don_vi") or {}
         for unit, fee in staff_total.items():
             if not unit:
+                continue
+            cutoff = unit_cutoffs.get(unit, meta.get("ngay_chot_nhan_su"))
+            if cutoff != report_date:
                 continue
             business = sum(r.get("phi_net") or 0 for r in days if r["don_vi"] == unit)
             if business and abs(fee - business) > max(5, business * 0.02):

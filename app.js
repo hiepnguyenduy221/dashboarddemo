@@ -99,6 +99,11 @@ function buildModel(raw){
  const sumField=(rows,f)=>{const v=rows.map(r=>r[f]).filter(isNum);return v.length?v.reduce((a,b)=>a+b,0):null};
  const sumComplete=(rows,f)=>rows.length&&rows.every(r=>isNum(r[f]))?rows.reduce((a,r)=>a+r[f],0):null;
  const staffIso=meta.ngay_chot_nhan_su;
+ const staffDates=meta.ngay_chot_nhan_su_theo_don_vi||{};
+ const staffCutoffs=[...new Set(unitDefs.map(u=>staffDates[u.name]||staffIso))].sort();
+ const mixedStaff=staffCutoffs.length>1;
+ const staffDisplay=mixedStaff?`${dm(staffCutoffs[0])}–${dm(staffCutoffs.at(-1))}`:dm(staffIso);
+ const staffFullDisplay=mixedStaff?`${dmy(staffCutoffs[0])} – ${dmy(staffCutoffs.at(-1))}`:dmy(staffIso);
  const resourcesOf=rows=>{
   if(!rows.length)return {};
   const mg=sumField(rows,'so_mg'),ctv=sumField(rows,'so_ctv'),mgPrior=sumComplete(rows,'so_mg_ky_truoc'),ctvPrior=sumComplete(rows,'so_ctv_ky_truoc');
@@ -119,7 +124,7 @@ function buildModel(raw){
  const cs=seriesOf(COMPANY),ck=ky[COMPANY]||{};
  const gtgdMonth=sumOf(cs.gtgd),feeMonth=sumOf(cs.fee),shareMonth=lastOf(cs.shareAvg);
  const companyResources=resourcesOf(deptRows);
- const openToStaff=sumOf(col(COMPANY,'kh_mo_moi',staffIso));
+ const openToStaff=mixedStaff?null:sumOf(col(COMPANY,'kh_mo_moi',staffIso));
  const company={
   openMonth:sumOf(cs.open),openDay:lastOf(cs.open),
   gtgdDay:lastOf(cs.gtgd),gtgdChange:sub(lastOf(cs.gtgd),prevOf(cs.gtgd)),gtgdMonth,gtgdMonthChange:sub(gtgdMonth,ck.gtgd_cung_ky),
@@ -131,8 +136,8 @@ function buildModel(raw){
   cashIn:ck.tien_nap??null,cashOut:ck.tien_rut??null,cashInCount:ck.so_kh_nap??null,cashOutCount:ck.so_kh_rut??null,cashNet:lastOf(cs.cash),cashNetMonth:allFinite(cs.cash)?sumOf(cs.cash):null,
   marketDay:lastOf(cs.market),marketChange:sub(lastOf(cs.market),prevOf(cs.market)),
   resourceBenchmarks:{mg:companyResources.mg,ctv:companyResources.ctv,feeTotalMg:companyResources.feeTotalMg,feeTotalCtv:companyResources.feeTotalCtv,
-   feeAvgMg:companyResources.mg>0&&isNum(companyResources.feeTotalMg)?companyResources.feeTotalMg/companyResources.mg:null,
-   feeAvgCtv:companyResources.ctv>0&&isNum(companyResources.feeTotalCtv)?companyResources.feeTotalCtv/companyResources.ctv:null,
+   feeAvgMg:!mixedStaff&&companyResources.mg>0&&isNum(companyResources.feeTotalMg)?companyResources.feeTotalMg/companyResources.mg:null,
+   feeAvgCtv:!mixedStaff&&companyResources.ctv>0&&isNum(companyResources.feeTotalCtv)?companyResources.feeTotalCtv/companyResources.ctv:null,
    newAvgMg:companyResources.mg>0&&isNum(openToStaff)?openToStaff/companyResources.mg:null}
  };
  const unmapped=resourcesOf(deptRows.filter(r=>!r.don_vi));
@@ -140,10 +145,11 @@ function buildModel(raw){
 
  // ----- đơn vị -----
  const units=unitDefs.map(def=>{
+  const unitStaffIso=staffDates[def.name]||staffIso;
   const s=seriesOf(def.name),k=ky[def.name]||{},rows=deptRows.filter(r=>r.don_vi===def.name);
   const mtd=sumOf(s.gtgd),feeMtd=sumOf(s.fee),fee=lastOf(s.fee),feeChange=sub(feeMtd,k.phi_cung_ky),share=lastOf(s.shareAvg);
   const feeLast=lastN(s.fee,AVG_WINDOW),feeAvg5=feeLast?avgOf(feeLast):null;
-  const u={name:def.name,channel:def.channel,
+  const u={name:def.name,channel:def.channel,staffIso:unitStaffIso,staffDate:dm(unitStaffIso),staffDateFull:dmy(unitStaffIso),
    gtgd:lastOf(s.gtgd),change:sub(lastOf(s.gtgd),prevOf(s.gtgd)),mtd,gtgdMonthChange:sub(mtd,k.gtgd_cung_ky),
    fee,feeMtd,feeChange,growthPct:growth(feeChange,feeMtd),feeAvg5,momentum:feeAvg5>0&&isNum(fee)?(fee/feeAvg5-1)*100:null,
    share,sharePlan:k.thi_phan_ke_hoach??null,shareMonthChange:sub(share,k.thi_phan_cung_ky),exchangeShares:exchanges(k),exchangeShareChanges:exchangeChanges(k),
@@ -151,7 +157,7 @@ function buildModel(raw){
    cashIn:k.tien_nap??null,cashOut:k.tien_rut??null,inCount:k.so_kh_nap??null,outCount:k.so_kh_rut??null,net:lastOf(s.cash),
    cashNetMonth:allFinite(s.cash)?sumOf(s.cash):null,internalTransferMonth:k.dieu_chuyen_noi_bo??null,
    gtgdSeries:trimTail(s.gtgd),feeSeries:trimTail(s.fee),openSeries:trimTail(s.open),debtSeries:trimTail(s.debt),navSeries:trimTail(s.nav),aumSeries:trimTail(s.aum),shareDaySeries:trimTail(s.share),
-   newMtd:sumOf(s.open),newMtdAt12:sumOf(col(def.name,'kh_mo_moi',staffIso)),feeMtdAtStaff:sumOf(col(def.name,'phi_net',staffIso)),customerCount:kh[def.name]?.tong_kh??null,
+   newMtd:sumOf(s.open),newMtdAt12:sumOf(col(def.name,'kh_mo_moi',unitStaffIso)),feeMtdAtStaff:sumOf(col(def.name,'phi_net',unitStaffIso)),customerCount:kh[def.name]?.tong_kh??null,
    resources:resourcesOf(rows),departments:rows.map(department)};
   u.resources.newAvgMg=u.resources.mg>0&&isNum(u.newMtdAt12)?u.newMtdAt12/u.resources.mg:null;
   return u;
@@ -200,7 +206,7 @@ function buildModel(raw){
   first:dm(first),range:`${first?first.slice(8,10):'—'}–${dm(reportIso)}`,rangeFull:`${first?first.slice(8,10):'—'}–${dmy(reportIso)}`,sessions:isoDates.length,
   month,prevMonth,T:'T'+month,Tp:'T'+prevMonth,label:dm(meta.ngay_gan_nhan),labelFull:dmy(meta.ngay_gan_nhan),abcd:dm(meta.ngay_hieu_qua_abcd),
   week:`${meta.abcd_tuan_tu_ngay?meta.abcd_tuan_tu_ngay.slice(8,10):'—'}–${dm(meta.ngay_hieu_qua_abcd)}`,pkkh:dm(meta.ngay_hieu_qua_pkkh),
-  staff:dm(staffIso),staffFull:dmy(staffIso),staffPrior:dm(meta.ngay_nhan_su_ky_truoc),kh:dm(khIso),khFull:dmy(khIso),nextLabel:dm(lastDay),monthStart:`01/${String(month).padStart(2,'0')}`};
+  staff:staffDisplay,staffFull:staffFullDisplay,staffPrior:dm(meta.ngay_nhan_su_ky_truoc),kh:dm(khIso),khFull:dmy(khIso),nextLabel:dm(lastDay),monthStart:`01/${String(month).padStart(2,'0')}`};
 
  return {raw,meta,D,dates:isoDates.map(dm),company,series:cs,units,org,customerFlow,cohort,pkkh};
 }
@@ -304,7 +310,8 @@ function renderStatic(M){
  if(unitHeads[2])unitHeads[2].innerHTML=`CTV · ${D.staff}<br>SL / Δ so ${D.staffPrior}`;
  if(unitHeads[8])unitHeads[8].innerHTML=`Phí hôm nay / BQ ${AVG_WINDOW} phiên<br>triệu đồng`;
  const um=M.org.unmapped;
- setText('.unit-comparison-note',`MG/CTV: cây nhân sự chốt ${D.staff} so ${D.staffPrior}${isNum(um.mg)||isNum(um.ctv)?`; tổng gồm ${fmt(um.mg)} MG và ${fmt(um.ctv)} CTV chưa gắn trung tâm`:''}. Kinh doanh đến ${D.report}; KH mới chốt ${D.kh}.`);
+ const staffExceptions=units.filter(u=>u.staffDate!==D.report).map(u=>`${u.name}: ${u.staffDate}`);
+ setText('.unit-comparison-note',`MG/CTV: cây nhân sự chốt ${D.staff}${staffExceptions.length?` (${staffExceptions.join('; ')}; các đơn vị khác: ${D.report})`:''}, so ${D.staffPrior}${isNum(um.mg)||isNum(um.ctv)?`; tổng gồm ${fmt(um.mg)} MG và ${fmt(um.ctv)} CTV chưa gắn trung tâm`:''}. Kinh doanh đến ${D.report}; KH mới chốt ${D.kh}.`);
 
  // ----- Tab định nghĩa & nguồn -----
  const flow=M.customerFlow.all,cohortCompany=M.cohort.company;
@@ -319,7 +326,7 @@ function renderStatic(M){
   ['Tài sản & dòng tiền',`NAV ${fmt(c.nav)} tỷ, dư nợ ${fmt(c.debt)} tỷ, AUM ${fmt(c.aum)} tỷ; nạp ${fmt(c.cashIn,2)} tỷ, rút ${fmt(c.cashOut,2)} tỷ, ròng ${minusFmt(c.cashNet)} tỷ trong ngày; ròng lũy kế ${minusFmt(c.cashNetMonth)} tỷ.`,'Ròng lũy kế = tổng nạp/rút ròng các phiên.'],
   ['Đơn vị',`${units.filter(u=>isNum(u.gtgd)).length}/${units.length} đơn vị có số kinh doanh ngày ${D.report}.`,'GTGD và phí net các đơn vị có thể lệch tổng công ty do phạm vi; không phân bổ chênh lệch.'],
   ['Nhãn và hiệu quả A–D',cohortCompany?`A/B/C/D hiện tại: ${['A','B','C','D'].map(g=>fmt(cohortCompany.groups[g].count)).join(' / ')} KH; đầu tháng: ${['A','B','C','D'].map(g=>fmt(cohortCompany.groups[g].baseCount)).join(' / ')} KH.`:'Chưa có dữ liệu.',`${esc(meta.nguon_abcd||'—')} · nhãn ${D.label}, hiệu quả ${D.abcd}. Toàn công ty = tổng đơn vị.`],
-  ['Nhân sự & DTPN MG/CTV',`MG ${fmt(M.org.snapshot.mg)}, CTV ${fmt(M.org.snapshot.ctv)} tại ${D.staff}; DTPN MG ${fmt(c.resourceBenchmarks.feeTotalMg,2)} triệu, CTV ${fmt(c.resourceBenchmarks.feeTotalCtv,2)} triệu.`,`${esc(meta.nguon_nhan_su||'—')}. Đơn vị và toàn công ty = tổng các phòng.`],
+  ['Nhân sự & DTPN MG/CTV',`MG ${fmt(M.org.snapshot.mg)}, CTV ${fmt(M.org.snapshot.ctv)} theo các mốc ${D.staff}; DTPN MG ${fmt(c.resourceBenchmarks.feeTotalMg,2)} triệu, CTV ${fmt(c.resourceBenchmarks.feeTotalCtv,2)} triệu.`,`${esc(meta.nguon_nhan_su||'—')}. Đơn vị và toàn công ty = tổng các phòng.`],
   ['Phân khúc PKKH',M.pkkh.hasData?`${fmt(sumOf(Object.values(M.pkkh.values.all).map(v=>v.count)))} KH gắn nhãn tại ${D.label}.`:'Chưa có dữ liệu.',`${esc(meta.nguon_pkkh||'—')} · hiệu quả ${D.pkkh}. Toàn công ty = tổng đơn vị.`]
  ];
  setHTML('.source-table tbody',sources.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join(''));
@@ -389,8 +396,8 @@ const topFeeUnits=[...units].filter(u=>isNum(u.feeMtd)).sort((a,b)=>b.feeMtd-a.f
 const contributionScale=Math.max(250,Math.ceil(Math.max(...topFeeUnits.map(u=>u.feeMtd),0)/250)*250);
 document.querySelector('#contribution-summary .contribution-axis .scale').innerHTML=`<span>0</span><span>${fmt(contributionScale/2)}</span><span>${fmt(contributionScale)} triệu</span>`;
 contribution.innerHTML=topFeeUnits.map(u=>`<button type="button" class="contribution-row" data-unit="${esc(u.name)}" aria-label="${esc(u.name)}: phí net tháng ${fmt(u.feeMtd)} triệu, tỷ trọng ${fmt(u.feeMtd/company.feeMonth*100,1)}%; mở chi tiết"><span class="contribution-name">${esc(u.name)}</span><span class="contribution-track"><span class="contribution-bar" style="display:block;width:${Math.max(0,Math.min(100,u.feeMtd/contributionScale*100))}%"></span></span><strong class="contribution-value">${fmt(u.feeMtd)}</strong><span class="contribution-pct">${fmt(u.feeMtd/company.feeMonth*100,1)}%</span></button>`).join('');wireRows(contribution);
-function rosterCell(current,previous,label){const delta=isNum(current)&&isNum(previous)?current-previous:null;return `<td class="staff-cell" title="${label} ${D.staff}: ${fmt(current)}; chốt ${D.staffPrior}: ${fmt(previous)}; thay đổi: ${delta===null?'—':delta>0?'+'+fmt(delta):fmt(delta)}"><strong>${fmt(current)}</strong> <span class="subtle">/</span> ${signed(delta)}</td>`}
-function unitRow(u){const r=u.resources||{};return `<tr><td class="unit-name"><button type="button" data-unit="${esc(u.name)}">${esc(u.name)}</button></td>${rosterCell(r.mg,r.mgPrior,'MG')}${rosterCell(r.ctv,r.ctvPrior,'CTV')}<td>${fmt(u.feeMtd)}</td><td>${signed(u.feeChange)} <span class="subtle">/</span> ${signed(u.growthPct,1,'%')}</td><td>${fmt(u.mtd)}</td><td>${fmt(u.share,2)} / ${fmt(u.sharePlan,2)}</td><td>${fmt(customerFlowInput.units[u.name]?.opened)}</td><td>${fmt(u.fee)} / ${fmt(u.feeAvg5)}</td><td>${signed(u.momentum,1,'%')}</td></tr>`}
+function rosterCell(current,previous,label,asOf=D.staff){const delta=isNum(current)&&isNum(previous)?current-previous:null;return `<td class="staff-cell" title="${label} ${asOf}: ${fmt(current)}; chốt ${D.staffPrior}: ${fmt(previous)}; thay đổi: ${delta===null?'—':delta>0?'+'+fmt(delta):fmt(delta)}"><strong>${fmt(current)}</strong> <span class="subtle">/</span> ${signed(delta)}</td>`}
+function unitRow(u){const r=u.resources||{};return `<tr><td class="unit-name"><button type="button" data-unit="${esc(u.name)}">${esc(u.name)}</button></td>${rosterCell(r.mg,r.mgPrior,'MG',u.staffDate)}${rosterCell(r.ctv,r.ctvPrior,'CTV',u.staffDate)}<td>${fmt(u.feeMtd)}</td><td>${signed(u.feeChange)} <span class="subtle">/</span> ${signed(u.growthPct,1,'%')}</td><td>${fmt(u.mtd)}</td><td>${fmt(u.share,2)} / ${fmt(u.sharePlan,2)}</td><td>${fmt(customerFlowInput.units[u.name]?.opened)}</td><td>${fmt(u.fee)} / ${fmt(u.feeAvg5)}</td><td>${signed(u.momentum,1,'%')}</td></tr>`}
 function renderUnits(){
  const q=document.getElementById('unit-search').value.trim().toLocaleLowerCase('vi'),sort=document.getElementById('sort').value;
  const list=units.filter(u=>u.name.toLocaleLowerCase('vi').includes(q));
@@ -491,7 +498,7 @@ function showUnitDepartment(u,id){
  const panel=document.getElementById('unit-department-detail');
  panel.hidden=false;
  document.querySelectorAll('[data-department]').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.department===id)));
- panel.innerHTML=`<div class="detail-head"><div><h4>${esc(dept.name)}</h4><div class="subtle">Trưởng phòng: ${dept.head?esc(dept.head):'—'} · ${esc(u.name)} · chốt ${D.staffFull}</div></div><button type="button" class="unit-close" id="close-department">Đóng phòng</button></div><div class="dept-detail-grid">
+ panel.innerHTML=`<div class="detail-head"><div><h4>${esc(dept.name)}</h4><div class="subtle">Trưởng phòng: ${dept.head?esc(dept.head):'—'} · ${esc(u.name)} · chốt ${u.staffDateFull}</div></div><button type="button" class="unit-close" id="close-department">Đóng phòng</button></div><div class="dept-detail-grid">
  <div><h5>Nguồn lực & kết quả</h5>${unitDriver('MG / CTV',fmt(dept.mg)+' / '+fmt(dept.ctv))}${unitDriver('GTGD tháng · tỷ',fmt(dept.gtgdMtd))}${unitDriver('DTPN tháng · triệu',fmt(dept.feeMtd))}${unitDriver('Dư nợ BQ · tỷ',fmt(dept.debtAvg))}${unitDriver('DTPN BQ/MG · triệu/người',fmt(dept.feeAvgMg,2))}${unitDriver('DTPN BQ/CTV · triệu/người',fmt(dept.feeAvgCtv,2))}</div>
  <div><h5>Phát triển KH mới</h5>${unitDriver('Mở mới tháng · KH',fmt(dept.newMtd))}${unitDriver('Đã nộp tiền · KH / %',fmt(dept.newFunded)+' / '+ratioText(dept.newFunded,dept.newMtd))}${unitDriver('Khớp lần đầu · KH / %',fmt(dept.newMatched)+' / '+ratioText(dept.newMatched,dept.newMtd))}</div>
  <div><h5>KH cũ & tài sản</h5>${unitDriver('Tổng KH cũ',fmt(dept.oldCustomers))}${unitDriver('KH cũ khớp trong tháng',fmt(dept.oldMatched))}${unitDriver('NAV cuối ngày · tỷ',fmt(dept.nav))}${unitDriver('Sức mua khả dụng · tỷ',fmt(dept.purchasingPower))}</div></div>`;
@@ -524,17 +531,17 @@ function showUnit(name){
  }).join('');
  const channelLabel=u.channel==='Digital'?'Digital':u.channel==='Khác'?'Khác':'MG';
  const staffFee=r.feeTotalCombined,feeGap=sub(staffFee,u.feeMtdAtStaff);
- pane.innerHTML=`<div class="unit-detail-header"><div><h3>${esc(u.name)} · chi tiết kinh doanh</h3><div class="source">${D.rangeFull} · ${D.sessions} phiên · MG/CTV và kết quả phòng chốt ${D.staff}</div></div><button class="unit-close" type="button" id="close-detail">Đóng chi tiết</button></div>
+ pane.innerHTML=`<div class="unit-detail-header"><div><h3>${esc(u.name)} · chi tiết kinh doanh</h3><div class="source">${D.rangeFull} · ${D.sessions} phiên · MG/CTV và kết quả phòng chốt ${u.staffDate}</div></div><button class="unit-close" type="button" id="close-detail">Đóng chi tiết</button></div>
  <nav class="unit-detail-nav" aria-label="Nội dung chi tiết trung tâm"><a href="#unit-resources">Nguồn lực</a><a href="#unit-assets">Tài sản & dòng tiền</a><a href="#unit-old-customers">KH cũ</a><a href="#unit-new-customers">KH mới</a><a href="#unit-departments">Các phòng</a></nav>
  ${unitExecutiveCards(u)}
  <div class="unit-driver-grid">
- <article class="unit-driver" id="unit-resources"><h3>1. Nguồn lực & năng suất</h3><div class="period">Nguồn lực & DTPN MG/CTV · chốt ${D.staff}</div>
+ <article class="unit-driver" id="unit-resources"><h3>1. Nguồn lực & năng suất</h3><div class="period">Nguồn lực & DTPN MG/CTV · chốt ${u.staffDate}</div>
  ${unitMetricTable([
   ['Số MG',fmt(r.mg),signed(r.mgChange)+' người','theo cây cơ cấu'],
   ['Số CTV',fmt(r.ctv),signed(r.ctvChange)+' người'],
   ['DTPN BQ/MG',fmt(mgAverage,2),compareAverage(mgAverage,benchmarks.feeAvgMg),fmt(r.feeTotalMg,2)+' triệu / '+fmt(r.mg)+' MG · BQ công ty '+fmt(benchmarks.feeAvgMg,2)],
   ['DTPN BQ/CTV',fmt(ctvAverage,2),compareAverage(ctvAverage,benchmarks.feeAvgCtv),fmt(r.feeTotalCtv,2)+' triệu / '+fmt(r.ctv)+' CTV · BQ công ty '+fmt(benchmarks.feeAvgCtv,2)],
-  [`KH mở mới BQ/MG · ${D.staff}`,fmt(newAverage,2),compareAverage(newAverage,benchmarks.newAvgMg),fmt(u.newMtdAt12)+` KH mở mới đến ${D.staff} / `+fmt(r.mg)+' MG']
+  [`KH mở mới BQ/MG · ${u.staffDate}`,fmt(newAverage,2),compareAverage(newAverage,benchmarks.newAvgMg),fmt(u.newMtdAt12)+` KH mở mới đến ${u.staffDate} / `+fmt(r.mg)+' MG']
  ],`MG/CTV: Δ ${D.staffPrior}<br>Năng suất: so BQ công ty`)}
  <a class="unit-definition-link" href="#unit-methodology">Định nghĩa DTPN BQ & nguồn số liệu ↓</a></article>
  <article class="unit-driver" id="unit-assets"><h3>2. Tài sản & dòng tiền</h3><div class="period">Tài sản & dòng tiền · ${D.report}</div>
@@ -551,9 +558,9 @@ function showUnit(name){
   <div class="unit-detail-chart">${unitChart(u.openSeries,'KH mở mới từng ngày','KH')}</div>
   ${unitMetricTable([['KH mới đã nộp tiền',fmt(flow?.funded)+' KH',ratioText(flow?.funded,flow?.opened)],['KH mới đã khớp lệnh',fmt(flow?.matched)+' KH',ratioText(flow?.matched,flow?.opened)]],'% KH mở mới')}
   <div class="unit-cohort-summary"><span>NAV KH mới <strong>${fmt(flow?.nav,2)} tỷ</strong></span><span>Dư nợ KH mới <strong>${fmt(flow?.debt,2)} tỷ</strong></span><span>GTGD KH mới <strong>${fmt(flow?.gtgd,2)} tỷ</strong></span><span>Phí net KH mới <strong>${fmt(flow?.fee,2)} triệu</strong></span></div><div class="unit-cohort-summary"><span>Chưa nộp tiền <strong>${fmt(isNum(flow?.opened)&&isNum(flow?.funded)?flow.opened-flow.funded:null)} KH</strong></span><span>Chưa khớp lệnh <strong>${fmt(isNum(flow?.opened)&&isNum(flow?.matched)?flow.opened-flow.matched:null)} KH</strong></span></div></article></div>
- <section class="unit-driver unit-departments" id="unit-departments"><h3>5. Kết quả & năng suất từng phòng</h3><div class="period">Cơ cấu & hiệu quả phòng · chốt ${D.staff}</div>${unitDepartmentTable(u)}<div class="unit-department-detail" id="unit-department-detail" hidden></div></section>
+ <section class="unit-driver unit-departments" id="unit-departments"><h3>5. Kết quả & năng suất từng phòng</h3><div class="period">Cơ cấu & hiệu quả phòng · chốt ${u.staffDate}</div>${unitDepartmentTable(u)}<div class="unit-department-detail" id="unit-department-detail" hidden></div></section>
  <details class="unit-methodology" id="unit-methodology"><summary>Định nghĩa & đối soát số liệu</summary>
- <p>DTPN = doanh thu phí net. DTPN BQ/MG = DTPN MG tháng / số MG; BQ/CTV = DTPN CTV tháng / số CTV. Mẫu số lấy cây cơ cấu tại ${D.staff}. KH mở mới BQ/MG = tổng mở mới đến ${D.staff} / số MG tại ${D.staff}. ${isNum(staffFee)?`Tổng DTPN theo phòng ${fmt(staffFee,2)} triệu (MG ${fmt(r.feeTotalMg,2)}; CTV ${fmt(r.feeTotalCtv,2)}; chưa phân loại ${fmt(r.feeTotalUnclassified,2)}); phí lũy kế theo chuỗi phiên đến ${D.staff} ${fmt(u.feeMtdAtStaff,2)} triệu, chênh ${fmt(feeGap,2)} triệu.`:'Chưa có DTPN MG/CTV theo phòng của đơn vị, giữ —.'} Mẫu số bằng 0 hoặc thiếu thì giữ —.</p>
+ <p>DTPN = doanh thu phí net. DTPN BQ/MG = DTPN MG tháng / số MG; BQ/CTV = DTPN CTV tháng / số CTV. Mẫu số lấy cây cơ cấu tại ${u.staffDate}. KH mở mới BQ/MG = tổng mở mới đến ${u.staffDate} / số MG tại ${u.staffDate}. ${isNum(staffFee)?`Tổng DTPN theo phòng ${fmt(staffFee,2)} triệu (MG ${fmt(r.feeTotalMg,2)}; CTV ${fmt(r.feeTotalCtv,2)}; chưa phân loại ${fmt(r.feeTotalUnclassified,2)}); phí lũy kế theo chuỗi phiên đến ${u.staffDate} ${fmt(u.feeMtdAtStaff,2)} triệu, chênh ${fmt(feeGap,2)} triệu.`:'Chưa có DTPN MG/CTV theo phòng của đơn vị, giữ —.'} Mẫu số bằng 0 hoặc thiếu thì giữ —.</p>
  <p>Δ nhân sự so ${D.staffPrior} là so mốc kỳ trước, không phải cùng kỳ. ${r.other?'Có thêm '+fmt(r.other)+' người loại khác, không gộp vào MG/CTV.':''} Nhân sự chưa phân phòng giữ riêng; không phân bổ doanh thu trung tâm cho phòng theo số người. Số đơn vị = tổng các phòng.</p>
  <p>Kết quả tháng = tổng các phiên ${D.range}; cùng kỳ = lũy kế cùng số phiên tháng trước. Thị phần BQ tháng lấy BQ lũy kế tại ${D.report}; thị phần từng sàn của đơn vị chỉ hiện khi nguồn có. BQ ${AVG_WINDOW} phiên gồm ngày báo cáo. Dư nợ BQ = bình quân các phiên có dữ liệu. So ${D.first} dùng số cuối ngày ${D.first}, chưa phải số dư đầu tháng.</p>
  <p>KH mới nộp tiền/khớp lệnh đếm độc lập trên tệp mở mới tháng của đơn vị (chốt ${D.kh}). Kênh mở KH theo danh mục đơn vị. Nhãn A–D chốt ${D.label}; quy mô và hiệu quả đến ${D.abcd}. NAV âm là nhãn chồng trong A–D, không cộng thêm. — là chưa có dữ liệu, không phải 0.</p></details>`;
