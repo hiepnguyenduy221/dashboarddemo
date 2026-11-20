@@ -3,7 +3,8 @@
 // data.json chỉ chứa số gốc; lũy kế, AUM, Δ, bình quân, tổng toàn công ty… đều tính ở đây.
 (function(){
 const COMPANY='Toàn công ty';
-const PKKH_LABELS=['Dormant','Mass','Active Trader','HVT','HNW','UHNW','Block Deal (BD)','Zero','Unclassified','Other'];
+const PKKH_LABELS=['Mass','Active Trader','HVT','HNW','UHNW','Block Deal (BD)','Zero','Other'];
+const pkkhDisplayLabel=label=>['Dormant','Unclassified','Zero'].includes(label)?'Zero':label;
 const AVG_WINDOW=5;
 
 // ---------- định dạng ----------
@@ -29,11 +30,118 @@ const sub=(a,b)=>isNum(a)&&isNum(b)?a-b:null;
 const growth=(changeValue,current)=>isNum(changeValue)&&isNum(current)&&current-changeValue!==0?changeValue/(current-changeValue)*100:null;
 const trimTail=a=>{if(!a)return a;let n=a.length;while(n&&!isNum(a[n-1]))n--;return a.slice(0,n)};
 const allFinite=a=>Array.isArray(a)&&a.length>0&&a.every(isNum);
-const lastN=(a,n)=>{const v=(a||[]).filter(isNum);return v.length>=n?v.slice(-n):null};
+const lastN=(a,n)=>{const v=(a||[]).slice(-n);return v.length===n&&v.every(isNum)?v:null};
 
 // ---------- ngày ----------
 const dm=iso=>iso?`${iso.slice(8,10)}/${iso.slice(5,7)}`:'—/—';
 const dmy=iso=>iso?`${dm(iso)}/${iso.slice(0,4)}`:'—/—/—';
+
+// KH cũ: dùng riêng tệp A–D, không lấy số toàn trung tâm gồm cả KH mới.
+function buildOldPerformance(raw){
+ const meta=raw.thong_tin||{},groups=['A','B','C','D'];
+ const complete=(rows,key)=>rows.length&&rows.every(r=>isNum(r[key]))?rows.reduce((s,r)=>s+r[key],0):null;
+ const metrics=(rows,period,expected)=>{
+  const hasAllGroups=rows.length===expected&&new Set(rows.map(r=>r.don_vi+'|'+r.nhom)).size===expected;
+  const total=key=>hasAllGroups?complete(rows,key):null;
+  const count=total('so_kh_chot'),currentCount=total('so_kh_hien_tai');
+  const aligned=hasAllGroups&&rows.every(r=>isNum(r.so_kh_chot)&&r.so_kh_chot===r.so_kh_hien_tai);
+  const week=period==='week',matchedField=week?'kh_khop_tuan':'kh_khop_thang',navField=week?'nav_kh_khop_tuan':'nav_kh_khop_thang';
+  const matched=total(matchedField),nav=total('nav_hien_tai');
+  const navAverageReported=total(week?'nav_bq_tuan':'nav_bq_thang');
+  // Theo xác nhận của người dùng: tháng chưa có BQ thì tạm lấy NAV hiện tại.
+  // Không lấp số BQ bị thiếu một phần và không áp dụng thay thế này cho kỳ tuần.
+  const temporary=!week&&!rows.some(r=>isNum(r.nav_bq_thang))&&isNum(nav);
+  const navAverage=isNum(navAverageReported)?navAverageReported:temporary?nav:null;
+  const navAverageBasis=isNum(navAverageReported)?'average':temporary?'current':null;
+  const navActive=hasAllGroups?complete(rows.map(r=>({...r,[navField]:r[navField]??(r[matchedField]===0?0:null)})),navField):null;
+  const trade=total(week?'gtgd_tuan':'gtgd_luy_ke'),fee=total(week?'phi_tuan':'phi_luy_ke');
+  return {count,currentCount,aligned,matched,nav,navAverage,navAverageReported,navAverageBasis,navActive,trade,fee,
+   activeRate:count>0&&isNum(matched)&&matched>=0&&matched<=count?matched/count*100:null,
+   navRate:nav>0&&isNum(navActive)&&navActive>=0&&navActive<=nav?navActive/nav*100:null,
+   turnover:navAverage>0&&isNum(trade)?trade/navAverage:null,
+   // Phí: triệu; NAV: tỷ. Đổi về cùng đơn vị trước khi đổi tỷ lệ sang bp.
+   feeYield:navAverage>0&&isNum(fee)?fee/navAverage*10:null};
+ };
+ const rows=(raw.abcd||[]).filter(r=>groups.includes(r.nhom));
+ const units=(raw.don_vi||[]).map(u=>{
+  const source=rows.filter(r=>r.don_vi===u.ten_don_vi);
+  return {name:u.ten_don_vi,source,month:metrics(source,'month',4),week:metrics(source,'week',4)};
+ });
+ return {units,asOf:meta.ngay_hieu_qua_abcd,label:meta.ngay_gan_nhan,weekStart:meta.abcd_tuan_tu_ngay,
+  total:period=>metrics(units.flatMap(u=>u.source),period,units.length*4),
+  detail:(unit,period)=>[['A–B · Duy trì',['A','B']],['C–D · Kích hoạt',['C','D']]].map(([name,labels])=>({name,...metrics(unit.source.filter(r=>labels.includes(r.nhom)),period,2)}))};
+}
+
+function initOldPerformance(M){
+ const old=M.oldPerformance,periodSelect=document.getElementById('old-period'),search=document.getElementById('old-search');
+ let sort={key:'name',direction:'asc'},selected=null;
+ const periodText=()=>periodSelect.value==='week'?`Tuần ${dm(old.weekStart)}–${dm(old.asOf)}`:`Lũy kế 01/${old.asOf?.slice(5,7)||'—'}–${dm(old.asOf)}`;
+ const value=(n,d=0,unit='')=>`${fmt(n,d)}${isNum(n)&&unit?' '+unit:''}`;
+ const pair=(main,secondary,help='')=>`<td${help?` title="${esc(help)}"`:''}><strong>${main}</strong><small>${secondary}</small></td>`;
+ function cells(m){
+  const temporary=m.navAverageBasis==='current';
+  const mark=temporary?'<sup class="old-estimate" title="Tạm dùng NAV hiện tại thay NAV bình quân tháng">*</sup>':'';
+  const activeHelp=`${value(m.matched)} KH giao dịch / ${value(m.count)} KH đầu tháng × 100${isNum(m.currentCount)&&m.count!==m.currentCount?`. Quy mô hiện tại theo nguồn: ${value(m.currentCount)} KH.`:'.'}`;
+  const navHelp=isNum(m.navActive)?`${value(m.navActive,2,'tỷ')} NAV active / ${value(m.nav,2,'tỷ')} NAV hiện tại × 100`:'Chưa có NAV hiện tại của riêng KH đã giao dịch trong kỳ.';
+  const denominator=temporary?'NAV hiện tại (tạm thay NAV BQ tháng)':'NAV BQ cùng kỳ';
+  const turnoverHelp=`GTGD ${value(m.trade,2,'tỷ')} / ${denominator} ${value(m.navAverage,2,'tỷ')}${isNum(m.navAverage)?'.':' — chưa có NAV BQ cùng kỳ của tệp KH cũ.'}`;
+  const feeHelp=`Phí net ${value(m.fee,2,'triệu')} / ${denominator} ${value(m.navAverage,2,'tỷ')} × 10 = bp`;
+  return pair(value(m.count),'KH đầu tháng')+
+   pair(value(m.nav,2,'tỷ'),temporary?'Nền tạm: NAV hiện tại':`BQ kỳ: ${value(m.navAverage,2,'tỷ')}`)+
+   pair(value(m.activeRate,1,'%'),`${value(m.matched)} KH có giao dịch`,activeHelp)+
+   pair(value(m.navRate,1,'%'),`${value(m.navActive,2,'tỷ')} NAV`,navHelp)+
+   pair(value(m.turnover,2,'vòng')+mark,`${value(m.trade,2,'tỷ')} GTGD`,turnoverHelp)+
+   pair(value(m.feeYield,2,'bp')+mark,`${value(m.fee,2,'triệu')} phí net`,feeHelp);
+ }
+ function renderDetail(){
+  const panel=document.getElementById('old-detail'),u=old.units.find(x=>x.name===selected);
+  panel.hidden=!u;if(!u)return;
+  const temporary=u[periodSelect.value].navAverageBasis==='current';
+  const formula=periodSelect.value==='week'?'GTGD tuần / NAV BQ tuần':temporary?'GTGD LK / NAV hiện tại*':'GTGD lũy kế / NAV BQ tháng';
+  panel.innerHTML=`<div class="old-detail-head"><div><h3>${esc(u.name)} · Duy trì & kích hoạt</h3><p>${periodText()} · Nhãn ${dmy(old.label)}</p></div><button type="button" class="outline-btn" id="old-detail-close">Đóng chi tiết</button></div><div class="old-table-scroll"><table class="old-performance-table"><thead><tr><th>Nhóm KH</th><th>Quy mô KH</th><th>NAV hiện tại / BQ kỳ</th><th>KH có giao dịch<br><small>% tệp đầu tháng</small></th><th>NAV active<br><small>% NAV hiện tại</small></th><th>Vòng quay tài sản<br><small>${formula}</small></th><th>Phí net / ${temporary?'NAV hiện tại*':'NAV BQ'}</th></tr></thead><tbody>${old.detail(u,periodSelect.value).map(m=>`<tr><th scope="row">${esc(m.name)}</th>${cells(m)}</tr>`).join('')}</tbody></table></div>`;
+  document.getElementById('old-detail-close').addEventListener('click',()=>{selected=null;renderDetail();document.querySelectorAll('[data-old-unit]').forEach(b=>b.setAttribute('aria-expanded','false'))});
+ }
+ function render(){
+  const period=periodSelect.value,total=old.total(period),q=search.value.trim().toLocaleLowerCase('vi');
+  document.getElementById('old-period-caption').textContent=`${periodText()} · Tệp KH chốt ${dmy(old.label)}`;
+  document.getElementById('old-period-week').textContent=`Tuần ${dm(old.weekStart)}–${dm(old.asOf)}`;
+  document.getElementById('old-period-week').disabled=!old.weekStart;
+  const temporary=total.navAverageBasis==='current';
+  document.getElementById('old-turnover-formula').textContent=period==='week'?'GTGD tuần / NAV BQ tuần':temporary?'GTGD LK / NAV hiện tại*':'GTGD lũy kế / NAV BQ tháng';
+  document.getElementById('old-fee-base').textContent=temporary?'Phí net / NAV hiện tại*':'Phí net / NAV BQ';
+  document.getElementById('old-estimate-note').hidden=!old.units.some(u=>u[period].navAverageBasis==='current');
+  document.getElementById('old-summary').innerHTML=[
+   ['01','KH cũ có giao dịch',value(total.matched,0,'KH'),`Tỷ lệ trên tệp đầu tháng: ${value(total.activeRate,1,'%')}`],
+   ['02','NAV tệp KH cũ',value(total.nav,2,'tỷ'),`NAV active: ${value(total.navRate,1,'%')}`],
+   ['03','GTGD KH cũ trong kỳ',value(total.trade,2,'tỷ'),`Vòng quay tài sản: ${value(total.turnover,2,'vòng')}${temporary?' (tạm)':''}`],
+   ['04','Phí net KH cũ trong kỳ',value(total.fee,2,'triệu'),`Phí net / ${temporary?'NAV hiện tại':'NAV BQ'}: ${value(total.feeYield,2,'bp')}${temporary?' (tạm)':''}`]
+  ].map(([step,label,number,sub])=>`<article class="old-kpi"><span class="old-step">${step}</span><div class="old-kpi-label">${label}</div><strong>${number}</strong><small>${sub}</small></article>`).join('');
+  const list=old.units.filter(u=>u.name.toLocaleLowerCase('vi').includes(q)).sort((a,b)=>{
+   if(sort.key==='name')return (sort.direction==='asc'?1:-1)*a.name.localeCompare(b.name,'vi');
+   const av=a[period][sort.key],bv=b[period][sort.key];
+   if(!isNum(av)||!isNum(bv))return !isNum(av)&&!isNum(bv)?a.name.localeCompare(b.name,'vi'):!isNum(av)?1:-1;
+   return (sort.direction==='asc'?av-bv:bv-av)||a.name.localeCompare(b.name,'vi');
+  });
+  document.getElementById('old-table-title').textContent=`Hiệu suất khai thác · ${list.length} trung tâm`;
+  document.getElementById('old-performance-body').innerHTML=list.length?list.map(u=>`<tr><th scope="row"><button type="button" data-old-unit="${esc(u.name)}" aria-expanded="${u.name===selected}" aria-controls="old-detail">${esc(u.name)}</button></th>${cells(u[period])}</tr>`).join(''):'<tr><td colspan="7" class="empty">Không tìm thấy trung tâm.</td></tr>';
+  document.getElementById('old-performance-total').innerHTML=`<tr><th scope="row">Toàn công ty</th>${cells(total)}</tr>`;
+  document.querySelectorAll('[data-old-unit]').forEach(b=>b.addEventListener('click',()=>{
+   selected=selected===b.dataset.oldUnit?null:b.dataset.oldUnit;
+   document.querySelectorAll('[data-old-unit]').forEach(x=>x.setAttribute('aria-expanded',String(x.dataset.oldUnit===selected)));
+   renderDetail();if(selected)document.getElementById('old-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }));
+  document.querySelectorAll('[data-old-sort]').forEach(b=>{
+   const active=b.dataset.oldSort===sort.key;
+   b.closest('th').setAttribute('aria-sort',active?(sort.direction==='asc'?'ascending':'descending'):'none');
+   b.querySelector('i').textContent=active?(sort.direction==='asc'?'↑':'↓'):'↕';
+  });
+  renderDetail();
+ }
+ document.querySelectorAll('[data-old-sort]').forEach(b=>b.addEventListener('click',()=>{
+  const key=b.dataset.oldSort;sort={key,direction:sort.key===key?(sort.direction==='asc'?'desc':'asc'):key==='name'?'asc':'desc'};render();
+ }));
+ periodSelect.addEventListener('change',render);search.addEventListener('input',render);render();
+}
 
 function showError(message){
  const box=document.createElement('div');box.className='data-error';box.setAttribute('role','alert');
@@ -77,6 +185,11 @@ function buildModel(raw){
  const meta=raw.thong_tin||{};
  if(!meta.ngay_bao_cao)throw new Error('thiếu thong_tin.ngay_bao_cao');
  const reportIso=meta.ngay_bao_cao;
+ const debtPriorIso=new Date(Date.UTC(Number(reportIso.slice(0,4)),Number(reportIso.slice(5,7))-1,0)).toISOString().slice(0,10);
+ const debtPriorOf=unit=>{
+  const period=(raw.ky||[]).find(r=>r.don_vi===unit)?.du_no_cuoi_ky_truoc;
+  return isNum(period)?period:(raw.ngay||[]).find(r=>r.don_vi===unit&&r.ngay===debtPriorIso)?.du_no??null;
+ };
  const unitDefs=(raw.don_vi||[]).map(u=>({name:u.ten_don_vi,channel:u.kenh||'MG'}));
  const daily=(raw.ngay||[]).filter(r=>r.ngay<=reportIso&&r.ngay.slice(0,7)===reportIso.slice(0,7));
  const isoDates=[...new Set(daily.map(r=>r.ngay))].sort();
@@ -87,7 +200,8 @@ function buildModel(raw){
 
  const seriesOf=unit=>{
   const s={open:col(unit,'kh_mo_moi'),gtgd:col(unit,'gtgd'),fee:col(unit,'phi_net'),share:col(unit,'thi_phan_ngay'),shareAvg:col(unit,'thi_phan_bq_luy_ke'),debt:col(unit,'du_no'),nav:col(unit,'nav'),cash:col(unit,'nap_rut_rong'),market:col(unit,'gtgd_thi_truong')};
-  s.aum=s.nav.map((v,i)=>isNum(v)&&isNum(s.debt[i])?v+s.debt[i]:null);
+  const publishedAum=col(unit,'aum');
+  s.aum=s.nav.map((v,i)=>isNum(publishedAum[i])?publishedAum[i]:isNum(v)&&isNum(s.debt[i])?v+s.debt[i]:null);
   return s;
  };
  const exchanges=k=>({HOSE:k.thi_phan_hose??null,HNX:k.thi_phan_hnx??null,UPCOM:k.thi_phan_upcom??null});
@@ -122,7 +236,7 @@ function buildModel(raw){
 
  // ----- toàn công ty -----
  const cs=seriesOf(COMPANY),ck=ky[COMPANY]||{};
- const gtgdMonth=sumOf(cs.gtgd),feeMonth=sumOf(cs.fee),shareMonth=lastOf(cs.shareAvg);
+ const gtgdMonth=Object.hasOwn(ck,'gtgd_luy_ke_pdf')?ck.gtgd_luy_ke_pdf:sumOf(cs.gtgd),feeMonth=Object.hasOwn(ck,'phi_luy_ke_pdf')?ck.phi_luy_ke_pdf:sumOf(cs.fee),shareMonth=lastOf(cs.shareAvg);
  const companyResources=resourcesOf(deptRows);
  const openToStaff=mixedStaff?null:sumOf(col(COMPANY,'kh_mo_moi',staffIso));
  const company={
@@ -132,7 +246,7 @@ function buildModel(raw){
   shareDay:lastOf(cs.share),shareDayChange:sub(lastOf(cs.share),prevOf(cs.share)),shareMonth,sharePlan:ck.thi_phan_ke_hoach??null,shareMonthChange:sub(shareMonth,ck.thi_phan_cung_ky),
   exchangeShares:exchanges(ck),exchangeChanges:exchangeChanges(ck),
   nav:lastOf(cs.nav),navChange:sub(lastOf(cs.nav),prevOf(cs.nav)),debt:lastOf(cs.debt),debtChange:sub(lastOf(cs.debt),prevOf(cs.debt)),debtStartChange:sub(lastOf(cs.debt),cs.debt[0]),
-  aum:lastOf(cs.aum),aumChange:sub(lastOf(cs.aum),prevOf(cs.aum)),debtAvgMonth:avgOf(cs.debt),debtComponents:debtParts(ck),
+  aum:lastOf(cs.aum),aumChange:sub(lastOf(cs.aum),prevOf(cs.aum)),debtAvgMonth:avgOf(cs.debt),debtComponents:debtParts(ck),debtPriorClose:debtPriorOf(COMPANY),
   cashIn:ck.tien_nap??null,cashOut:ck.tien_rut??null,cashInCount:ck.so_kh_nap??null,cashOutCount:ck.so_kh_rut??null,cashNet:lastOf(cs.cash),cashNetMonth:allFinite(cs.cash)?sumOf(cs.cash):null,
   marketDay:lastOf(cs.market),marketChange:sub(lastOf(cs.market),prevOf(cs.market)),
   resourceBenchmarks:{mg:companyResources.mg,ctv:companyResources.ctv,feeTotalMg:companyResources.feeTotalMg,feeTotalCtv:companyResources.feeTotalCtv,
@@ -147,17 +261,17 @@ function buildModel(raw){
  const units=unitDefs.map(def=>{
   const unitStaffIso=staffDates[def.name]||staffIso;
   const s=seriesOf(def.name),k=ky[def.name]||{},rows=deptRows.filter(r=>r.don_vi===def.name);
-  const mtd=sumOf(s.gtgd),feeMtd=sumOf(s.fee),fee=lastOf(s.fee),feeChange=sub(feeMtd,k.phi_cung_ky),share=lastOf(s.shareAvg);
+  const mtd=Object.hasOwn(k,'gtgd_luy_ke_pdf')?k.gtgd_luy_ke_pdf:sumOf(s.gtgd),feeMtd=Object.hasOwn(k,'phi_luy_ke_pdf')?k.phi_luy_ke_pdf:sumOf(s.fee),fee=lastOf(s.fee),feeChange=sub(feeMtd,k.phi_cung_ky),share=lastOf(s.shareAvg);
   const feeLast=lastN(s.fee,AVG_WINDOW),feeAvg5=feeLast?avgOf(feeLast):null;
   const u={name:def.name,channel:def.channel,staffIso:unitStaffIso,staffDate:dm(unitStaffIso),staffDateFull:dmy(unitStaffIso),
    gtgd:lastOf(s.gtgd),change:sub(lastOf(s.gtgd),prevOf(s.gtgd)),mtd,gtgdMonthChange:sub(mtd,k.gtgd_cung_ky),
    fee,feeMtd,feeChange,growthPct:growth(feeChange,feeMtd),feeAvg5,momentum:feeAvg5>0&&isNum(fee)?(fee/feeAvg5-1)*100:null,
    share,sharePlan:k.thi_phan_ke_hoach??null,shareMonthChange:sub(share,k.thi_phan_cung_ky),exchangeShares:exchanges(k),exchangeShareChanges:exchangeChanges(k),
-   debt:lastOf(s.debt),nav:lastOf(s.nav),aum:lastOf(s.aum),debtAvgMonth:avgOf(s.debt),debtComponents:debtParts(k),
+   debt:lastOf(s.debt),nav:lastOf(s.nav),aum:lastOf(s.aum),debtAvgMonth:avgOf(s.debt),debtComponents:debtParts(k),debtPriorClose:debtPriorOf(def.name),
    cashIn:k.tien_nap??null,cashOut:k.tien_rut??null,inCount:k.so_kh_nap??null,outCount:k.so_kh_rut??null,net:lastOf(s.cash),
    cashNetMonth:allFinite(s.cash)?sumOf(s.cash):null,internalTransferMonth:k.dieu_chuyen_noi_bo??null,
    gtgdSeries:trimTail(s.gtgd),feeSeries:trimTail(s.fee),openSeries:trimTail(s.open),debtSeries:trimTail(s.debt),navSeries:trimTail(s.nav),aumSeries:trimTail(s.aum),shareDaySeries:trimTail(s.share),
-   newMtd:sumOf(s.open),newMtdAt12:sumOf(col(def.name,'kh_mo_moi',unitStaffIso)),feeMtdAtStaff:sumOf(col(def.name,'phi_net',unitStaffIso)),customerCount:kh[def.name]?.tong_kh??null,
+   newMtd:kh[def.name]?.kh_mo_moi_luy_ke??sumOf(s.open),newMtdAt12:sumOf(col(def.name,'kh_mo_moi',unitStaffIso)),feeMtdAtStaff:sumOf(col(def.name,'phi_net',unitStaffIso)),customerCount:kh[def.name]?.tong_kh??null,
    resources:resourcesOf(rows),departments:rows.map(department)};
   u.resources.newAvgMg=u.resources.mg>0&&isNum(u.newMtdAt12)?u.newMtdAt12/u.resources.mg:null;
   return u;
@@ -165,13 +279,15 @@ function buildModel(raw){
 
  // ----- KH & luồng KH mới -----
  const khIso=meta.ngay_chot_kh||reportIso;
- const flowOf=(unit,row)=>({total:row?.tong_kh??null,opened:sumOf(col(unit,'kh_mo_moi',khIso)),day:cell[unit]?.[khIso]?.kh_mo_moi??null,
-  funded:row?.kh_moi_nop_tien??null,matched:row?.kh_moi_khop_lenh??null,nav:row?.nav_kh_moi??null,debt:row?.du_no_kh_moi??null,gtgd:row?.gtgd_kh_moi??null,fee:row?.phi_kh_moi??null});
+ const flowOf=(unit,row)=>({total:row?.tong_kh??null,opened:row?.kh_mo_moi_luy_ke??(khIso<=reportIso?sumOf(col(unit,'kh_mo_moi',khIso)):null),day:row?.kh_mo_moi_trong_ngay??cell[unit]?.[khIso]?.kh_mo_moi??null,
+  funded:row?.kh_moi_nop_tien??null,matched:row?.kh_moi_khop_lenh??null,nav:row?.nav_kh_moi??null,debt:row?.du_no_kh_moi??null,gtgd:row?.gtgd_kh_moi??null,fee:row?.phi_kh_moi??null,
+  deposit:row?.tien_nop_kh_moi??null});
  const flowUnits=Object.fromEntries(unitDefs.map(u=>[u.name,flowOf(u.name,kh[u.name])]));
  const flowSum=f=>sumOf(Object.values(flowUnits).map(x=>x[f]));
  const companyFlow=flowOf(COMPANY,null);
  const customerFlow={asOf:dmy(khIso),source:meta.nguon_kh||'dữ liệu KH',units:flowUnits,
-  all:{total:flowSum('total'),opened:companyFlow.opened??flowSum('opened'),day:companyFlow.day??flowSum('day'),funded:flowSum('funded'),matched:flowSum('matched'),nav:flowSum('nav'),debt:flowSum('debt'),gtgd:flowSum('gtgd'),fee:flowSum('fee')},
+  all:{total:flowSum('total'),opened:companyFlow.opened??flowSum('opened'),day:companyFlow.day??flowSum('day'),funded:flowSum('funded'),matched:flowSum('matched'),nav:flowSum('nav'),debt:flowSum('debt'),gtgd:flowSum('gtgd'),fee:flowSum('fee'),
+   deposit:Object.values(flowUnits).every(x=>isNum(x.deposit))?flowSum('deposit'):null},
   viaChannel:ch=>sumOf(unitDefs.filter(u=>u.channel===ch).map(u=>flowUnits[u.name].opened))};
 
  // ----- nhãn A–D -----
@@ -191,9 +307,11 @@ function buildModel(raw){
  const pkkhValues={all:{}};
  for(const r of raw.pkkh||[]){
   const item=Object.fromEntries(Object.entries(pkkhFields).map(([k,f])=>[k,r[f]??0]));
-  (pkkhValues[r.don_vi]||(pkkhValues[r.don_vi]={}))[r.phan_khuc]=item;
-  const total=pkkhValues.all[r.phan_khuc]||(pkkhValues.all[r.phan_khuc]=Object.fromEntries(Object.keys(pkkhFields).map(k=>[k,0])));
-  for(const k of Object.keys(pkkhFields))total[k]+=item[k];
+  const label=pkkhDisplayLabel(r.phan_khuc);
+  const unit=pkkhValues[r.don_vi]||(pkkhValues[r.don_vi]={});
+  const bucket=unit[label]||(unit[label]=Object.fromEntries(Object.keys(pkkhFields).map(k=>[k,0])));
+  const total=pkkhValues.all[label]||(pkkhValues.all[label]=Object.fromEntries(Object.keys(pkkhFields).map(k=>[k,0])));
+  for(const k of Object.keys(pkkhFields)){bucket[k]+=item[k];total[k]+=item[k]}
  }
  const pkkh={fields:Object.keys(pkkhFields),labels:PKKH_LABELS,values:pkkhValues,
   units:unitDefs.filter(u=>pkkhValues[u.name]).map(u=>({key:u.name,label:u.name})),hasData:(raw.pkkh||[]).length>0};
@@ -202,13 +320,13 @@ function buildModel(raw){
  const month=Number(reportIso.slice(5,7)),year=Number(reportIso.slice(0,4)),prevMonth=month===1?12:month-1;
  const lastDay=new Date(Date.UTC(year,month,0)).toISOString().slice(0,10);
  const first=isoDates[0];
- const D={report:dm(reportIso),reportFull:dmy(reportIso),reportDots:reportIso.split('-').reverse().join('.'),reportSpaced:dmy(reportIso).replaceAll('/',' / '),
+ const D={report:dm(reportIso),reportFull:dmy(reportIso),reportDots:reportIso.split('-').reverse().join('.'),reportSpaced:dmy(reportIso).replaceAll('/',' / '),debtPrior:dm(debtPriorIso),
   first:dm(first),range:`${first?first.slice(8,10):'—'}–${dm(reportIso)}`,rangeFull:`${first?first.slice(8,10):'—'}–${dmy(reportIso)}`,sessions:isoDates.length,
   month,prevMonth,T:'T'+month,Tp:'T'+prevMonth,label:dm(meta.ngay_gan_nhan),labelFull:dmy(meta.ngay_gan_nhan),abcd:dm(meta.ngay_hieu_qua_abcd),
   week:`${meta.abcd_tuan_tu_ngay?meta.abcd_tuan_tu_ngay.slice(8,10):'—'}–${dm(meta.ngay_hieu_qua_abcd)}`,pkkh:dm(meta.ngay_hieu_qua_pkkh),
   staff:staffDisplay,staffFull:staffFullDisplay,staffPrior:dm(meta.ngay_nhan_su_ky_truoc),kh:dm(khIso),khFull:dmy(khIso),nextLabel:dm(lastDay),monthStart:`01/${String(month).padStart(2,'0')}`};
 
- return {raw,meta,D,dates:isoDates.map(dm),company,series:cs,units,org,customerFlow,cohort,pkkh};
+ return {raw,meta,D,dates:isoDates.map(dm),company,series:cs,units,org,customerFlow,cohort,pkkh,oldPerformance:buildOldPerformance(raw)};
 }
 
 // =====================================================================
@@ -297,7 +415,7 @@ function renderStatic(M){
  const headText=[null,`KH đầu ${D.T}<br><span>tỷ trọng tệp</span>`,`KH khớp ${D.T}<br><span>tỷ lệ trong nhóm</span>`,`NAV hiện tại<br><span>so BQ ${D.Tp} · tỷ</span>`,`GTGD lũy kế ${D.T}<br><span>so cả ${D.Tp} · tỷ</span>`,`Phí net lũy kế ${D.T}<br><span>so cả ${D.Tp} · triệu</span>`,`Dư nợ hiện tại<br><span>so BQ ${D.Tp} · tỷ</span>`];
  heads.forEach((th,i)=>{if(headText[i])th.innerHTML=headText[i]});
  setText('.pkkh-table-explain',`Nhãn và quy mô đầu tháng giữ cố định. So sánh tháng ${D.month} lũy kế với cả tháng ${D.prevMonth} trên cùng tệp khách hàng; tỷ lệ để “—” khi nền tháng ${D.prevMonth} bằng 0.`);
- const panelHeads=document.querySelectorAll('.pkkh-panels .pkkh-panel-head span');if(panelHeads[0])panelHeads[0].textContent=`7 phân khúc kinh doanh · KH ${D.label}`;
+ const panelHeads=document.querySelectorAll('.pkkh-panels .pkkh-panel-head span');if(panelHeads[0])panelHeads[0].textContent=`6 phân khúc kinh doanh · KH ${D.label}`;
  const quality=$('.pkkh-quality > p');if(quality)quality.textContent=`Quy mô nhãn cố định tại ${D.label}; ngày hiệu quả ${D.pkkh}.`;
  setText('.pkkh-definition-intro',`Các điều kiện dưới đây dùng để tạo nhãn tại ngày ${D.label}. Nhãn đó giữ nguyên trong tháng ${D.month}; “hoặc” nghĩa là chỉ cần đạt một trong hai ngưỡng vòng quay.`);
  setText('.pkkh-definition-foot',`BQ = bình quân; VQ = vòng quay; GTGD = giá trị giao dịch. Nhãn PKKH và trung tâm giữ cố định tại ${D.label} trong tháng ${D.month}.`);
@@ -308,10 +426,12 @@ function renderStatic(M){
  const unitHeads=document.querySelectorAll('.unit-comparison thead th');
  if(unitHeads[1])unitHeads[1].innerHTML=`MG · ${D.staff}<br>SL / Δ so ${D.staffPrior}`;
  if(unitHeads[2])unitHeads[2].innerHTML=`CTV · ${D.staff}<br>SL / Δ so ${D.staffPrior}`;
+ if(unitHeads[7])unitHeads[7].innerHTML=`Dư nợ ${D.report}<br>tỷ / Δ so ${D.debtPrior}`;
  if(unitHeads[8])unitHeads[8].innerHTML=`Phí hôm nay / BQ ${AVG_WINDOW} phiên<br>triệu đồng`;
  const um=M.org.unmapped;
  const staffExceptions=units.filter(u=>u.staffDate!==D.report).map(u=>`${u.name}: ${u.staffDate}`);
  setText('.unit-comparison-note',`MG/CTV: cây nhân sự chốt ${D.staff}${staffExceptions.length?` (${staffExceptions.join('; ')}; các đơn vị khác: ${D.report})`:''}, so ${D.staffPrior}${isNum(um.mg)||isNum(um.ctv)?`; tổng gồm ${fmt(um.mg)} MG và ${fmt(um.ctv)} CTV chưa gắn trung tâm`:''}. Kinh doanh đến ${D.report}; KH mới chốt ${D.kh}.`);
+ setText('.unit-flow-period',`Tệp mở mới tháng · chốt ${D.khFull} · MG đầu tháng ${D.staffPrior}`);
 
  // ----- Tab định nghĩa & nguồn -----
  const flow=M.customerFlow.all,cohortCompany=M.cohort.company;
@@ -337,7 +457,8 @@ function renderStatic(M){
 // Phần tương tác (port từ bản inline cũ, thay ngày cứng bằng dữ liệu)
 // =====================================================================
 function init(M){
-const {D,company,units,dates}=M;
+const {D,company,units,dates,meta}=M;
+initOldPerformance(M);
 const reportSeries=M.series;
 const customerFlowInput=M.customerFlow;
 const fixedCohort=M.cohort;
@@ -397,14 +518,56 @@ const contributionScale=Math.max(250,Math.ceil(Math.max(...topFeeUnits.map(u=>u.
 document.querySelector('#contribution-summary .contribution-axis .scale').innerHTML=`<span>0</span><span>${fmt(contributionScale/2)}</span><span>${fmt(contributionScale)} triệu</span>`;
 contribution.innerHTML=topFeeUnits.map(u=>`<button type="button" class="contribution-row" data-unit="${esc(u.name)}" aria-label="${esc(u.name)}: phí net tháng ${fmt(u.feeMtd)} triệu, tỷ trọng ${fmt(u.feeMtd/company.feeMonth*100,1)}%; mở chi tiết"><span class="contribution-name">${esc(u.name)}</span><span class="contribution-track"><span class="contribution-bar" style="display:block;width:${Math.max(0,Math.min(100,u.feeMtd/contributionScale*100))}%"></span></span><strong class="contribution-value">${fmt(u.feeMtd)}</strong><span class="contribution-pct">${fmt(u.feeMtd/company.feeMonth*100,1)}%</span></button>`).join('');wireRows(contribution);
 function rosterCell(current,previous,label,asOf=D.staff){const delta=isNum(current)&&isNum(previous)?current-previous:null;return `<td class="staff-cell" title="${label} ${asOf}: ${fmt(current)}; chốt ${D.staffPrior}: ${fmt(previous)}; thay đổi: ${delta===null?'—':delta>0?'+'+fmt(delta):fmt(delta)}"><strong>${fmt(current)}</strong> <span class="subtle">/</span> ${signed(delta)}</td>`}
-function unitRow(u){const r=u.resources||{};return `<tr><td class="unit-name"><button type="button" data-unit="${esc(u.name)}">${esc(u.name)}</button></td>${rosterCell(r.mg,r.mgPrior,'MG',u.staffDate)}${rosterCell(r.ctv,r.ctvPrior,'CTV',u.staffDate)}<td>${fmt(u.feeMtd)}</td><td>${signed(u.feeChange)} <span class="subtle">/</span> ${signed(u.growthPct,1,'%')}</td><td>${fmt(u.mtd)}</td><td>${fmt(u.share,2)} / ${fmt(u.sharePlan,2)}</td><td>${fmt(customerFlowInput.units[u.name]?.opened)}</td><td>${fmt(u.fee)} / ${fmt(u.feeAvg5)}</td><td>${signed(u.momentum,1,'%')}</td></tr>`}
+function debtComparisonCell(current,previous){const delta=sub(current,previous);return `<td class="debt-comparison-cell" title="${esc(`Dư nợ ${D.report}: ${fmt(current)} tỷ; cuối ${D.debtPrior}: ${fmt(previous)} tỷ; thay đổi: ${minusFmt(delta)} tỷ${isNum(previous)&&previous!==0&&isNum(delta)?' / '+plainPct(delta/previous*100):''}`)}">${fmt(current)} <span class="subtle">/</span> ${signed(delta)}</td>`}
+function unitRow(u){const r=u.resources||{};return `<tr><td class="unit-name"><button type="button" data-unit="${esc(u.name)}">${esc(u.name)}</button></td>${rosterCell(r.mg,r.mgPrior,'MG',u.staffDate)}${rosterCell(r.ctv,r.ctvPrior,'CTV',u.staffDate)}<td>${fmt(u.feeMtd)}</td><td>${signed(u.feeChange)} <span class="subtle">/</span> ${signed(u.growthPct,1,'%')}</td><td>${fmt(u.mtd)}</td><td>${fmt(u.share,2)} / ${fmt(u.sharePlan,2)}</td>${debtComparisonCell(u.debt,u.debtPriorClose)}<td>${fmt(u.fee)} / ${fmt(u.feeAvg5)}</td><td>${signed(u.momentum,1,'%')}</td></tr>`}
+const flowNumber=(value,digits=0)=>isNum(value)?fmt(value,digits):'';
+const flowRatioCell=(count,opened)=>isNum(count)?`<strong>${fmt(count)} KH</strong>${isNum(opened)&&opened>0?`<small>${pct(count/opened*100,1)}</small>`:''}`:'';
+const flowPending=(opened,funded,matched)=>isNum(opened)&&isNum(funded)&&isNum(matched)?`${fmt(opened-funded)} / ${fmt(opened-matched)}`:'';
+let flowSortKey=null,flowSortDirection='asc';
+function flowSortValue(u,key){
+ const f=customerFlowInput.units[u.name]||{};
+ if(key==='name')return u.name;
+ if(key==='mgAvg')return u.channel==='MG'&&isNum(f.opened)&&u.resources?.mgPrior>0?f.opened/u.resources.mgPrior:null;
+ if(key==='pending')return isNum(f.opened)&&isNum(f.funded)?f.opened-f.funded:null;
+ return ({opened:f.opened,funded:f.funded,matched:f.matched,deposit:f.deposit,gtgd:f.gtgd})[key]??null;
+}
+function unitFlowRow(u){
+ const f=customerFlowInput.units[u.name]||{};
+ const mgAvg=flowSortValue(u,'mgAvg');
+ return `<tr><td class="unit-name"><button type="button" data-unit="${esc(u.name)}">${esc(u.name)}</button></td><td><strong>${flowNumber(f.opened)}</strong></td><td>${flowNumber(mgAvg,2)}</td><td class="flow-funded">${flowRatioCell(f.funded,f.opened)}</td><td class="flow-funded">${flowRatioCell(f.matched,f.opened)}</td><td>${flowPending(f.opened,f.funded,f.matched)}</td><td>${flowNumber(f.deposit,2)}</td><td>${flowNumber(f.gtgd,2)}</td></tr>`;
+}
+function unitFlowTotalRow(){
+ const f=customerFlowInput.all,mgUnits=units.filter(u=>u.channel==='MG');
+ const mgReady=mgUnits.length>0&&mgUnits.every(u=>isNum(customerFlowInput.units[u.name]?.opened)&&isNum(u.resources?.mgPrior));
+ const mgTotal=mgReady?sumOf(mgUnits.map(u=>u.resources.mgPrior)):null;
+ const mgOpened=mgReady?sumOf(mgUnits.map(u=>customerFlowInput.units[u.name].opened)):null;
+ const mgAvg=mgTotal>0?mgOpened/mgTotal:null;
+ return `<tr class="total"><td>Toàn công ty · tổng hợp</td><td>${flowNumber(f.opened)}</td><td>${flowNumber(mgAvg,2)}</td><td class="flow-funded">${flowRatioCell(f.funded,f.opened)}</td><td class="flow-funded">${flowRatioCell(f.matched,f.opened)}</td><td>${flowPending(f.opened,f.funded,f.matched)}</td><td>${flowNumber(f.deposit,2)}</td><td>${flowNumber(f.gtgd,2)}</td></tr>`;
+}
 function renderUnits(){
  const q=document.getElementById('unit-search').value.trim().toLocaleLowerCase('vi'),sort=document.getElementById('sort').value;
  const list=units.filter(u=>u.name.toLocaleLowerCase('vi').includes(q));
  list.sort((a,b)=>sort==='name'?a.name.localeCompare(b.name,'vi'):(b[sort]??-Infinity)-(a[sort]??-Infinity));
  const body=document.getElementById('units-body');body.innerHTML=list.length?list.map(unitRow).join(''):'<tr><td colspan="10" class="empty">Không tìm thấy đơn vị phù hợp.</td></tr>';
- if(!q){const avg=unitAverage(lastN(reportSeries.fee,AVG_WINDOW));const fGrowth=growth(company.feeMonthChange,company.feeMonth);const now=M.org.snapshot,prior=M.org.prior;body.innerHTML+=`<tr class="total"><td>Toàn công ty · tổng hợp</td>${rosterCell(now.mg,prior.mg,'MG')}${rosterCell(now.ctv,prior.ctv,'CTV')}<td>${fmt(company.feeMonth)}</td><td>${signed(company.feeMonthChange)} / ${signed(fGrowth,1,'%')}</td><td>${fmt(company.gtgdMonth)}</td><td>${fmt(company.shareMonth,2)} / ${fmt(company.sharePlan,2)}</td><td>${fmt(customerFlowInput.all.opened)}</td><td>${fmt(company.feeDay)} / ${fmt(avg)}</td><td>${signed(avg>0&&isNum(company.feeDay)?(company.feeDay/avg-1)*100:null,1,'%')}</td></tr>`;}
+ if(!q){const avg=unitAverage(lastN(reportSeries.fee,AVG_WINDOW));const fGrowth=growth(company.feeMonthChange,company.feeMonth);const now=M.org.snapshot,prior=M.org.prior;body.innerHTML+=`<tr class="total"><td>Toàn công ty · tổng hợp</td>${rosterCell(now.mg,prior.mg,'MG')}${rosterCell(now.ctv,prior.ctv,'CTV')}<td>${fmt(company.feeMonth)}</td><td>${signed(company.feeMonthChange)} / ${signed(fGrowth,1,'%')}</td><td>${fmt(company.gtgdMonth)}</td><td>${fmt(company.shareMonth,2)} / ${fmt(company.sharePlan,2)}</td>${debtComparisonCell(company.debt,company.debtPriorClose)}<td>${fmt(company.feeDay)} / ${fmt(avg)}</td><td>${signed(avg>0&&isNum(company.feeDay)?(company.feeDay/avg-1)*100:null,1,'%')}</td></tr>`;}
  wireRows(body);
+ const flowBody=document.getElementById('unit-flow-body');
+ document.querySelector('.unit-flow-heading h3').textContent=`Luồng KH mới · ${q?`${list.length}/${units.length}`:units.length} đơn vị`;
+ const flowList=[...list];
+ if(flowSortKey)flowList.sort((a,b)=>{
+  const av=flowSortValue(a,flowSortKey),bv=flowSortValue(b,flowSortKey);
+  if(av===null||bv===null)return av===null&&bv===null?a.name.localeCompare(b.name,'vi'):av===null?1:-1;
+  const compared=flowSortKey==='name'?av.localeCompare(bv,'vi'):av-bv;
+  return compared?(flowSortDirection==='asc'?compared:-compared):a.name.localeCompare(b.name,'vi');
+ });
+ flowBody.innerHTML=flowList.length?flowList.map(unitFlowRow).join(''):'<tr><td colspan="8" class="empty">Không tìm thấy đơn vị phù hợp.</td></tr>';
+ if(!q)flowBody.innerHTML+=unitFlowTotalRow();
+ wireRows(flowBody);
+ document.querySelectorAll('.unit-flow-table thead th').forEach(th=>{
+  const active=th.dataset.flowKey===flowSortKey;
+  th.setAttribute('aria-sort',active?(flowSortDirection==='asc'?'ascending':'descending'):'none');
+  th.querySelector('.flow-sort-arrow').textContent=active?(flowSortDirection==='asc'?'↑':'↓'):'↕';
+ });
  const feeList=[...list].filter(u=>isNum(u.feeMtd)).sort((a,b)=>b.feeMtd-a.feeMtd);
  const feeRoot=document.getElementById('unit-fee-ranking');
  const feeScale=Math.max(250,Math.ceil(Math.max(...feeList.map(u=>u.feeMtd),0)/250)*250);
@@ -422,6 +585,17 @@ function renderUnits(){
  growthRoot.innerHTML=growthList.length?growthList.map(u=>`<button class="unit-rank-row" type="button" data-unit="${esc(u.name)}" aria-label="${esc(u.name)}, tăng giảm phí tháng ${u.feeChange>0?'+':''}${fmt(u.feeChange)} triệu, ${u.growthPct>0?'+':''}${pct(u.growthPct)}; mở chi tiết"><span>${esc(u.name)}</span><span class="unit-track"><span class="unit-zero"></span><span class="unit-bar ${u.feeChange>=0?'positive':'negative'}" style="left:${(negativeScale+Math.min(0,u.feeChange))/growthScale*100}%;width:${Math.abs(u.feeChange)/growthScale*100}%"></span></span><strong class="unit-row-value">${signed(u.feeChange)}</strong><span class="unit-row-pct">${signed(u.growthPct,1,'%')}</span></button>`).join(''):'<div class="unit-empty">Chưa có chênh lệch cùng kỳ cho lựa chọn này.</div>';
  wireRows(feeRoot);wireRows(growthRoot);
 }
+const flowSortKeys=['name','opened','mgAvg','funded','matched','pending','deposit','gtgd'];
+document.querySelectorAll('.unit-flow-table thead th').forEach((th,i)=>{
+ const key=flowSortKeys[i],label=th.textContent.replace(/\s+/g,' ').trim();
+ th.dataset.flowKey=key;
+ const button=document.createElement('button');button.type='button';button.className='flow-sort-button';button.dataset.flowSort=key;
+ const sortLabel=`Sắp xếp theo ${key==='pending'?'số KH chưa nộp tiền':key==='funded'?'số KH đã nộp tiền':key==='matched'?'số KH đã khớp lệnh':label}`;
+ button.setAttribute('aria-label',sortLabel);button.title=sortLabel;
+ while(th.firstChild)button.appendChild(th.firstChild);
+ const arrow=document.createElement('span');arrow.className='flow-sort-arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='↕';button.appendChild(arrow);th.appendChild(button);
+ button.addEventListener('click',()=>{flowSortDirection=flowSortKey===key?(flowSortDirection==='asc'?'desc':'asc'):(key==='name'?'asc':'desc');flowSortKey=key;renderUnits()});
+});
 document.getElementById('unit-search').addEventListener('input',renderUnits);document.getElementById('sort').addEventListener('change',renderUnits);
 function unitPerPerson(total,count){return isNum(total)&&isNum(count)&&count>0?total/count:null}
 function unitChart(values,label,unit,kind='line',compact=false){
@@ -487,7 +661,7 @@ function unitExecutiveCards(u){
  return `<div class="unit-result-grid executive-grid unit-executive-grid">
  <article class="executive-card market-hero"><div class="executive-card-title"><h3>Thị phần giao dịch · BQ tháng</h3><span class="priority-label">ĐƠN VỊ</span></div><div class="market-hero-grid"><div class="market-total"><div class="hero-value">${fmt(u.share,2)}<span>%</span></div><div class="hero-gap ${tone(shareGap)}">${isNum(shareGap)?(shareGap>0?'+':'')+fmt(shareGap,2):'—'} <span>điểm % so kế hoạch</span></div><div class="hero-prior">${arrow(u.shareMonthChange)}${absFmt(u.shareMonthChange,2)} điểm % so cùng kỳ tháng trước</div><div class="hero-target" role="img" aria-label="Thị phần ${pct(u.share,2)}, kế hoạch ${pct(u.sharePlan,2)}"><div class="target-labels"><span>Thực hiện <strong>${pct(u.share,2)}</strong></span><span>Kế hoạch <strong>${pct(u.sharePlan,2)}</strong></span></div><div class="target-track"><div class="target-fill" style="width:${u.sharePlan>0&&isNum(u.share)?u.share/targetMax*100:0}%"></div>${u.sharePlan>0?`<div class="target-marker" style="left:${u.sharePlan/targetMax*100}%"></div>`:''}</div></div></div><div class="exchange-shares"><div class="exchange-heading">THỊ PHẦN TRÊN TỪNG SÀN <span>· BQ tháng</span></div>${exchanges.map(e=>`<div class="exchange-row"><span class="exchange-name">${e}</span><strong>${fmt(u.exchangeShares?.[e],2)}<span>%</span></strong><div class="exchange-comparison"><b>${signed(u.exchangeShareChanges?.[e],2,'%')}</b><small>so tháng trước</small></div></div>`).join('')}</div></div><div class="share-trend"><div class="executive-chart-title"><span>Thị phần giao dịch từng ngày trong tháng</span><span>% · ${D.range}</span></div><div class="mini-chart" data-unit-chart="share"></div></div><div class="monthly-daily-footer"><span>Hôm nay <strong>${pct(shareLast,2)}</strong></span><span>${arrow(variance(shareLast,sharePrev))}${absFmt(variance(shareLast,sharePrev),2)} điểm % / phiên trước</span></div></article>
  <article class="executive-card trading-primary"><div class="executive-card-title"><h3>Giá trị giao dịch SHS · tháng</h3></div><div class="executive-value">${fmt(u.mtd)} <span>tỷ đồng</span></div><div class="executive-delta ${tone(u.gtgdMonthChange)}">${arrow(u.gtgdMonthChange)}${absFmt(u.gtgdMonthChange)} tỷ · ${signed(tradeGrowth,1,'%')} cùng kỳ</div><div class="executive-trend"><div class="executive-chart-title"><span>Nhịp GTGD theo phiên</span><span>Tỷ đồng</span></div><div class="mini-chart" data-unit-chart="gtgd"></div><div class="executive-chart-note"><span>${D.range} · nét đứt: BQ ${AVG_WINDOW} phiên</span><strong>BQ ${fmt(gtgdAvg,1)} tỷ</strong></div></div><div class="monthly-daily-footer"><span>Hôm nay <strong>${fmt(u.gtgd)} tỷ</strong></span><span>${arrow(u.change)}${absFmt(u.change)} tỷ · ${signed(dailyTradeGrowth,1,'%')} / phiên trước</span><small>So BQ ${AVG_WINDOW} phiên <strong>${signed(gtgdAvg>0&&isNum(u.gtgd)?(u.gtgd/gtgdAvg-1)*100:null,1,'%')}</strong> · thị trường hôm nay <strong>${signed(marketGrowth,1,'%')}</strong></small></div><div class="fee-support" aria-label="Phí net bổ sung cho giá trị giao dịch"><div class="fee-support-month"><span>Phí net · lũy kế tháng</span><strong>${fmt(isNum(u.feeMtd)?u.feeMtd/1000:null,2)} <small>tỷ đồng</small></strong><span>${arrow(u.feeChange)}${absFmt(u.feeChange)} triệu · ${signed(u.growthPct,1,'%')} cùng kỳ</span></div><div class="fee-support-day"><span>Hôm nay <strong>${fmt(u.fee,2)} triệu</strong></span><span>≈ ${signed(feeDelta)} triệu · ${signed(ratio(feeDelta,u.fee),1,'%')}</span><span>So BQ ${AVG_WINDOW} phiên <strong>${signed(u.momentum,1,'%')}</strong></span></div></div></article>
- <article class="executive-card debt-primary"><div class="executive-card-title"><h3>Dư nợ · BQ tháng</h3></div><div class="executive-value">${fmt(u.debtAvgMonth)} <span>tỷ đồng</span></div><div class="executive-delta neutral">Bình quân ${u.debtSeries?.length||0} phiên có dữ liệu · ${D.range}</div><div class="executive-trend"><div class="executive-chart-title"><span>Dư nợ cuối ngày theo phiên</span><span>Tỷ đồng</span></div><div class="mini-chart" data-unit-chart="debt"></div><div class="executive-chart-note"><span>${D.range} · nét đứt: BQ ${AVG_WINDOW} phiên</span><strong>BQ ${fmt(debtAvg)} tỷ</strong></div></div><div class="monthly-daily-footer"><span>Cuối ngày <strong>${fmt(u.debt)} tỷ</strong></span><span>${arrow(debtChange)}${absFmt(debtChange)} tỷ · ${signed(ratio(debtChange,u.debt),1,'%')} / phiên trước</span><small>So ${D.first} <strong>${signed(debtStartChange)} tỷ · ${signed(ratio(debtStartChange,u.debt),1,'%')}</strong></small></div><div class="debt-support"><div class="debt-support-title">Cơ cấu dư nợ cuối ngày · tỷ đồng</div><div class="debt-components"><div><span>Margin thuần</span><strong>${fmt(parts.margin)}</strong></div><div><span>Ứng trước</span><strong>${fmt(parts.advance)}</strong></div><div><span>Dư nợ 3 bên</span><strong>${fmt(parts.thirdParty)}</strong></div></div></div></article></div>`;
+ <article class="executive-card debt-primary"><div class="executive-card-title"><h3>Dư nợ · BQ tháng</h3></div><div class="executive-value">${fmt(u.debtAvgMonth)} <span>tỷ đồng</span></div><div class="executive-delta neutral">Bình quân ${u.debtSeries?.filter(isNum).length||0} phiên có dữ liệu · ${D.range}</div><div class="executive-trend"><div class="executive-chart-title"><span>Dư nợ cuối ngày theo phiên</span><span>Tỷ đồng</span></div><div class="mini-chart" data-unit-chart="debt"></div><div class="executive-chart-note"><span>${D.range} · nét đứt: BQ ${AVG_WINDOW} phiên</span><strong>BQ ${fmt(debtAvg)} tỷ</strong></div></div><div class="monthly-daily-footer"><span>Cuối ngày <strong>${fmt(u.debt)} tỷ</strong></span><span>${arrow(debtChange)}${absFmt(debtChange)} tỷ · ${signed(ratio(debtChange,u.debt),1,'%')} / phiên trước</span><small>So ${D.first} <strong>${signed(debtStartChange)} tỷ · ${signed(ratio(debtStartChange,u.debt),1,'%')}</strong></small></div><div class="debt-support"><div class="debt-support-title">Cơ cấu dư nợ cuối ngày · tỷ đồng</div><div class="debt-components"><div><span>Margin thuần</span><strong>${fmt(parts.margin)}</strong></div><div><span>Ứng trước</span><strong>${fmt(parts.advance)}</strong></div><div><span>Dư nợ 3 bên</span><strong>${fmt(parts.thirdParty)}</strong></div></div></div></article></div>`;
 }
 function unitDepartmentTable(u){
  const departments=u.departments||[];
@@ -562,7 +736,7 @@ function showUnit(name){
  <details class="unit-methodology" id="unit-methodology"><summary>Định nghĩa & đối soát số liệu</summary>
  <p>DTPN = doanh thu phí net. DTPN BQ/MG = DTPN MG tháng / số MG; BQ/CTV = DTPN CTV tháng / số CTV. Mẫu số lấy cây cơ cấu tại ${u.staffDate}. KH mở mới BQ/MG = tổng mở mới đến ${u.staffDate} / số MG tại ${u.staffDate}. ${isNum(staffFee)?`Tổng DTPN theo phòng ${fmt(staffFee,2)} triệu (MG ${fmt(r.feeTotalMg,2)}; CTV ${fmt(r.feeTotalCtv,2)}; chưa phân loại ${fmt(r.feeTotalUnclassified,2)}); phí lũy kế theo chuỗi phiên đến ${u.staffDate} ${fmt(u.feeMtdAtStaff,2)} triệu, chênh ${fmt(feeGap,2)} triệu.`:'Chưa có DTPN MG/CTV theo phòng của đơn vị, giữ —.'} Mẫu số bằng 0 hoặc thiếu thì giữ —.</p>
  <p>Δ nhân sự so ${D.staffPrior} là so mốc kỳ trước, không phải cùng kỳ. ${r.other?'Có thêm '+fmt(r.other)+' người loại khác, không gộp vào MG/CTV.':''} Nhân sự chưa phân phòng giữ riêng; không phân bổ doanh thu trung tâm cho phòng theo số người. Số đơn vị = tổng các phòng.</p>
- <p>Kết quả tháng = tổng các phiên ${D.range}; cùng kỳ = lũy kế cùng số phiên tháng trước. Thị phần BQ tháng lấy BQ lũy kế tại ${D.report}; thị phần từng sàn của đơn vị chỉ hiện khi nguồn có. BQ ${AVG_WINDOW} phiên gồm ngày báo cáo. Dư nợ BQ = bình quân các phiên có dữ liệu. So ${D.first} dùng số cuối ngày ${D.first}, chưa phải số dư đầu tháng.</p>
+ <p>${meta.nguon_kinh_doanh?.includes('.pdf')?`GTGD và phí lũy kế theo số công bố trong PDF ${D.report}; chuỗi phiên cũ giữ số đã ghi nhận nên có thể lệch tổng lũy kế.`:`Kết quả tháng = tổng các phiên ${D.range}.`} Cùng kỳ = lũy kế cùng số phiên tháng trước. Thị phần BQ tháng lấy BQ lũy kế tại ${D.report}; thị phần từng sàn của đơn vị chỉ hiện khi nguồn có. BQ ${AVG_WINDOW} phiên gồm ngày báo cáo. Dư nợ BQ = bình quân các phiên có dữ liệu. So ${D.first} dùng số cuối ngày ${D.first}, chưa phải số dư đầu tháng.</p>
  <p>KH mới nộp tiền/khớp lệnh đếm độc lập trên tệp mở mới tháng của đơn vị (chốt ${D.kh}). Kênh mở KH theo danh mục đơn vị. Nhãn A–D chốt ${D.label}; quy mô và hiệu quả đến ${D.abcd}. NAV âm là nhãn chồng trong A–D, không cộng thêm. — là chưa có dữ liệu, không phải 0.</p></details>`;
  if(unitExecutiveObserver)unitExecutiveObserver.disconnect();
  unitExecutiveObserver=new ResizeObserver(entries=>entries.forEach(e=>renderUnitExecutiveChart(e.target,u)));
@@ -677,8 +851,8 @@ renderCustomerGroups();
 
 // ----- PKKH -----
 const pkkhData=M.pkkh;
-const pkkhBusiness=['Dormant','Mass','Active Trader','HVT','HNW','UHNW','Block Deal (BD)'];
-const pkkhStatus=['Zero','Unclassified','Other'];
+const pkkhBusiness=['Mass','Active Trader','HVT','HNW','UHNW','Block Deal (BD)'];
+const pkkhStatus=['Zero','Other'];
 const pkkhEmpty=Object.fromEntries(pkkhData.fields.map(field=>[field,0]));
 const pkkhMetric=(unit,label)=>pkkhData.values[unit]?.[label]||pkkhEmpty;
 const pkkhSum=unit=>pkkhData.labels.reduce((total,label)=>{const item=pkkhMetric(unit,label);for(const field of pkkhData.fields)total[field]+=item[field];return total},{...pkkhEmpty});
@@ -718,7 +892,7 @@ function renderPkkh(){
  renderPkkh();
 }
 
-const initialTab=location.hash.slice(1);selectTab(['daily','customers','segments','units','data'].includes(initialTab)?initialTab:'daily');
+const initialTab=location.hash.slice(1);selectTab(['daily','customers','segments','units','old-performance','data'].includes(initialTab)?initialTab:'daily');
 }
 
 boot();
